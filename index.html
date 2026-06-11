@@ -3,211 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organisateur de Scène - Fête de l'École</title>
-  <meta name="description" content="Organisateur de passage pour la Scène des Talents de la Fête de l'École.">
+  <title>Scène des Talents — 19 juin · École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="logo-section">
-      <h1><span class="gradient-text">FÊTE DE L'ÉCOLE</span></h1>
-      <p>Scène des Talents — Organisateur de Passage</p>
-    </div>
-    <div class="controls-section">
-      <button id="save-changes-btn" class="btn btn-save" title="Sauvegarder les modifications">
-        💾 Sauvegarder
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème">☀️</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="stats.html">Statistiques</a></li>
+      </ul>
     </div>
-  </header>
-
-  <!-- Statistics Ribbon -->
-  <section class="stats-ribbon" aria-label="Statistiques du spectacle">
-    <div class="stat-item">
-      <span class="stat-label">Élèves placés</span>
-      <span id="stat-kids-placed" class="stat-value" style="color: var(--success);">0 / 0</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Élèves à revoir</span>
-      <span id="stat-kids-review" class="stat-value" style="color: var(--warning);">0</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Numéros Confirmés</span>
-      <span id="stat-acts-confirmed" class="stat-value" style="color: var(--success);">0 / 0</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-label">Durée estimée</span>
-      <span id="stat-duration" class="stat-value">0 min</span>
-    </div>
-  </section>
-
-  <!-- Navigation Tabs -->
-  <nav class="nav-tabs" aria-label="Onglets principaux">
-    <button class="tab-btn active" data-tab="students">👥 Annuaire des Élèves</button>
-    <button class="tab-btn" data-tab="disciplines">🎭 Groupes &amp; Disciplines</button>
-    <button class="tab-btn" data-tab="planner">📋 Planificateur de Scène</button>
   </nav>
 
-  <!-- Main Content Areas -->
-  <main class="app-content">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Listing des participants</p>
+      <h1>Scène des Talents</h1>
+      <p class="meta">Vendredi 19 juin · École Arc en Ciel</p>
+    </header>
 
-    <!-- Tab 1: Student Directory -->
-    <section id="students-tab" class="tab-pane active" aria-labelledby="tab-students">
-      <div class="controls-bar">
-        <search class="search-wrapper">
-          <span class="search-icon">🔍</span>
-          <input type="search" id="student-search" class="search-input" placeholder="Rechercher un élève…">
-        </search>
-        <div class="filter-wrapper" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-          <select id="student-placement-filter" aria-label="Filtrer par placement">
-            <option value="all">Tous les états de suivi</option>
-            <option value="placed">✅ Élèves déjà placés</option>
-            <option value="review">⚠️ Enfants à revoir en priorité</option>
-          </select>
-          <select id="student-category-filter" aria-label="Filtrer par discipline">
-            <!-- Populated dynamically -->
-          </select>
-        </div>
+    <div class="rule">
+      <strong>Règle :</strong> chaque enfant peut faire <strong>2 scènes maximum</strong>.
+      Exception pour les projets d'école — <strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong>
+      et <strong>Quinzaine de l'égalité</strong> — qui ne comptent pas dans cette limite.
+    </div>
+
+    <p class="cat-title">Projets d'école</p>
+    <div id="school"></div>
+
+    <p class="cat-title">Scènes libres</p>
+    <div id="free"></div>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // ---- Menu responsive ----
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+    // ---- Projets d'école ----
+    const schoolHtml = SCHOOL_PROJECTS.map(p => {
+      let body, count;
+      if (p.languages) {
+        count = `${p.languages.length} langues`;
+        body = `<ul class="lang-list">${p.languages.map(l =>
+          `<li><div class="lang-head">${l.flag} ${esc(l.country)} — ${esc(l.lang)} <span class="badge">(${l.kids.length})</span></div>
+           <div class="lang-kids">${l.kids.map(esc).join(' · ')}</div></li>`).join('')}</ul>`;
+      } else {
+        count = `${p.kids.length} enfants`;
+        body = `<ol class="names">${p.kids.map((k,i) =>
+          `<li><span class="num">${i+1}</span> ${esc(k)}</li>`).join('')}</ol>`;
+      }
+      return `<section class="section school">
+        <div class="section-head"><h2>${esc(p.name)}</h2><span class="count">${count}</span></div>
+        ${p.note ? `<p class="subtitle">${esc(p.note)}</p>` : ''}
+        ${body}
+      </section>`;
+    }).join('');
+    document.getElementById('school').innerHTML = schoolHtml;
+
+    // ---- Scènes libres (grandes catégories pleine largeur, petites en grille) ----
+    const sceneCard = c => `<section class="section">
+      <div class="section-head">
+        <h2>${c.icon} ${esc(c.name)}</h2>
+        <span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span>
       </div>
-      <div id="students-container" class="students-grid">
-        <!-- Rendered dynamically -->
-      </div>
-    </section>
+      <ul class="groups">${c.scenes.map(s =>
+        `<li><span class="who">${s.who.map(esc).join(' + ')}</span><span class="scene">${esc(s.scene)}</span></li>`).join('')}</ul>
+    </section>`;
 
-    <!-- Tab 2: Disciplines Grid -->
-    <section id="disciplines-tab" class="tab-pane" aria-labelledby="tab-disciplines">
-      <div id="disciplines-container" class="disciplines-container">
-        <!-- Rendered dynamically -->
-      </div>
-    </section>
-
-    <!-- Tab 3: Show Planner -->
-    <section id="planner-tab" class="tab-pane" aria-labelledby="tab-planner">
-      <div class="planner-layout">
-
-        <!-- Pool of all acts -->
-        <aside class="planner-side">
-          <h3>
-            <span>Numéros disponibles</span>
-            <span style="font-size:0.8rem;color:var(--text-muted);font-weight:normal;">Cliquez pour ajouter</span>
-          </h3>
-          <div class="filter-wrapper" style="margin-block-end:1rem;">
-            <select id="planner-status-filter" aria-label="Filtrer par statut" style="width:100%;padding:0.6rem;background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:var(--border-radius-sm);color:var(--text-primary);font-size:0.85rem;outline:none;cursor:pointer;">
-              <option value="all">Tous les statuts</option>
-              <option value="confirmed">✅ Confirmé</option>
-              <option value="pending">🟡 À valider (en attente / à revoir)</option>
-              <option value="red">🔴 À positionner / repositionner</option>
-            </select>
-          </div>
-          <div id="acts-pool" class="acts-pool-list">
-            <!-- Rendered dynamically -->
-          </div>
-        </aside>
-
-        <!-- Program Sheet -->
-        <article class="program-sheet">
-          <div class="program-header">
-            <div>
-              <h2 class="program-title">📋 PROGRAMME OFFICIEL</h2>
-              <p class="program-meta-count"><span id="program-count">0</span> numéro(s) sélectionné(s)</p>
-            </div>
-            <div class="program-meta">
-              <span class="stat-label" style="display:block;">DURÉE DU SPECTACLE</span>
-              <span id="program-duration" class="program-meta-time">0 min</span>
-            </div>
-          </div>
-          <div style="margin-block-end:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <button id="print-program-btn" class="btn btn-primary">🖨️ Imprimer la Feuille de Route</button>
-            <button id="clear-program-btn" class="btn btn-danger">✕ Vider le Programme</button>
-          </div>
-          <div id="program-list" class="program-list">
-            <!-- Rendered dynamically -->
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== Student Details Dialog (read-only) ===== -->
-  <dialog id="student-dialog" class="custom-dialog">
-    <div class="dialog-header">
-      <div>
-        <h2 id="dialog-title" style="font-size:1.5rem;">Nom de l'élève</h2>
-        <p id="dialog-group" style="font-size:0.85rem;color:var(--text-muted);font-weight:600;">Classe / Groupe</p>
-      </div>
-      <button class="dialog-close" onclick="closeStudentDetails()" aria-label="Fermer">✕</button>
-    </div>
-    <div class="dialog-body">
-      <div id="dialog-tags" class="tag-container" style="margin-block-end:1.5rem;"></div>
-      <h3 style="font-size:1rem;border-bottom:1px solid var(--border-color);padding-bottom:0.5rem;margin-bottom:0.75rem;">
-        Passages programmés :
-      </h3>
-      <ul id="dialog-acts-list" style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;"></ul>
-    </div>
-    <div style="text-align:right;">
-      <button class="btn btn-secondary" onclick="closeStudentDetails()">Fermer</button>
-    </div>
-  </dialog>
-
-  <!-- ===== Edit Student Dialog ===== -->
-  <dialog id="edit-dialog" class="custom-dialog edit-dialog-wide">
-    <div class="dialog-header">
-      <h2 style="font-size:1.3rem;">✏️ Modifier l'élève</h2>
-      <button class="dialog-close" id="edit-cancel-btn" aria-label="Fermer">✕</button>
-    </div>
-    <div class="dialog-body">
-
-      <!-- Name -->
-      <div class="edit-field">
-        <label for="edit-student-name" class="edit-label">Nom de l'élève</label>
-        <input type="text" id="edit-student-name" class="edit-input" placeholder="Prénom Nom">
-      </div>
-
-      <!-- Group -->
-      <div class="edit-field">
-        <label for="edit-student-group" class="edit-label">Groupe</label>
-        <select id="edit-student-group" class="edit-input"></select>
-      </div>
-
-      <!-- Categories / Acts -->
-      <div class="edit-field">
-        <label class="edit-label">Catégories / Numéros</label>
-        <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem;">Cochez les numéros auxquels participe l'élève.</p>
-        <div id="edit-student-acts" class="acts-checklist"></div>
-      </div>
-
-    </div>
-    <div class="dialog-footer">
-      <button class="btn btn-secondary" id="edit-cancel-btn-footer" onclick="document.getElementById('edit-dialog').close()">Annuler</button>
-      <button class="btn btn-primary" id="edit-save-btn">💾 Enregistrer</button>
-    </div>
-  </dialog>
-
-  <!-- ===== Confirm Dialog ===== -->
-  <dialog id="confirm-dialog" class="custom-dialog confirm-dialog-sm">
-    <div class="dialog-header">
-      <h2 style="font-size:1.1rem;">⚠️ Confirmation</h2>
-    </div>
-    <div class="dialog-body">
-      <p id="confirm-message" style="color:var(--text-secondary);line-height:1.6;"></p>
-    </div>
-    <div class="dialog-footer">
-      <button class="btn btn-secondary" id="confirm-cancel-btn">Annuler</button>
-      <button class="btn btn-danger" id="confirm-ok-btn">Confirmer</button>
-    </div>
-  </dialog>
-
-  <!-- Toast notification -->
-  <div id="toast-notification" class="toast" role="status" aria-live="polite"></div>
-
-  <footer style="text-align:center;padding:2rem;font-size:0.8rem;color:var(--text-muted);border-top:1px solid var(--border-color);margin-top:2rem;">
-    Créé pour l'organisation de la Scène des Talents de la Fête de l'École © 2026.
-  </footer>
-
-  <script src="app.js"></script>
+    const big = FREE_CATEGORIES.filter(c => c.scenes.length >= 7);
+    const small = FREE_CATEGORIES.filter(c => c.scenes.length < 7);
+    document.getElementById('free').innerHTML =
+      big.map(sceneCard).join('') +
+      `<div class="disc-grid">${small.map(sceneCard).join('')}</div>`;
+  </script>
 </body>
 </html>

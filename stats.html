@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistiques · Scène des Talents — École Arc en Ciel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="stats.html" class="active">Statistiques</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Vue d'ensemble</p>
+      <h1>Statistiques</h1>
+      <p class="meta">Chiffres calculés automatiquement à partir du listing</p>
+    </header>
+
+    <div class="stat-grid" id="kpis"></div>
+
+    <p class="cat-title">Scènes par catégorie (scènes libres)</p>
+    <section class="section"><ul class="bars" id="barScenes"></ul></section>
+
+    <p class="cat-title">Enfants par catégorie (scènes libres)</p>
+    <section class="section"><ul class="bars" id="barKids"></ul></section>
+
+    <p class="cat-title">Nombre de scènes par enfant</p>
+    <section class="section">
+      <table class="kid-table">
+        <thead><tr><th>Enfant</th><th class="c">Scènes libres</th><th class="c">Limite</th><th>Détail</th></tr></thead>
+        <tbody id="kidRows"></tbody>
+      </table>
+      <p class="note" id="kidNote"></p>
+    </section>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // ---- Menu responsive ----
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const S = computeStats();
+
+    // ---- KPIs ----
+    const kpis = [
+      { big: S.totalScenes,     lab: "Scènes au total" },
+      { big: S.freeSceneCount,  lab: "Scènes libres" },
+      { big: S.schoolCount,     lab: "Projets d'école" },
+      { big: S.categoryCount,   lab: "Catégories libres" },
+      { big: S.uniqueChildren,  lab: "Enfants impliqués" },
+      { big: S.quinzaineLangs,  lab: "Langues — Quinzaine" }
+    ];
+    document.getElementById('kpis').innerHTML = kpis.map(k =>
+      `<div class="stat-card"><div class="big">${k.big}</div><div class="lab">${esc(k.lab)}</div></div>`).join('');
+
+    // ---- Barres : scènes par catégorie ----
+    const maxScenes = Math.max(...S.perCategory.map(c => c.scenes));
+    document.getElementById('barScenes').innerHTML = S.perCategory.map(c =>
+      `<li><div class="bar-top"><span class="name">${c.icon} ${esc(c.name)}</span><span class="val">${c.scenes}</span></div>
+       <div class="bar-track"><div class="bar-fill" data-w="${(c.scenes/maxScenes*100).toFixed(1)}"></div></div></li>`).join('');
+
+    // ---- Barres : enfants par catégorie ----
+    const maxKids = Math.max(...S.perCategory.map(c => c.kids));
+    document.getElementById('barKids').innerHTML = S.perCategory.map(c =>
+      `<li><div class="bar-top"><span class="name">${c.icon} ${esc(c.name)}</span><span class="val">${c.kids}</span></div>
+       <div class="bar-track"><div class="bar-fill alt" data-w="${(c.kids/maxKids*100).toFixed(1)}"></div></div></li>`).join('');
+
+    // ---- Tableau enfants (tri alphabétique) ----
+    const kidsSorted = [...S.children].sort((a, b) =>
+      a.display.localeCompare(b.display, 'fr', { sensitivity: 'base' }));
+    document.getElementById('kidRows').innerHTML = kidsSorted.map(ch => {
+      const over = ch.count > 2;
+      return `<tr class="${over?'over':''}">
+        <td>${esc(ch.display)}</td>
+        <td class="c"><strong>${ch.count}</strong></td>
+        <td class="c"><span class="pill ${over?'warn':'ok'}">${over?'Dépasse':'OK'}</span></td>
+        <td style="color:var(--muted);font-size:.86rem">${ch.scenes.map(esc).join(' · ')}</td>
+      </tr>`;
+    }).join('');
+
+    const note = document.getElementById('kidNote');
+    const overTxt = S.overLimit.length
+      ? `⚠️ ${S.overLimit.length} enfant(s) à vérifier (plus de 2 scènes libres) : ${S.overLimit.map(c=>esc(c.display)).join(', ')}.`
+      : `✅ Aucun enfant ne dépasse la limite de 2 scènes libres.`;
+    note.innerHTML = `${overTxt} Les projets d'école ne sont pas comptés. Note : certains prénoms ont des variantes d'orthographe (Maissae/Mayssae, Giulia/Guillia, Elena/Elenna, Shine/Shyne…) regroupées automatiquement — à confirmer manuellement.`;
+
+    // ---- Animation des barres ----
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.dataset.w + '%');
+    });
+  </script>
+</body>
+</html>

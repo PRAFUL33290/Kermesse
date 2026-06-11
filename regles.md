@@ -1,0 +1,1 @@
+Les enfants ont le droit de faire 2 scènes max. Mis a part si l'enfant fait Capoeira, Oh mama tetema et Quinzaine de l'égalité. Ils ont le droit car ce sont des projets d'école. Pour le reste, c'est 2 scènes maximum.
