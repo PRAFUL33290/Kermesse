@@ -20,19 +20,19 @@ const SCHOOL_PROJECTS = [
     name: "Quinzaine de l'égalité",
     note: "Nos artistes en herbe — par pays et langue",
     languages: [
-      { flag: "🇫🇷", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina","Alicia","Noémie","Eileen","Céline","Chahd"] },
+      { flag: "🇫🇷", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina M.","Alicia","Noémie","Eileen","Céline","Chahd"] },
       { flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", country: "Angleterre", lang: "Anglais", kids: ["Juliette"] },
-      { flag: "🇪🇸", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina","Alicia","Mila","Zia","Chahd"] },
-      { flag: "🇵🇹", country: "Portugal", lang: "Portugais", kids: ["Kelyana","Ilona","Alya","Lina"] },
+      { flag: "🇪🇸", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina M.","Alicia","Mila","Zia","Chahd"] },
+      { flag: "🇵🇹", country: "Portugal", lang: "Portugais", kids: ["Kelyana","Ilona","Alya","Lina M."] },
       { flag: "🇮🇹", country: "Italie", lang: "Italien", kids: ["Guillia","Divine","Camille"] },
       { flag: "🇩🇪", country: "Allemagne", lang: "Allemand", kids: ["Elenna","Mia"] },
       { flag: "🇹🇳", country: "Tunisie", lang: "Darija tunisien", kids: ["Lydia","Jasmine","Yara","Eileen"] },
-      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Mayssae","Lina","Chahd"] },
+      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Mayssae","Lina M.","Chahd"] },
       { flag: "🇩🇿", country: "Algérie", lang: "Dziriya", kids: ["Zia","Chahd"] },
       { flag: "🇸🇳", country: "Sénégal", lang: "Wolof", kids: ["Divine","Noémie"] },
       { flag: "🇨🇲", country: "Cameroun", lang: "Douala", kids: ["Nayana","Keren"] },
-      { flag: "🇰🇷", country: "Corée du Sud", lang: "Coréen", kids: ["Elenna","Mia","Lina","Mila","Zia","Céline"] },
-      { flag: "🇯🇵", country: "Japon", lang: "Japonais", kids: ["Kelyana","Juliette","Ilona","Jasmine","Mia","Alya","Lina","Mila","Zia","Céline"] }
+      { flag: "🇰🇷", country: "Corée du Sud", lang: "Coréen", kids: ["Elenna","Mia","Lina M.","Mila","Zia","Céline"] },
+      { flag: "🇯🇵", country: "Japon", lang: "Japonais", kids: ["Kelyana","Juliette","Ilona","Jasmine","Mia","Alya","Lina M.","Mila","Zia","Céline"] }
     ]
   }
 ];
@@ -48,8 +48,9 @@ const FREE_CATEGORIES = [
       { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" },
       { who: ["Lana"], scene: "Séga" },
       { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" },
-      { who: ["Maissae","Lina"], scene: "Afro / rondade / salto" },
-      { who: ["Grace"], scene: "Danse" }
+      { who: ["Maissae","Lina M."], scene: "Afro / rondade / salto" },
+      { who: ["Grace"], scene: "Danse" },
+      { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" }
     ]
   },
   {
@@ -68,7 +69,8 @@ const FREE_CATEGORIES = [
       { who: ["Lydia"], scene: "Gym / danse à préciser" },
       { who: ["Naima Nour"], scene: "Gym" },
       { who: ["Inès"], scene: "Gym" },
-      { who: ["Mélina B."], scene: "Gym" }
+      { who: ["Mélina B."], scene: "Gym" },
+      { who: ["Lina S."], scene: "Gym" }
     ]
   },
   {
@@ -79,7 +81,7 @@ const FREE_CATEGORIES = [
       { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" },
       { who: ["Nayana"], scene: "Théâtre" },
       { who: ["Charlotte"], scene: "Théâtre" },
-      { who: ["Eileen","Leana","Lina"], scene: "Théâtre" }
+      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" }
     ]
   },
   {
@@ -90,7 +92,7 @@ const FREE_CATEGORIES = [
       { who: ["Ched / Cheid"], scene: "Chant" },
       { who: ["Maïmouna"], scene: "Chant" },
       { who: ["Céline"], scene: "Chant" },
-      { who: ["Lina"], scene: "Chant" },
+      { who: ["Lina M."], scene: "Chant" },
       { who: ["Jumana"], scene: "À confirmer" }
     ]
   },
@@ -124,7 +126,7 @@ const NAME_ALIASES = {
   "guillia": "Giulia",
   "elenna": "Elena",
   "shyne": "Shine",
-  "lina m": "Lina",
+  "lina m": "Lina M.",
   "maimouna": "Maimouna"
 };
 
