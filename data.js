@@ -17,6 +17,11 @@ const SCHOOL_PROJECTS = [
     kids: ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne"]
   },
   {
+    name: "Carnaval de Deborah",
+    note: "Projet d'école",
+    kids: ["Deborah"]
+  },
+  {
     name: "Quinzaine de l'égalité",
     note: "Nos artistes en herbe — par pays et langue",
     languages: [
@@ -50,14 +55,17 @@ const FREE_CATEGORIES = [
       { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" },
       { who: ["Maissae","Lina M."], scene: "Afro / rondade / salto" },
       { who: ["Grace"], scene: "Danse" },
-      { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" }
+      { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" },
+      { who: ["Giulia","Heloise"], scene: "Gabriela" },
+      { who: ["Stella","Giulia"], scene: "21 Reasons" },
+      { who: ["Heloise","Juliette","Loicia"], scene: "Danse" }
     ]
   },
   {
     name: "Gymnastique",
     icon: "🤸",
     scenes: [
-      { who: ["Giulia","Stella"], scene: "Gym duo" },
+      { who: ["Giulia","Stella","Heloise"], scene: "Gym" },
       { who: ["Eileen","Leana","Céline"], scene: "Gym" },
       { who: ["Yara"], scene: "Gym" },
       { who: ["Alya"], scene: "Gym" },
