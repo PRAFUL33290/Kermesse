@@ -94,11 +94,15 @@
       a.display.localeCompare(b.display, 'fr', { sensitivity: 'base' }));
     document.getElementById('kidRows').innerHTML = kidsSorted.map(ch => {
       const over = ch.count > 2;
+      const tags = [
+        ...ch.cats.map(c => `<span class="det-tag">${esc(c)}</span>`),
+        ...(ch.school ? [`<span class="det-tag school">Projet d'école</span>`] : [])
+      ].join('');
       return `<tr class="${over?'over':''}">
         <td>${esc(ch.display)}</td>
         <td class="c"><strong>${ch.count}</strong></td>
         <td class="c"><span class="pill ${over?'warn':'ok'}">${over?'Dépasse':'OK'}</span></td>
-        <td style="color:var(--muted);font-size:.86rem">${ch.scenes.map(esc).join(' · ')}</td>
+        <td>${tags}</td>
       </tr>`;
     }).join('');
 

@@ -6,3 +6,5 @@ Listing enfant pour chorégraphie Oh Mama Tetema + Freestyle
 4. Maimouna 
 5. Tania
 6. Orianne
+7. Housna
+8. Alicia

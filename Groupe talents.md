@@ -65,6 +65,6 @@ Voici **tous les groupes des scènes libres uniquement**, donc **sans Quinzaine 
 
 ## Magie
 
-| Groupe / enfant | Scène            |
-| --------------- | ---------------- |
-| **Charlotte**   | Magie — Holla Up |
+| Groupe / enfant | Scène                     |
+| --------------- | ------------------------- |
+| **Charlotte**   | Holla Up *(à confirmer)*  |

@@ -1,11 +1,11 @@
 Liste enfants participant à la quinzaine de l'égalité :
 
 🌟Nos Artistes en Herbe
-1) 🇫🇷 France — Français : Lilly • Lydia • Myla • Kelyana • Elaia • Juliette • Ilona • Jasmine • Guillia • Elenna • Mia • Alya • Divine • Lina • Alicia • Noémie • Eileen • Céline • Chahd (19)
+1) 🇫🇷 France — Français : Lilly • Lydia • Myla • Kelyana • Elaia • Juliette • Ilona • Jasmine • Guillia • Elenna • Mia • Alya • Divine • Lina • Alicia • Noémie • Eileen • Céline • Cheid (19)
 
 2) 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre — Anglais : Juliette (1)
 
-3) 🇪🇸 Espagne — Espagnol : Myla • Kelyana • Elaia • Elenna • Mia • Shyne • Alya • Lina • Alicia • Mila • Zia • Chahd (12)
+3) 🇪🇸 Espagne — Espagnol : Myla • Kelyana • Elaia • Elenna • Mia • Shyne • Alya • Lina • Alicia • Mila • Zia • Cheid (12)
 
 4) 🇵🇹 Portugal — Portugais : Kelyana • Ilona • Alya • Lina (4)
 
@@ -15,9 +15,9 @@ Liste enfants participant à la quinzaine de l'égalité :
 
 7) 🇹🇳 Tunisie — Darija tunisien : Lydia • Jasmine • Yara • Eileen (4)
 
-8) 🇲🇦 Maroc — Darija marocain : Yara • Mayssae • Lina • Chahd (4)
+8) 🇲🇦 Maroc — Darija marocain : Yara • Mayssae • Lina • Cheid (4)
 
-9) 🇩🇿 Algérie — Dziriya (darija algérien) : Zia • Chahd (2)
+9) 🇩🇿 Algérie — Dziriya (darija algérien) : Zia • Cheid (2)
 
 10) 🇸🇳 Sénégal — Wolof : Divine • Noémie (2)
 

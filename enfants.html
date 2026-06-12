@@ -93,7 +93,7 @@
       cat.scenes.forEach(s => {
         const solo = s.who.length === 1;
         s.who.forEach(w => {
-          getKid(w).free.push({ cat: cat.name, icon: cat.icon, scene: s.scene, solo });
+          getKid(w).free.push({ cat: cat.name, icon: cat.icon, scene: s.scene, solo, who: s.who });
         });
       });
     });
@@ -150,6 +150,19 @@
       const badgeClass = over ? 'count warn' : (n === 0 ? 'count zero' : 'count');
       const label = `${n} scène${n > 1 ? 's' : ''}`;
 
+      // Ligne "copains" sous le nom
+      const compParts = ch.free.map(f => {
+        if (f.solo) return 'Seul·e';
+        const others = f.who.map(n => canonical(n)).filter(n => normKey(n) !== ch.key);
+        return 'Avec ' + others.join(', ');
+      });
+      const companionsHtml = compParts.length === 0 ? '' :
+        compParts.length === 1
+          ? `<p class="companions">${esc(compParts[0])}</p>`
+          : `<p class="companions">${ch.free.map((f, i) =>
+              `<span><em class="comp-sc">${esc(f.scene)}</em> : ${esc(compParts[i])}</span>`
+            ).join(' &middot; ')}</p>`;
+
       const freeHtml = ch.free.length
         ? `<ul class="groups">${ch.free.map(f =>
             `<li>
@@ -175,6 +188,7 @@
           <h2>${esc(ch.display)}</h2>
           <span class="${badgeClass}">${label}</span>
         </div>
+        ${companionsHtml}
         ${freeHtml}
         ${schoolHtml}
         <label class="validate-row">

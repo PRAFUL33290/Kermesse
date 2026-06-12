@@ -32,6 +32,12 @@
 
   "projetsEcole": [
     {
+      "nom": "Maternelles de Virginie",
+      "note": "Les pouvoirs des fleurs — Les Kids United",
+      "nbEnfants": 15,
+      "enfants": ["Lina", "Tiamo", "Nael", "Ambre", "Eva", "Anaelle", "Charlotte", "Maylis", "Emmy", "Adrien", "Isaure", "Alma", "Raphaël", "Léa", "Charlie"]
+    },
+    {
       "nom": "Capoeira",
       "note": "",
       "nbEnfants": 13,
@@ -46,23 +52,23 @@
     {
       "nom": "Oh Mama Tetema + Freestyle",
       "note": "Chorégraphie",
-      "nbEnfants": 6,
-      "enfants": ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne"]
+      "nbEnfants": 8,
+      "enfants": ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne", "Housna", "Alicia"]
     },
     {
       "nom": "Quinzaine de l'égalité",
       "note": "Nos artistes en herbe — par pays et langue",
       "nbLangues": 13,
       "langues": [
-        { "drapeau": "🇫🇷", "pays": "France", "langue": "Français", "enfants": ["Lilly", "Lydia", "Myla", "Kelyana", "Elaïa", "Juliette", "Ilona", "Jasmine", "Giulia", "Elenna", "Mia", "Alya", "Divine", "Lina M.", "Alicia", "Noémie", "Eileen", "Céline", "Chahd"] },
+        { "drapeau": "🇫🇷", "pays": "France", "langue": "Français", "enfants": ["Lilly", "Lydia", "Myla", "Kelyana", "Elaïa", "Juliette", "Ilona", "Jasmine", "Giulia", "Elenna", "Mia", "Alya", "Divine", "Lina M.", "Alicia", "Noémie", "Eileen", "Céline", "Cheid"] },
         { "drapeau": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "pays": "Angleterre", "langue": "Anglais", "enfants": ["Juliette"] },
-        { "drapeau": "🇪🇸", "pays": "Espagne", "langue": "Espagnol", "enfants": ["Myla", "Kelyana", "Elaïa", "Elenna", "Mia", "Shyne", "Alya", "Lina M.", "Alicia", "Mila", "Zia", "Chahd"] },
+        { "drapeau": "🇪🇸", "pays": "Espagne", "langue": "Espagnol", "enfants": ["Myla", "Kelyana", "Elaïa", "Elenna", "Mia", "Shyne", "Alya", "Lina M.", "Alicia", "Mila", "Zia", "Cheid"] },
         { "drapeau": "🇵🇹", "pays": "Portugal", "langue": "Portugais", "enfants": ["Kelyana", "Ilona", "Alya", "Lina M."] },
         { "drapeau": "🇮🇹", "pays": "Italie", "langue": "Italien", "enfants": ["Giulia", "Divine", "Camille"] },
         { "drapeau": "🇩🇪", "pays": "Allemagne", "langue": "Allemand", "enfants": ["Elenna", "Mia"] },
         { "drapeau": "🇹🇳", "pays": "Tunisie", "langue": "Darija tunisien", "enfants": ["Lydia", "Jasmine", "Yara", "Eileen"] },
-        { "drapeau": "🇲🇦", "pays": "Maroc", "langue": "Darija marocain", "enfants": ["Yara", "Mayssae", "Lina M.", "Chahd"] },
-        { "drapeau": "🇩🇿", "pays": "Algérie", "langue": "Dziriya", "enfants": ["Zia", "Chahd"] },
+        { "drapeau": "🇲🇦", "pays": "Maroc", "langue": "Darija marocain", "enfants": ["Yara", "Mayssae", "Lina M.", "Cheid"] },
+        { "drapeau": "🇩🇿", "pays": "Algérie", "langue": "Dziriya", "enfants": ["Zia", "Cheid"] },
         { "drapeau": "🇸🇳", "pays": "Sénégal", "langue": "Wolof", "enfants": ["Divine", "Noémie"] },
         { "drapeau": "🇨🇲", "pays": "Cameroun", "langue": "Douala", "enfants": ["Nayana", "Keren"] },
         { "drapeau": "🇰🇷", "pays": "Corée du Sud", "langue": "Coréen", "enfants": ["Elenna", "Mia", "Lina M.", "Mila", "Zia", "Céline"] },
@@ -114,13 +120,14 @@
     },
     "Chant": {
       "icone": "🎤",
-      "nbScenes": 6,
+      "nbScenes": 7,
       "scenes": [
         { "participants": ["Jasmine", "Léa"], "prestation": "Chant", "musique": "À confirmer" },
         { "participants": ["Ched / Cheid"], "prestation": "Chant", "musique": "À récupérer" },
         { "participants": ["Maïmouna"], "prestation": "Chant", "musique": "À définir" },
         { "participants": ["Céline"], "prestation": "Chant", "musique": "À définir" },
         { "participants": ["Lina M."], "prestation": "Chant", "musique": "À définir" },
+        { "participants": ["Keren"], "prestation": "Chant", "musique": "À définir" },
         { "participants": ["Jumana"], "prestation": "À confirmer", "musique": "À définir" }
       ]
     },
@@ -143,10 +150,8 @@
     },
     "Magie": {
       "icone": "🪄",
-      "nbScenes": 1,
-      "scenes": [
-        { "participants": ["Charlotte"], "prestation": "Holla Up" }
-      ]
+      "nbScenes": 0,
+      "scenes": []
     }
   },
 
@@ -174,7 +179,7 @@
           { "n": 4, "scene": "Danse — Gabriela", "participants": "Giulia, Héloïse", "categorie": "Danse", "duree": "~3 min" },
           { "n": 5, "scene": "Chant", "participants": "Ched / Cheid", "categorie": "Chant", "duree": "~3 min" },
           { "n": 6, "scene": "Gozalo", "participants": "Jasmine, Léa, Lina M.", "categorie": "Danse", "duree": "~3 min" },
-          { "n": 7, "scene": "Holla Up", "participants": "Charlotte", "categorie": "Magie", "duree": "~3 min" },
+          { "n": 7, "scene": "Holla Up", "participants": "Charlotte", "categorie": "Magie", "duree": "~3 min", "aConfirmer": true },
           { "n": 8, "scene": "Séga", "participants": "Lana", "categorie": "Danse", "duree": "~3 min" }
         ]
       },
@@ -233,7 +238,7 @@
         "bloc": "CLÔTURE",
         "couleur": "🟢",
         "passages": [
-          { "n": 36, "scene": "Oh Mama Tetema + Freestyle", "participants": "Keren, Divine, Grace, Maimouna, Tania, Orianne (6)", "categorie": "Projet d'école", "duree": "~5 min" },
+          { "n": 36, "scene": "Oh Mama Tetema + Freestyle", "participants": "Keren, Divine, Grace, Maimouna, Tania, Orianne, Housna, Alicia (8)", "categorie": "Projet d'école", "duree": "~5 min" },
           { "n": 37, "scene": "Quinzaine de l'égalité", "participants": "Ensemble (19+ enfants, 13 langues)", "categorie": "Projet d'école", "duree": "~8 min" }
         ]
       }
@@ -270,7 +275,7 @@
     { "enfant": "Kelyana", "point": "Confirmer Spark Car" },
     { "enfant": "Elenna", "point": "Confirmer Spark Car" },
     { "enfant": "Cheid", "point": "Récupérer la musique du chant" },
-    { "enfant": "Charlotte", "point": "Valider le tour de magie" },
+    { "enfant": "Charlotte", "point": "Confirmer si elle fait le houl hoop" },
     { "enfant": "Jumana", "point": "Faire un point sur son chant" },
     { "enfant": "Maïmouna", "point": "Faire un point sur son chant" },
     { "enfant": "Grace", "point": "Faire un point sur sa prestation" },

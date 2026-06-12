@@ -347,6 +347,8 @@ ul.groups .scene { color: var(--muted); font-size: .9rem; text-align: right; whi
 .pill { display: inline-block; font-size: .75rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
 .pill.ok { background: #e6f4ec; color: var(--green); }
 .pill.warn { background: var(--accent-soft); color: var(--accent); }
+.det-tag { display: inline-block; font-size: .78rem; font-weight: 600; padding: 2px 8px; border-radius: 6px; margin: 1px 3px 1px 0; background: #eef0f5; color: #374151; }
+.det-tag.school { background: #fef3c7; color: #92400e; }
 
 .note {
   font-size: .85rem; color: var(--muted);
@@ -435,8 +437,17 @@ ul.groups .scene { color: var(--muted); font-size: .9rem; text-align: right; whi
   gap: 18px;
 }
 .kid-card { margin-bottom: 0; }
-.kid-card .section-head { margin-bottom: 14px; padding-bottom: 10px; }
+.kid-card .section-head { margin-bottom: 4px; padding-bottom: 10px; }
 .kid-card .section-head h2 { font-size: 1.15rem; }
+
+/* copains sous le nom */
+.companions {
+  margin: 0 0 12px;
+  font-size: .82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.companions em.comp-sc { font-style: normal; font-weight: 600; color: var(--text, #1a1a1a); }
 
 /* badge du nombre de scènes */
 .count.zero { background: var(--bg); color: var(--muted); }

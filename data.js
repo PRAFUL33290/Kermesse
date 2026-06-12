@@ -8,7 +8,7 @@ const SCHOOL_PROJECTS = [
   {
     name: "Maternelles de Virginie",
     note: "Les pouvoirs des fleurs — Les Kids United",
-    kids: []
+    kids: ["Lina", "Tiamo", "Nael", "Ambre", "Eva", "Anaelle", "Charlotte", "Maylis", "Emmy", "Adrien", "Isaure", "Alma", "Raphaël", "Léa", "Charlie"]
   },
   {
     name: "Capoeira",
@@ -19,7 +19,7 @@ const SCHOOL_PROJECTS = [
   {
     name: "Oh Mama Tetema + Freestyle",
     note: "Chorégraphie",
-    kids: ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne"]
+    kids: ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne", "Housna", "Alicia"]
   },
   {
     name: "Carnaval de Deborah",
@@ -30,15 +30,15 @@ const SCHOOL_PROJECTS = [
     name: "Quinzaine de l'égalité",
     note: "Nos artistes en herbe — par pays et langue",
     languages: [
-      { flag: "🇫🇷", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina M.","Alicia","Noémie","Eileen","Céline","Chahd"] },
+      { flag: "🇫🇷", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina M.","Alicia","Noémie","Eileen","Céline","Cheid"] },
       { flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", country: "Angleterre", lang: "Anglais", kids: ["Juliette"] },
-      { flag: "🇪🇸", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina M.","Alicia","Mila","Zia","Chahd"] },
+      { flag: "🇪🇸", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina M.","Alicia","Mila","Zia","Cheid"] },
       { flag: "🇵🇹", country: "Portugal", lang: "Portugais", kids: ["Kelyana","Ilona","Alya","Lina M."] },
       { flag: "🇮🇹", country: "Italie", lang: "Italien", kids: ["Guillia","Divine","Camille"] },
       { flag: "🇩🇪", country: "Allemagne", lang: "Allemand", kids: ["Elenna","Mia"] },
       { flag: "🇹🇳", country: "Tunisie", lang: "Darija tunisien", kids: ["Lydia","Jasmine","Yara","Eileen"] },
-      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Mayssae","Lina M.","Chahd"] },
-      { flag: "🇩🇿", country: "Algérie", lang: "Dziriya", kids: ["Zia","Chahd"] },
+      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Mayssae","Lina M.","Cheid"] },
+      { flag: "🇩🇿", country: "Algérie", lang: "Dziriya", kids: ["Zia","Cheid"] },
       { flag: "🇸🇳", country: "Sénégal", lang: "Wolof", kids: ["Divine","Noémie"] },
       { flag: "🇨🇲", country: "Cameroun", lang: "Douala", kids: ["Nayana","Keren"] },
       { flag: "🇰🇷", country: "Corée du Sud", lang: "Coréen", kids: ["Elenna","Mia","Lina M.","Mila","Zia","Céline"] },
@@ -97,6 +97,7 @@ const FREE_CATEGORIES = [
       { who: ["Maïmouna"], scene: "Chant" },
       { who: ["Céline"], scene: "Chant" },
       { who: ["Lina M."], scene: "Chant" },
+      { who: ["Keren"], scene: "Chant" },
       { who: ["Jumana"], scene: "À confirmer" }
     ]
   },
@@ -120,9 +121,7 @@ const FREE_CATEGORIES = [
   {
     name: "Magie",
     icon: "🪄",
-    scenes: [
-      { who: ["Charlotte"], scene: "Holla Up" }
-    ]
+    scenes: []
   }
 ];
 
@@ -136,7 +135,8 @@ const NAME_ALIASES = {
   "maimouna": "Maimouna",
   "heloise": "Héloïse",
   "loicia": "Loïcia",
-  "maissa": "Maïssa"
+  "maissa": "Maïssa",
+  "chahd": "Cheid"
 };
 
 function normKey(name) {
@@ -158,17 +158,28 @@ function computeStats() {
   const schoolCount = SCHOOL_PROJECTS.length;
 
   // Comptage des scènes libres par enfant (pour la règle des 2 max)
-  const perChild = new Map();   // key -> { display, count, scenes:[...] }
+  const perChild = new Map();   // key -> { display, count, cats: Set, school: bool }
   FREE_CATEGORIES.forEach(cat => {
     cat.scenes.forEach(s => {
       s.who.forEach(raw => {
         const disp = canonical(raw);
         const key = normKey(disp);
-        if (!perChild.has(key)) perChild.set(key, { display: disp, count: 0, scenes: [] });
+        if (!perChild.has(key)) perChild.set(key, { display: disp, count: 0, cats: new Set(), school: false });
         const e = perChild.get(key);
         e.count++;
-        e.scenes.push(`${cat.name} — ${s.scene}`);
+        e.cats.add(cat.name);
       });
+    });
+  });
+
+  // Marquer les enfants qui participent à un projet d'école
+  SCHOOL_PROJECTS.forEach(p => {
+    const projectKids = [];
+    if (p.kids) projectKids.push(...p.kids);
+    if (p.languages) p.languages.forEach(l => projectKids.push(...l.kids));
+    projectKids.forEach(k => {
+      const key = normKey(canonical(k));
+      if (perChild.has(key)) perChild.get(key).school = true;
     });
   });
 
@@ -185,7 +196,9 @@ function computeStats() {
   const quinzaineKids = new Set();
   quinzaine.languages.forEach(l => l.kids.forEach(k => quinzaineKids.add(normKey(canonical(k)))));
 
-  const children = [...perChild.values()].sort((a, b) => b.count - a.count || a.display.localeCompare(b.display));
+  const children = [...perChild.values()]
+    .map(e => ({ ...e, cats: [...e.cats] }))
+    .sort((a, b) => b.count - a.count || a.display.localeCompare(b.display));
   const overLimit = children.filter(c => c.count > 2);
 
   return {
