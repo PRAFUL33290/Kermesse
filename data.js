@@ -71,9 +71,9 @@ const FREE_CATEGORIES = [
     name: "Gymnastique",
     icon: "🤸",
     scenes: [
-      { who: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" },
+      { who: ["Giulia","Stella","Héloïse","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" },
       { who: ["Giulia","Stella","Héloïse"], scene: "Gym groupe" },
-      { who: ["Inès","Eileen","Lya"], scene: "Gym groupe" },
+      { who: ["Eileen","Lya"], scene: "Gym groupe" },
       { who: ["Lina S.","Maïssa"], scene: "Gym duo" }
     ]
   },
