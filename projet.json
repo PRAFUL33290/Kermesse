@@ -1,0 +1,321 @@
+{
+  "projet": {
+    "nom": "Scène des Talents",
+    "ecole": "École Arc en Ciel",
+    "evenement": "Kermesse / Spectacle de fin d'année",
+    "date": "2026-06-19",
+    "dateLisible": "Vendredi 19 juin 2026",
+    "lieu": "École Arc en Ciel",
+    "dureeEstimee": "~2h20",
+    "description": "Spectacle regroupant les talents des enfants de l'école : danse, gym, théâtre, chant, roller, jonglage et magie, complété par 4 projets d'école.",
+    "derniereMiseAJour": "2026-06-12"
+  },
+
+  "regles": {
+    "scenesMaxParEnfant": 2,
+    "exceptions": [
+      "Capoeira",
+      "Oh Mama Tetema + Freestyle",
+      "Quinzaine de l'égalité",
+      "Carnaval de Deborah"
+    ],
+    "detail": "Chaque enfant peut faire 2 scènes maximum dans les scènes libres. Les projets d'école (Capoeira, Oh Mama Tetema, Quinzaine de l'égalité, Carnaval de Deborah) ne comptent pas dans cette limite."
+  },
+
+  "resumeChiffre": {
+    "scenesLibres": 33,
+    "projetsEcole": 4,
+    "totalPassages": 37,
+    "categories": 7,
+    "listeCategories": ["Danse", "Gymnastique", "Théâtre", "Chant", "Roller", "Jonglage ballon de foot", "Magie"]
+  },
+
+  "projetsEcole": [
+    {
+      "nom": "Capoeira",
+      "note": "",
+      "nbEnfants": 13,
+      "enfants": ["Clara", "Anna", "Lydia", "Ryma", "Calie", "Divine", "Keren", "Charlotte", "Orianne", "Shine", "Maimouna", "Grace", "Tania"]
+    },
+    {
+      "nom": "Carnaval de Deborah",
+      "note": "Projet d'école",
+      "nbEnfants": 1,
+      "enfants": ["Deborah"]
+    },
+    {
+      "nom": "Oh Mama Tetema + Freestyle",
+      "note": "Chorégraphie",
+      "nbEnfants": 6,
+      "enfants": ["Keren", "Divine", "Grace", "Maimouna", "Tania", "Orianne"]
+    },
+    {
+      "nom": "Quinzaine de l'égalité",
+      "note": "Nos artistes en herbe — par pays et langue",
+      "nbLangues": 13,
+      "langues": [
+        { "drapeau": "🇫🇷", "pays": "France", "langue": "Français", "enfants": ["Lilly", "Lydia", "Myla", "Kelyana", "Elaïa", "Juliette", "Ilona", "Jasmine", "Giulia", "Elenna", "Mia", "Alya", "Divine", "Lina M.", "Alicia", "Noémie", "Eileen", "Céline", "Chahd"] },
+        { "drapeau": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "pays": "Angleterre", "langue": "Anglais", "enfants": ["Juliette"] },
+        { "drapeau": "🇪🇸", "pays": "Espagne", "langue": "Espagnol", "enfants": ["Myla", "Kelyana", "Elaïa", "Elenna", "Mia", "Shyne", "Alya", "Lina M.", "Alicia", "Mila", "Zia", "Chahd"] },
+        { "drapeau": "🇵🇹", "pays": "Portugal", "langue": "Portugais", "enfants": ["Kelyana", "Ilona", "Alya", "Lina M."] },
+        { "drapeau": "🇮🇹", "pays": "Italie", "langue": "Italien", "enfants": ["Giulia", "Divine", "Camille"] },
+        { "drapeau": "🇩🇪", "pays": "Allemagne", "langue": "Allemand", "enfants": ["Elenna", "Mia"] },
+        { "drapeau": "🇹🇳", "pays": "Tunisie", "langue": "Darija tunisien", "enfants": ["Lydia", "Jasmine", "Yara", "Eileen"] },
+        { "drapeau": "🇲🇦", "pays": "Maroc", "langue": "Darija marocain", "enfants": ["Yara", "Mayssae", "Lina M.", "Chahd"] },
+        { "drapeau": "🇩🇿", "pays": "Algérie", "langue": "Dziriya", "enfants": ["Zia", "Chahd"] },
+        { "drapeau": "🇸🇳", "pays": "Sénégal", "langue": "Wolof", "enfants": ["Divine", "Noémie"] },
+        { "drapeau": "🇨🇲", "pays": "Cameroun", "langue": "Douala", "enfants": ["Nayana", "Keren"] },
+        { "drapeau": "🇰🇷", "pays": "Corée du Sud", "langue": "Coréen", "enfants": ["Elenna", "Mia", "Lina M.", "Mila", "Zia", "Céline"] },
+        { "drapeau": "🇯🇵", "pays": "Japon", "langue": "Japonais", "enfants": ["Kelyana", "Juliette", "Ilona", "Jasmine", "Mia", "Alya", "Lina M.", "Mila", "Zia", "Céline"] }
+      ]
+    }
+  ],
+
+  "scenesLibres": {
+    "Danse": {
+      "icone": "💃",
+      "nbScenes": 11,
+      "scenes": [
+        { "participants": ["Alya", "Elena", "Elaïa", "Kelyana"], "prestation": "Danse / gym — Lush Life", "musique": "Lush Life" },
+        { "participants": ["Jasmine", "Léa", "Lina M."], "prestation": "Gozalo", "musique": "Gozalo" },
+        { "participants": ["Clara", "Lydia", "Divine", "Ryma"], "prestation": "Danse", "musique": "À définir" },
+        { "participants": ["Lana"], "prestation": "Séga", "musique": "À définir" },
+        { "participants": ["Kaylan", "Elvin", "Arthur", "Alioun"], "prestation": "Danse / scène de groupe", "musique": "Astronomia" },
+        { "participants": ["Maissae", "Lina M."], "prestation": "Afro / rondade / salto", "musique": "À définir" },
+        { "participants": ["Grace"], "prestation": "Danse", "musique": "À définir" },
+        { "participants": ["Lina S.", "Maïssa"], "prestation": "Duo (Brésil)", "musique": "À confirmer" },
+        { "participants": ["Giulia", "Héloïse"], "prestation": "Gabriela", "musique": "Gabriela" },
+        { "participants": ["Stella", "Giulia"], "prestation": "21 Reasons", "musique": "21 Reasons" },
+        { "participants": ["Héloïse", "Juliette", "Loïcia"], "prestation": "Danse", "musique": "À définir" }
+      ]
+    },
+    "Gymnastique": {
+      "icone": "🤸",
+      "nbPassages": 4,
+      "principe": "Toutes les gymnastes passent ensemble pour les rondades / flip / salto arrière. En plus, 3 sous-groupes font un passage séparé.",
+      "scenes": [
+        { "participants": ["Giulia", "Stella", "Héloïse", "Inès", "Eileen", "Lya", "Lina S.", "Maïssa", "Alya", "Elena", "Elaïa", "Kelyana", "Yara", "Keren", "Tania", "Housna", "Alicia", "Lydia", "Naima Nour", "Mélina B.", "Leana", "Céline"], "prestation": "Rondades / flip / salto arrière (toutes ensemble)", "type": "commune", "nb": 22 },
+        { "participants": ["Giulia", "Stella", "Héloïse"], "prestation": "Gym groupe", "type": "sous-groupe" },
+        { "participants": ["Inès", "Eileen", "Lya"], "prestation": "Gym groupe", "type": "sous-groupe" },
+        { "participants": ["Lina S.", "Maïssa"], "prestation": "Gym duo", "type": "sous-groupe" }
+      ]
+    },
+    "Théâtre": {
+      "icone": "🎭",
+      "nbScenes": 6,
+      "scenes": [
+        { "participants": ["Lilly", "Shine", "Divine"], "prestation": "Théâtre", "note": "Les Martiens (à confirmer) — bruit de moteur + musique" },
+        { "participants": ["Ryma", "Divine", "Clara"], "prestation": "Mortelle Adèle" },
+        { "participants": ["Nayana"], "prestation": "Théâtre" },
+        { "participants": ["Charlotte"], "prestation": "Théâtre" },
+        { "participants": ["Eileen", "Leana", "Lina M."], "prestation": "Théâtre" },
+        { "participants": ["Souleyman", "Juliette", "Timéo", "Loïcia"], "prestation": "Théâtre à 4" }
+      ]
+    },
+    "Chant": {
+      "icone": "🎤",
+      "nbScenes": 6,
+      "scenes": [
+        { "participants": ["Jasmine", "Léa"], "prestation": "Chant", "musique": "À confirmer" },
+        { "participants": ["Ched / Cheid"], "prestation": "Chant", "musique": "À récupérer" },
+        { "participants": ["Maïmouna"], "prestation": "Chant", "musique": "À définir" },
+        { "participants": ["Céline"], "prestation": "Chant", "musique": "À définir" },
+        { "participants": ["Lina M."], "prestation": "Chant", "musique": "À définir" },
+        { "participants": ["Jumana"], "prestation": "À confirmer", "musique": "À définir" }
+      ]
+    },
+    "Roller": {
+      "icone": "🛼",
+      "nbScenes": 4,
+      "scenes": [
+        { "participants": ["Giulia"], "prestation": "Roller" },
+        { "participants": ["Mélina Adenet"], "prestation": "Roller" },
+        { "participants": ["Haby"], "prestation": "Roller" },
+        { "participants": ["Thalia F."], "prestation": "Roller" }
+      ]
+    },
+    "Jonglage ballon de foot": {
+      "icone": "⚽",
+      "nbScenes": 1,
+      "scenes": [
+        { "participants": ["Courage", "Eliam"], "prestation": "Jonglage" }
+      ]
+    },
+    "Magie": {
+      "icone": "🪄",
+      "nbScenes": 1,
+      "scenes": [
+        { "participants": ["Charlotte"], "prestation": "Holla Up" }
+      ]
+    }
+  },
+
+  "ordreDePassage": {
+    "principes": [
+      "Alterner les ambiances pour garder le public captivé",
+      "Laisser du temps aux enfants qui passent dans plusieurs scènes",
+      "Ouvrir et fermer fort avec les projets collectifs",
+      "Regrouper la gym intelligemment (sous-groupes puis rondades toutes ensemble)"
+    ],
+    "blocs": [
+      {
+        "bloc": "OUVERTURE",
+        "couleur": "🟢",
+        "passages": [
+          { "n": 1, "scene": "Capoeira", "participants": "13 enfants", "categorie": "Projet d'école", "duree": "~5 min" },
+          { "n": 2, "scene": "Carnaval de Deborah", "participants": "Deborah (1)", "categorie": "Projet d'école", "duree": "~3 min" }
+        ]
+      },
+      {
+        "bloc": "BLOC 1 — Danse & Variété",
+        "couleur": "🔵",
+        "passages": [
+          { "n": 3, "scene": "Danse / gym — Lush Life", "participants": "Alya, Elena, Elaïa, Kelyana", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 4, "scene": "Danse — Gabriela", "participants": "Giulia, Héloïse", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 5, "scene": "Chant", "participants": "Ched / Cheid", "categorie": "Chant", "duree": "~3 min" },
+          { "n": 6, "scene": "Gozalo", "participants": "Jasmine, Léa, Lina M.", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 7, "scene": "Holla Up", "participants": "Charlotte", "categorie": "Magie", "duree": "~3 min" },
+          { "n": 8, "scene": "Séga", "participants": "Lana", "categorie": "Danse", "duree": "~3 min" }
+        ]
+      },
+      {
+        "bloc": "BLOC 2 — Théâtre, Chant & Danse",
+        "couleur": "🟡",
+        "passages": [
+          { "n": 9, "scene": "Théâtre", "participants": "Lilly, Shine, Divine", "categorie": "Théâtre", "duree": "~5 min" },
+          { "n": 10, "scene": "Chant", "participants": "Jasmine, Léa", "categorie": "Chant", "duree": "~3 min" },
+          { "n": 11, "scene": "Danse", "participants": "Héloïse, Juliette, Loïcia", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 12, "scene": "Théâtre", "participants": "Nayana", "categorie": "Théâtre", "duree": "~4 min" },
+          { "n": 13, "scene": "Chant", "participants": "Maïmouna", "categorie": "Chant", "duree": "~3 min" },
+          { "n": 14, "scene": "Mortelle Adèle", "participants": "Ryma, Divine, Clara", "categorie": "Théâtre", "duree": "~5 min" },
+          { "n": 15, "scene": "Chant", "participants": "Céline", "categorie": "Chant", "duree": "~3 min" }
+        ]
+      },
+      {
+        "bloc": "BLOC 3 — Gymnastique",
+        "couleur": "🟠",
+        "passages": [
+          { "n": 16, "scene": "Gym groupe", "participants": "Giulia, Stella, Héloïse", "categorie": "Gym (sous-groupe)", "duree": "~3 min" },
+          { "n": 17, "scene": "Gym groupe", "participants": "Inès, Eileen, Lya", "categorie": "Gym (sous-groupe)", "duree": "~3 min" },
+          { "n": 18, "scene": "Gym duo", "participants": "Lina S., Maïssa", "categorie": "Gym (sous-groupe)", "duree": "~3 min" },
+          { "n": 19, "scene": "Rondades / flip / salto", "participants": "Toutes ensemble (22 filles)", "categorie": "Gym (toutes)", "duree": "~5 min" }
+        ]
+      },
+      {
+        "bloc": "BLOC 4 — Entracte dynamique",
+        "couleur": "🔴",
+        "passages": [
+          { "n": 20, "scene": "Jonglage", "participants": "Courage, Eliam", "categorie": "Jonglage foot", "duree": "~3 min" },
+          { "n": 21, "scene": "Danse / scène de groupe", "participants": "Kaylan, Elvin, Arthur, Alioun", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 22, "scene": "Roller", "participants": "Giulia", "categorie": "Roller", "duree": "~3 min" },
+          { "n": 23, "scene": "Roller", "participants": "Mélina Adenet", "categorie": "Roller", "duree": "~3 min" },
+          { "n": 24, "scene": "Roller", "participants": "Haby", "categorie": "Roller", "duree": "~3 min" },
+          { "n": 25, "scene": "Roller", "participants": "Thalia F.", "categorie": "Roller", "duree": "~3 min" }
+        ]
+      },
+      {
+        "bloc": "BLOC 5 — Dernières scènes libres",
+        "couleur": "🟣",
+        "passages": [
+          { "n": 26, "scene": "Danse", "participants": "Clara, Lydia, Divine, Ryma", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 27, "scene": "Théâtre", "participants": "Charlotte", "categorie": "Théâtre", "duree": "~4 min" },
+          { "n": 28, "scene": "Danse — 21 Reasons", "participants": "Stella, Giulia", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 29, "scene": "Afro / rondade / salto", "participants": "Maissae, Lina M.", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 30, "scene": "Théâtre", "participants": "Eileen, Leana, Lina M.", "categorie": "Théâtre", "duree": "~5 min" },
+          { "n": 31, "scene": "Chant", "participants": "Lina M.", "categorie": "Chant", "duree": "~3 min" },
+          { "n": 32, "scene": "Duo (Brésil)", "participants": "Lina S., Maïssa", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 33, "scene": "Chant (à confirmer)", "participants": "Jumana", "categorie": "Chant", "duree": "~3 min" },
+          { "n": 34, "scene": "Danse", "participants": "Grace", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 35, "scene": "Théâtre à 4", "participants": "Souleyman, Juliette, Timéo, Loïcia", "categorie": "Théâtre", "duree": "~5 min" }
+        ]
+      },
+      {
+        "bloc": "CLÔTURE",
+        "couleur": "🟢",
+        "passages": [
+          { "n": 36, "scene": "Oh Mama Tetema + Freestyle", "participants": "Keren, Divine, Grace, Maimouna, Tania, Orianne (6)", "categorie": "Projet d'école", "duree": "~5 min" },
+          { "n": 37, "scene": "Quinzaine de l'égalité", "participants": "Ensemble (19+ enfants, 13 langues)", "categorie": "Projet d'école", "duree": "~8 min" }
+        ]
+      }
+    ]
+  },
+
+  "dureeTotale": {
+    "scenesLibres": "~101 min",
+    "projetsEcole": "~21 min",
+    "transitions": "~18 min",
+    "totalEstime": "~2h20"
+  },
+
+  "musiquesEtEffets": [
+    { "titre": "Lush Life", "pour": "Danse / gym (Alya, Elena, Elaïa, Kelyana)", "statut": "Prête" },
+    { "titre": "Gozalo", "pour": "Danse (Jasmine, Léa, Lina M.)", "statut": "Prête" },
+    { "titre": "Astronomia", "pour": "Danse (Kaylan, Elvin, Arthur, Alioun)", "statut": "Prête" },
+    { "titre": "Gabriela", "pour": "Danse (Giulia, Héloïse)", "statut": "Prête" },
+    { "titre": "21 Reasons", "pour": "Danse (Stella, Giulia)", "statut": "Prête" },
+    { "titre": "Taki Taki", "pour": "GRS (Alya, Elaïa)", "statut": "Prête" },
+    { "titre": "Spark Car", "pour": "Danse (Kelyana, Elenna) — à confirmer", "statut": "À confirmer" },
+    { "titre": "Bruit de moteur", "pour": "Théâtre (Les Martiens)", "statut": "À préparer" },
+    { "titre": "Musique théâtre Les Martiens", "pour": "Théâtre (Lilly, Shine, Divine)", "statut": "À définir" },
+    { "titre": "Musique chant Cheid", "pour": "Chant", "statut": "À récupérer" },
+    { "titre": "Musique Séga", "pour": "Danse (Lana)", "statut": "À définir" },
+    { "titre": "Musique Duo Brésil", "pour": "Danse (Lina S., Maïssa)", "statut": "À confirmer" },
+    { "titre": "Musique gym / rondades", "pour": "Gymnastique (toutes)", "statut": "À définir" }
+  ],
+
+  "pointsASuivre": [
+    { "enfant": "Alya", "point": "Souhaite faire une scène supplémentaire" },
+    { "enfant": "Lilly", "point": "Préparer le bruit de moteur + musique théâtre" },
+    { "enfant": "Giulia", "point": "Théâtre Les Martiens + Gymnastique + Roller" },
+    { "enfant": "Kelyana", "point": "Confirmer Spark Car" },
+    { "enfant": "Elenna", "point": "Confirmer Spark Car" },
+    { "enfant": "Cheid", "point": "Récupérer la musique du chant" },
+    { "enfant": "Charlotte", "point": "Valider le tour de magie" },
+    { "enfant": "Jumana", "point": "Faire un point sur son chant" },
+    { "enfant": "Maïmouna", "point": "Faire un point sur son chant" },
+    { "enfant": "Grace", "point": "Faire un point sur sa prestation" },
+    { "enfant": "Clara", "point": "Faire un point sur sa prestation théâtre" }
+  ],
+
+  "normalisationPrenoms": {
+    "description": "Variantes d'orthographe normalisées vers une forme canonique pour les statistiques.",
+    "alias": {
+      "mayssae": "Maissae",
+      "guillia": "Giulia",
+      "elenna": "Elena",
+      "shyne": "Shine",
+      "lina m": "Lina M.",
+      "maimouna": "Maimouna",
+      "heloise": "Héloïse",
+      "loicia": "Loïcia",
+      "maissa": "Maïssa"
+    }
+  },
+
+  "site": {
+    "type": "Site statique HTML/CSS/JS (sans framework)",
+    "sourceDeDonnees": "data.js (partagé entre toutes les pages)",
+    "pages": [
+      { "fichier": "index.html", "role": "Accueil — listing des participants (projets d'école + scènes libres par catégorie)" },
+      { "fichier": "orga.html", "role": "Organisation — ordre de passage complet par blocs" },
+      { "fichier": "stats.html", "role": "Statistiques — comptages, enfants au-delà de la limite de 2 scènes, etc." }
+    ],
+    "assets": {
+      "styles": "styles.css",
+      "logique": "data.js",
+      "images": "images/ (visuels par catégorie : danse, gymnastique, théâtre, chant, roller, jonglage, magie)"
+    }
+  },
+
+  "fichiersSources": {
+    "Orga.md": "Organisation complète et ordre de passage (document de référence)",
+    "Derniere info.md": "Tableau complet mis à jour + points à suivre + musiques",
+    "Groupe talents.md": "Groupes des scènes libres uniquement",
+    "Capoeira.md": "Détail projet Capoeira",
+    "Oh mama Tetema.md": "Détail projet Oh Mama Tetema",
+    "Quinzaine.md": "Détail Quinzaine de l'égalité",
+    "regles.md": "Règle des 2 scènes max et exceptions",
+    "modifs.md": "Modifications du 11 juin 2026",
+    "data.js": "Source de données du site"
+  }
+}
