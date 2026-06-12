@@ -514,8 +514,31 @@ ul.groups .scene { color: var(--muted); font-size: .9rem; text-align: right; whi
 .kid-card.is-validated .validate-state { display: inline-flex; }
 
 /* ---------- Validation : notes ---------- */
+.notes { margin-top: 12px; }
+
+.notes-list { list-style: none; margin: 0 0 10px; padding: 0; }
+.notes-list:empty { margin: 0; }
+.note-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--gold-soft); border: 1px solid #ecd9a6;
+  border-radius: 10px; padding: 9px 10px 9px 13px;
+  margin-bottom: 8px; font-size: .92rem; line-height: 1.4;
+}
+.note-item .note-text { flex: 1; word-break: break-word; }
+.note-del {
+  flex: 0 0 auto; width: 24px; height: 24px;
+  border: none; border-radius: 50%;
+  background: rgba(0,0,0,.06); color: var(--muted);
+  font-size: 1.1rem; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .15s, color .15s;
+}
+.note-del:hover { background: var(--accent-soft); color: var(--accent); }
+
+.note-input { display: flex; gap: 8px; align-items: flex-end; }
 .note-field {
-  width: 100%; margin-top: 10px;
+  flex: 1;
   font-family: inherit; font-size: .92rem; color: var(--ink);
   padding: 11px 14px;
   border: 1px solid var(--line); border-radius: 10px;
@@ -525,6 +548,7 @@ ul.groups .scene { color: var(--muted); font-size: .9rem; text-align: right; whi
 }
 .note-field:focus { outline: none; border-color: var(--accent-2); }
 .note-field::placeholder { color: var(--muted); }
+.note-add { flex: 0 0 auto; }
 
 footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 44px; }
 

@@ -130,7 +130,18 @@
     const saveState = () => {
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
     };
-    const getEntry = key => (state[key] = state[key] || { v: false, n: "" });
+    const getEntry = key => {
+      const e = (state[key] = state[key] || { v: false, notes: [] });
+      // Migration depuis l'ancien format { n: "..." }
+      if (!Array.isArray(e.notes)) e.notes = e.n ? [e.n] : [];
+      delete e.n;
+      return e;
+    };
+
+    // Rendu de la liste des notes d'une fiche
+    const renderNotes = notes => notes.map((t, i) =>
+      `<li class="note-item"><span class="note-text">${esc(t)}</span>
+         <button type="button" class="note-del" data-index="${i}" aria-label="Supprimer cette note">×</button></li>`).join('');
 
     // ---- Rendu d'une fiche ----
     const card = ch => {
@@ -171,8 +182,14 @@
           <span class="validate-label">Validé avec l'enfant</span>
           <span class="validate-state">✓</span>
         </label>
-        <textarea class="note-field" rows="1"
-          placeholder="Notes / changements signalés par l'enfant…">${esc(e.n)}</textarea>
+        <div class="notes">
+          <ul class="notes-list">${renderNotes(e.notes)}</ul>
+          <div class="note-input">
+            <textarea class="note-field" rows="1"
+              placeholder="Changement signalé par l'enfant…"></textarea>
+            <button type="button" class="btn note-add">➕ Ajouter</button>
+          </div>
+        </div>
       </section>`;
     };
 
@@ -207,17 +224,35 @@
       updateProgress();
     });
 
+    // Auto-grandir la zone de saisie pendant la frappe
     grid.addEventListener('input', ev => {
       const ta = ev.target.closest('.note-field');
-      if (!ta) return;
-      const key = ta.closest('.kid-card').dataset.key;
-      getEntry(key).n = ta.value;
-      saveState();
-      autoGrow(ta);
+      if (ta) autoGrow(ta);
     });
 
-    // Init hauteur des notes pré-remplies
-    grid.querySelectorAll('.note-field').forEach(autoGrow);
+    // Ajouter une note / supprimer une note
+    grid.addEventListener('click', ev => {
+      const add = ev.target.closest('.note-add');
+      const del = ev.target.closest('.note-del');
+      if (!add && !del) return;
+
+      const cardEl = ev.target.closest('.kid-card');
+      const entry = getEntry(cardEl.dataset.key);
+      const listEl = cardEl.querySelector('.notes-list');
+
+      if (add) {
+        const ta = cardEl.querySelector('.note-field');
+        const txt = ta.value.trim();
+        if (!txt) { ta.focus(); return; }
+        entry.notes.push(txt);
+        ta.value = '';
+        autoGrow(ta);
+      } else if (del) {
+        entry.notes.splice(Number(del.dataset.index), 1);
+      }
+      saveState();
+      listEl.innerHTML = renderNotes(entry.notes);
+    });
 
     /* ---- Recherche ---- */
     const searchCount = document.getElementById('searchCount');
@@ -250,7 +285,7 @@
         },
         enfants: sorted.map(ch => {
           const e = getEntry(ch.key);
-          return { nom: ch.display, valide: !!e.v, note: e.n || "" };
+          return { nom: ch.display, valide: !!e.v, notes: e.notes.slice() };
         })
       };
       const json = JSON.stringify(data, null, 2);
@@ -276,18 +311,18 @@
           (data.enfants || []).forEach(e => {
             const key = normKey(canonical(e.nom || ""));
             if (!key) return;
-            state[key] = { v: !!e.valide, n: e.note || "" };
+            // Accepte le nouveau format (notes[]) et l'ancien (note string)
+            const notes = Array.isArray(e.notes) ? e.notes : (e.note ? [e.note] : []);
+            state[key] = { v: !!e.valide, notes };
           });
           saveState();
           // Re-applique aux fiches affichées
           grid.querySelectorAll('.kid-card').forEach(cardEl => {
             const e = getEntry(cardEl.dataset.key);
             const chk = cardEl.querySelector('.chk');
-            const ta = cardEl.querySelector('.note-field');
             chk.checked = e.v;
             cardEl.classList.toggle('is-validated', e.v);
-            ta.value = e.n;
-            autoGrow(ta);
+            cardEl.querySelector('.notes-list').innerHTML = renderNotes(e.notes);
           });
           updateProgress();
           alert('✅ Validations importées.');
@@ -306,6 +341,7 @@
       grid.querySelectorAll('.kid-card').forEach(cardEl => {
         cardEl.classList.remove('is-validated');
         cardEl.querySelector('.chk').checked = false;
+        cardEl.querySelector('.notes-list').innerHTML = '';
         const ta = cardEl.querySelector('.note-field');
         ta.value = '';
         autoGrow(ta);
