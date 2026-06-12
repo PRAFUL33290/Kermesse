@@ -247,6 +247,56 @@ ul.groups .scene { color: var(--muted); font-size: .9rem; text-align: right; whi
   gap: 22px;
 }
 
+/* ---------- Nouvelles mises en page ---------- */
+.layout-hero {
+  position: relative;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+}
+.layout-hero .hero-content {
+  padding: 30px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  width: 100%;
+}
+.layout-hero .section-head { border-bottom-color: rgba(255,255,255,0.2); }
+.layout-hero .subtitle, .layout-hero ul.groups .scene { color: #ddd; }
+.layout-hero ul.groups li { border-bottom-color: rgba(255,255,255,0.2); }
+
+.layout-frame {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
+}
+.layout-frame .frame-image-container {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.layout-frame .frame-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.layout-frame .frame-content {
+  flex: 1;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .layout-frame { flex-direction: column; }
+  .layout-frame .frame-image-container { flex: none; max-width: 100%; height: 250px; }
+}
+
 /* ---------- Statistiques ---------- */
 .stat-grid {
   display: grid;

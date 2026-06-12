@@ -48,7 +48,7 @@ const FREE_CATEGORIES = [
     name: "Danse",
     icon: "💃",
     scenes: [
-      { who: ["Alya","Elena","Elaïa","Kelyana"], scene: "Lush Life" },
+      { who: ["Alya","Elena","Elaïa","Kelyana"], scene: "Danse / gym — Lush Life" },
       { who: ["Jasmine","Léa","Lina M."], scene: "Gozalo" },
       { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" },
       { who: ["Lana"], scene: "Séga" },
@@ -65,20 +65,10 @@ const FREE_CATEGORIES = [
     name: "Gymnastique",
     icon: "🤸",
     scenes: [
-      { who: ["Giulia","Stella","Heloise"], scene: "Gym" },
-      { who: ["Eileen","Leana","Céline"], scene: "Gym" },
-      { who: ["Yara"], scene: "Gym" },
-      { who: ["Alya"], scene: "Gym" },
-      { who: ["Lya"], scene: "Gym" },
-      { who: ["Keren"], scene: "Gym" },
-      { who: ["Tania"], scene: "Gym" },
-      { who: ["Housna"], scene: "Gym" },
-      { who: ["Alicia"], scene: "Gym" },
-      { who: ["Lydia"], scene: "Gym / danse à préciser" },
-      { who: ["Naima Nour"], scene: "Gym" },
-      { who: ["Inès"], scene: "Gym" },
-      { who: ["Mélina B."], scene: "Gym" },
-      { who: ["Lina S."], scene: "Gym" }
+      { who: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" },
+      { who: ["Giulia","Stella","Héloïse"], scene: "Gym groupe" },
+      { who: ["Inès","Eileen","Lya"], scene: "Gym groupe" },
+      { who: ["Lina S.","Maïssa"], scene: "Gym duo" }
     ]
   },
   {
@@ -89,7 +79,8 @@ const FREE_CATEGORIES = [
       { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" },
       { who: ["Nayana"], scene: "Théâtre" },
       { who: ["Charlotte"], scene: "Théâtre" },
-      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" }
+      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" },
+      { who: ["Souleyman","Juliette","Timéo","Loïcia"], scene: "Théâtre" }
     ]
   },
   {
@@ -109,7 +100,9 @@ const FREE_CATEGORIES = [
     icon: "🛼",
     scenes: [
       { who: ["Giulia"], scene: "Roller" },
-      { who: ["Mélina Adenet"], scene: "Roller" }
+      { who: ["Mélina Adenet"], scene: "Roller" },
+      { who: ["Haby"], scene: "Roller" },
+      { who: ["Thalia F."], scene: "Roller" }
     ]
   },
   {
@@ -135,7 +128,10 @@ const NAME_ALIASES = {
   "elenna": "Elena",
   "shyne": "Shine",
   "lina m": "Lina M.",
-  "maimouna": "Maimouna"
+  "maimouna": "Maimouna",
+  "heloise": "Héloïse",
+  "loicia": "Loïcia",
+  "maissa": "Maïssa"
 };
 
 function normKey(name) {

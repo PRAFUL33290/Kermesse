@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organisation · Scène des Talents — École Arc en Ciel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ---------- Organisation-specific styles ---------- */
+
+    /* Summary cards row */
+    .orga-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .orga-summary .stat-card {
+      text-align: center;
+    }
+
+    /* ---------- Timeline ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 44px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-2), var(--gold));
+      border-radius: 999px;
+    }
+
+    .bloc-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 18px -44px;
+      padding-left: 0;
+    }
+    .bloc-header:first-child { margin-top: 0; }
+
+    .bloc-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 1;
+    }
+    .bloc-dot.green  { background: linear-gradient(135deg, #2f855a, #48bb78); }
+    .bloc-dot.blue   { background: linear-gradient(135deg, #2b6cb0, #4299e1); }
+    .bloc-dot.yellow { background: linear-gradient(135deg, #b7791f, #ecc94b); }
+    .bloc-dot.orange { background: linear-gradient(135deg, #c05621, #ed8936); }
+    .bloc-dot.red    { background: linear-gradient(135deg, #c53030, #fc8181); }
+    .bloc-dot.purple { background: linear-gradient(135deg, #6b46c1, #b794f4); }
+
+    .bloc-label {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+    .bloc-label small {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    /* Scene card in timeline */
+    .scene-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .scene-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(31,41,51,.10);
+    }
+
+    .scene-card::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--accent-2);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    .scene-card.school-card::before {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+    }
+    .scene-card.school-card {
+      border-left: 4px solid var(--gold);
+    }
+
+    .scene-num {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 800;
+      font-size: .95rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .scene-card.school-card .scene-num {
+      background: linear-gradient(135deg, var(--gold), #d4a017);
+    }
+
+    .scene-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .scene-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .scene-cat-badge {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .scene-card.school-card .scene-cat-badge {
+      background: var(--gold-soft);
+      color: var(--gold);
+    }
+    .scene-kids {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .scene-duration {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Lookup section ---------- */
+    .search-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 14px 18px 14px 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .search-box svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+    }
+
+    .child-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      transition: opacity .2s;
+    }
+    .child-card.hidden { display: none; }
+    .child-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .child-count {
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+    .child-count.ok { background: #e6f4ec; color: var(--green); }
+    .child-count.warn { background: var(--accent-soft); color: var(--accent); }
+    .child-scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .child-scene-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .92rem;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .child-scene-row:last-child { border-bottom: none; }
+    .child-scene-icon {
+      font-size: 1rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .child-scene-cat {
+      font-weight: 600;
+      min-width: 90px;
+    }
+    .child-scene-detail {
+      color: var(--muted);
+    }
+    .child-scene-passage {
+      margin-left: auto;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .no-results {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+      font-size: 1rem;
+      display: none;
+    }
+
+    @media (max-width: 560px) {
+      .timeline { padding-left: 36px; }
+      .timeline::before { left: 14px; }
+      .bloc-header { margin-left: -36px; }
+      .scene-card::before { left: -29px; }
+      .scene-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .scene-duration { align-self: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="orga.html" class="active">Organisation</a></li>
+        <li><a href="stats.html">Statistiques</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Déroulé du spectacle</p>
+      <h1>Organisation</h1>
+      <p class="meta">Ordre de passage proposé · Vendredi 19 juin</p>
+    </header>
+
+    <!-- Summary -->
+    <div class="orga-summary" id="orgaKpis"></div>
+
+    <!-- Rule reminder -->
+    <div class="rule">
+      <strong>Rappel :</strong> chaque enfant peut faire <strong>2 scènes libres maximum</strong>.
+      Les projets d'école (<strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong>, <strong>Quinzaine de l'égalité</strong>)
+      ne comptent pas dans cette limite.
+    </div>
+
+    <!-- Timeline -->
+    <p class="cat-title">Ordre de passage</p>
+    <div class="timeline" id="timeline"></div>
+
+    <!-- Estimated duration -->
+    <div class="rule" style="margin-top: 32px; border-left-color: var(--accent);">
+      <strong>⏱️ Durée totale estimée :</strong> environ <strong>2h10</strong>
+      (scènes ~95 min + projets d'école ~18 min + transitions ~15 min)
+    </div>
+
+    <!-- Child lookup -->
+    <p class="cat-title">Rechercher un enfant</p>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="childSearch" placeholder="Tapez un prénom…" autocomplete="off">
+    </div>
+    <div id="childList"></div>
+    <p class="no-results" id="noResults">Aucun enfant trouvé.</p>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // ---- Menu responsive ----
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+    // ---- Define running order ----
+    const RUNNING_ORDER = [
+      {
+        bloc: "OUVERTURE",
+        color: "green",
+        emoji: "🟢",
+        scenes: [
+          { type: "school", num: 1, icon: "🏫", name: "Capoeira", cat: "Projet d'école", kids: SCHOOL_PROJECTS[0].kids, duration: "~5 min" }
+        ]
+      },
+      {
+        bloc: "BLOC 1",
+        sub: "Danse & Variété",
+        color: "blue",
+        emoji: "🔵",
+        scenes: [
+          { num: 2, icon: "💃", name: "Danse / gym — Lush Life", cat: "Danse", kids: ["Alya","Elena","Elaïa","Kelyana"], duration: "~3 min" },
+          { num: 3, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Ched / Cheid"], duration: "~3 min" },
+          { num: 4, icon: "💃", name: "Gozalo", cat: "Danse", kids: ["Jasmine","Léa","Lina M."], duration: "~3 min" },
+          { num: 5, icon: "🪄", name: "Holla Up", cat: "Magie", kids: ["Charlotte"], duration: "~3 min" },
+          { num: 6, icon: "💃", name: "Séga", cat: "Danse", kids: ["Lana"], duration: "~3 min" }
+        ]
+      },
+      {
+        bloc: "BLOC 2",
+        sub: "Théâtre & Chant",
+        color: "yellow",
+        emoji: "🟡",
+        scenes: [
+          { num: 7, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shine","Divine"], duration: "~5 min" },
+          { num: 8, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
+          { num: 9, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
+          { num: 10, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Maïmouna"], duration: "~3 min" },
+          { num: 11, icon: "🎭", name: "Mortelle Adèle", cat: "Théâtre", kids: ["Ryma","Divine","Clara"], duration: "~5 min" },
+          { num: 12, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Céline"], duration: "~3 min" }
+        ]
+      },
+      {
+        bloc: "BLOC 3",
+        sub: "Gymnastique",
+        color: "orange",
+        emoji: "🟠",
+        scenes: [
+          { num: 13, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Giulia","Stella","Héloïse"], duration: "~3 min" },
+          { num: 14, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Inès","Eileen","Lya"], duration: "~3 min" },
+          { num: 15, icon: "🤸", name: "Gym duo", cat: "Gym (sous-groupe)", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 16, icon: "🤸", name: "Rondades / flip / salto", cat: "Gym (toutes)", kids: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], duration: "~5 min" }
+        ]
+      },
+      {
+        bloc: "BLOC 4",
+        sub: "Entracte dynamique",
+        color: "red",
+        emoji: "🔴",
+        scenes: [
+          { num: 17, icon: "⚽", name: "Jonglage", cat: "Jonglage", kids: ["Courage","Eliam"], duration: "~3 min" },
+          { num: 18, icon: "💃", name: "Danse / scène de groupe", cat: "Danse", kids: ["Kaylan","Elvin","Arthur","Alioun"], duration: "~3 min" },
+          { num: 19, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
+          { num: 20, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
+          { num: 21, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
+          { num: 22, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" }
+        ]
+      },
+      {
+        bloc: "BLOC 5",
+        sub: "Dernières scènes libres",
+        color: "purple",
+        emoji: "🟣",
+        scenes: [
+          { num: 23, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
+          { num: 24, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
+          { num: 25, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
+          { num: 26, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
+          { num: 27, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
+          { num: 28, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 29, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
+          { num: 30, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
+          { num: 31, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
+        ]
+      },
+      {
+        bloc: "CLÔTURE",
+        color: "green",
+        emoji: "🟢",
+        scenes: [
+          { type: "school", num: 32, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[1].kids, duration: "~5 min" },
+          { type: "school", num: 33, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
+        ]
+      }
+    ];
+
+    // ---- KPIs ----
+    const S = computeStats();
+    const totalPassages = RUNNING_ORDER.reduce((n, b) => n + b.scenes.length, 0);
+    const kpis = [
+      { big: totalPassages, lab: "Passages au total" },
+      { big: S.freeSceneCount, lab: "Scènes libres" },
+      { big: S.schoolCount, lab: "Projets d'école" },
+      { big: RUNNING_ORDER.length, lab: "Blocs" },
+      { big: S.uniqueChildren, lab: "Enfants impliqués" },
+      { big: "~2h10", lab: "Durée estimée" }
+    ];
+    document.getElementById('orgaKpis').innerHTML = kpis.map(k =>
+      `<div class="stat-card"><div class="big">${k.big}</div><div class="lab">${esc(String(k.lab))}</div></div>`).join('');
+
+    // ---- Build timeline ----
+    const timelineEl = document.getElementById('timeline');
+    let timelineHtml = '';
+
+    RUNNING_ORDER.forEach(bloc => {
+      timelineHtml += `
+        <div class="bloc-header">
+          <div class="bloc-dot ${bloc.color}">${bloc.emoji}</div>
+          <div class="bloc-label">
+            ${esc(bloc.bloc)}
+            ${bloc.sub ? `<small>${esc(bloc.sub)}</small>` : ''}
+          </div>
+        </div>`;
+
+      bloc.scenes.forEach(s => {
+        const isSchool = s.type === 'school';
+        const kidsStr = s.kids.map(esc).join(', ');
+        timelineHtml += `
+          <div class="scene-card ${isSchool ? 'school-card' : ''}">
+            <div class="scene-num">${s.num}</div>
+            <div class="scene-info">
+              <div class="scene-title">
+                ${s.icon} ${esc(s.name)}
+                <span class="scene-cat-badge">${esc(s.cat)}</span>
+              </div>
+              <div class="scene-kids">${kidsStr}</div>
+            </div>
+            <div class="scene-duration">${esc(s.duration)}</div>
+          </div>`;
+      });
+    });
+
+    timelineEl.innerHTML = timelineHtml;
+
+    // ---- Child lookup: build data ----
+    // Collect all scenes per child from running order
+    const childMap = new Map(); // normKey -> { display, scenes: [{ icon, cat, name, num }] }
+
+    function normSearch(name) {
+      return name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, "").trim();
+    }
+
+    RUNNING_ORDER.forEach(bloc => {
+      bloc.scenes.forEach(s => {
+        // Skip the "Ensemble" placeholder
+        if (s.type === 'school' && s.kids.length === 1 && s.kids[0].startsWith('Ensemble')) return;
+        s.kids.forEach(kid => {
+          const key = normSearch(kid);
+          if (!childMap.has(key)) childMap.set(key, { display: kid, scenes: [] });
+          childMap.get(key).scenes.push({
+            icon: s.icon,
+            cat: s.cat,
+            name: s.name,
+            num: s.num,
+            isSchool: s.type === 'school'
+          });
+        });
+      });
+    });
+
+    // Also add school projects (Quinzaine) participants from data
+    const quinzaine = SCHOOL_PROJECTS.find(p => p.languages);
+    if (quinzaine) {
+      const quinzaineKidsSet = new Set();
+      quinzaine.languages.forEach(l => l.kids.forEach(k => quinzaineKidsSet.add(k)));
+      quinzaineKidsSet.forEach(kid => {
+        const key = normSearch(kid);
+        if (!childMap.has(key)) childMap.set(key, { display: kid, scenes: [] });
+        // Avoid duplicates
+        const existing = childMap.get(key);
+        if (!existing.scenes.find(s => s.name === "Quinzaine de l'égalité")) {
+          existing.scenes.push({
+            icon: "🏫",
+            cat: "Projet d'école",
+            name: "Quinzaine de l'égalité",
+            num: 33,
+            isSchool: true
+          });
+        }
+      });
+    }
+
+    // Sort alphabetically
+    const sortedChildren = [...childMap.entries()].sort((a, b) =>
+      a[1].display.localeCompare(b[1].display, 'fr', { sensitivity: 'base' }));
+
+    // Render child cards
+    const childListEl = document.getElementById('childList');
+    const noResultsEl = document.getElementById('noResults');
+
+    function renderChildren(filter = '') {
+      const norm = normSearch(filter);
+      let shown = 0;
+      let html = '';
+
+      sortedChildren.forEach(([key, data]) => {
+        const match = !norm || key.includes(norm) || data.display.toLowerCase().includes(filter.toLowerCase());
+        if (!match) return;
+        shown++;
+
+        const freeCount = data.scenes.filter(s => !s.isSchool).length;
+        const over = freeCount > 2;
+        const pillClass = over ? 'warn' : 'ok';
+        const pillText = `${freeCount} scène${freeCount > 1 ? 's' : ''} libre${freeCount > 1 ? 's' : ''}`;
+
+        html += `<div class="child-card">
+          <div class="child-name">
+            ${esc(data.display)}
+            <span class="child-count ${pillClass}">${pillText}</span>
+          </div>
+          <div class="child-scenes">
+            ${data.scenes.map(s => `
+              <div class="child-scene-row">
+                <span class="child-scene-icon">${s.icon}</span>
+                <span class="child-scene-cat">${esc(s.cat)}</span>
+                <span class="child-scene-detail">${esc(s.name)}</span>
+                <span class="child-scene-passage">Passage n°${s.num}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+      });
+
+      childListEl.innerHTML = html;
+      noResultsEl.style.display = shown === 0 ? 'block' : 'none';
+    }
+
+    renderChildren();
+
+    // Search input
+    document.getElementById('childSearch').addEventListener('input', e => {
+      renderChildren(e.target.value);
+    });
+  </script>
+</body>
+</html>
