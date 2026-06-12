@@ -5,6 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistiques · Scène des Talents — École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ---- KPI cards revisités ---- */
+    .stat-grid {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      padding: 22px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: attr(data-icon);
+      position: absolute;
+      top: -4px; right: 8px;
+      font-size: 2.4rem;
+      opacity: .12;
+      pointer-events: none;
+    }
+    .stat-card .big {
+      font-size: 2.6rem;
+    }
+    .stat-card .lab {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ---- Barres avec % ---- */
+    .bars li { margin-bottom: 18px; }
+    .bar-top {
+      margin-bottom: 7px;
+      font-size: .93rem;
+    }
+    .bar-top .name { font-weight: 700; }
+    .bar-top .val {
+      color: var(--ink);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .bar-top .pct {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-left: 5px;
+    }
+    .bar-track {
+      height: 16px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      width: 0;
+      transition: width .9s cubic-bezier(.22,1,.36,1);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .bar-fill-label {
+      font-size: .68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      padding-right: 7px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity .4s .6s;
+    }
+    .bar-fill.loaded .bar-fill-label { opacity: 1; }
+
+    /* ---- Tableau amélioré ---- */
+    .kid-table th { font-size: .75rem; }
+    .kid-table td { padding: 11px 8px; }
+    .count-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: .95rem;
+    }
+    .count-chip.ok  { background: #e6f4ec; color: var(--green); }
+    .count-chip.warn{ background: var(--accent-soft); color: var(--accent); }
+
+    /* ---- Section résumé "over" ---- */
+    .over-banner {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--accent-soft);
+      border: 1px solid #f5c3be;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: .9rem;
+      margin-bottom: 10px;
+    }
+    .over-banner .ob-icon { font-size: 1.2rem; flex: 0 0 auto; margin-top: 1px; }
+    .over-banner .ob-list { color: var(--accent); font-weight: 700; }
+
+    .ok-banner {
+      display: flex; align-items: center; gap: 10px;
+      background: #e6f4ec;
+      border: 1px solid #9cd6bb;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: .9rem;
+      margin-bottom: 10px;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .ok-banner .ob-icon { font-size: 1.1rem; }
+
+    /* ---- Total progress ring (décoratif) dans section barres ---- */
+    .section-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .section-meta .sm-total {
+      font-size: .82rem;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -34,16 +174,27 @@
 
     <div class="stat-grid" id="kpis"></div>
 
-    <p class="cat-title">Scènes par catégorie (scènes libres)</p>
-    <section class="section"><ul class="bars" id="barScenes"></ul></section>
+    <p class="cat-title">Scènes par catégorie</p>
+    <section class="section">
+      <div class="section-meta">
+        <span class="sm-total" id="totalScenesLabel"></span>
+      </div>
+      <ul class="bars" id="barScenes"></ul>
+    </section>
 
-    <p class="cat-title">Enfants par catégorie (scènes libres)</p>
-    <section class="section"><ul class="bars" id="barKids"></ul></section>
+    <p class="cat-title">Enfants par catégorie</p>
+    <section class="section">
+      <div class="section-meta">
+        <span class="sm-total" id="totalKidsLabel"></span>
+      </div>
+      <ul class="bars" id="barKids"></ul>
+    </section>
 
     <p class="cat-title">Nombre de scènes par enfant</p>
     <section class="section">
+      <div id="overBanner"></div>
       <table class="kid-table">
-        <thead><tr><th>Enfant</th><th class="c">Scènes libres</th><th class="c">Limite</th><th>Détail</th></tr></thead>
+        <thead><tr><th>Enfant</th><th class="c">Scènes</th><th class="c">Limite</th><th>Catégories</th></tr></thead>
         <tbody id="kidRows"></tbody>
       </table>
       <p class="note" id="kidNote"></p>
@@ -65,29 +216,55 @@
     const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     const S = computeStats();
 
-    // ---- KPIs ----
+    // ---- KPIs (sans Quinzaine langues) ----
     const kpis = [
-      { big: S.totalScenes,     lab: "Scènes au total" },
-      { big: S.freeSceneCount,  lab: "Scènes libres" },
-      { big: S.schoolCount,     lab: "Projets d'école" },
-      { big: S.categoryCount,   lab: "Catégories libres" },
-      { big: S.uniqueChildren,  lab: "Enfants impliqués" },
-      { big: S.quinzaineLangs,  lab: "Langues — Quinzaine" }
+      { big: S.totalScenes,    lab: "Scènes au total",   icon: "🎬" },
+      { big: S.freeSceneCount, lab: "Scènes",             icon: "✨" },
+      { big: S.schoolCount,    lab: "Projets d'école",    icon: "🏫" },
+      { big: S.categoryCount,  lab: "Catégories",         icon: "🗂️" },
+      { big: S.uniqueChildren, lab: "Enfants impliqués",  icon: "🎉" },
     ];
     document.getElementById('kpis').innerHTML = kpis.map(k =>
-      `<div class="stat-card"><div class="big">${k.big}</div><div class="lab">${esc(k.lab)}</div></div>`).join('');
+      `<div class="stat-card" data-icon="${k.icon}">
+         <div class="big">${k.big}</div>
+         <div class="lab">${esc(k.lab)}</div>
+       </div>`).join('');
 
     // ---- Barres : scènes par catégorie ----
+    const totalFreeScenes = S.perCategory.reduce((n, c) => n + c.scenes, 0);
     const maxScenes = Math.max(...S.perCategory.map(c => c.scenes));
-    document.getElementById('barScenes').innerHTML = S.perCategory.map(c =>
-      `<li><div class="bar-top"><span class="name">${c.icon} ${esc(c.name)}</span><span class="val">${c.scenes}</span></div>
-       <div class="bar-track"><div class="bar-fill" data-w="${(c.scenes/maxScenes*100).toFixed(1)}"></div></div></li>`).join('');
+    document.getElementById('totalScenesLabel').textContent = `Total : ${totalFreeScenes} scène${totalFreeScenes > 1 ? 's' : ''}`;
+    document.getElementById('barScenes').innerHTML = S.perCategory.map(c => {
+      const pct = totalFreeScenes ? Math.round(c.scenes / totalFreeScenes * 100) : 0;
+      const w = maxScenes ? (c.scenes / maxScenes * 100).toFixed(1) : 0;
+      return `<li>
+        <div class="bar-top">
+          <span class="name">${c.icon} ${esc(c.name)}</span>
+          <span class="val">${c.scenes}<span class="pct">${pct}%</span></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" data-w="${w}"><span class="bar-fill-label">${pct}%</span></div>
+        </div>
+      </li>`;
+    }).join('');
 
     // ---- Barres : enfants par catégorie ----
+    const totalKidsInCats = S.perCategory.reduce((n, c) => n + c.kids, 0);
     const maxKids = Math.max(...S.perCategory.map(c => c.kids));
-    document.getElementById('barKids').innerHTML = S.perCategory.map(c =>
-      `<li><div class="bar-top"><span class="name">${c.icon} ${esc(c.name)}</span><span class="val">${c.kids}</span></div>
-       <div class="bar-track"><div class="bar-fill alt" data-w="${(c.kids/maxKids*100).toFixed(1)}"></div></div></li>`).join('');
+    document.getElementById('totalKidsLabel').textContent = `Total : ${S.childrenInFree} enfant${S.childrenInFree > 1 ? 's' : ''} uniques`;
+    document.getElementById('barKids').innerHTML = S.perCategory.map(c => {
+      const pct = totalKidsInCats ? Math.round(c.kids / totalKidsInCats * 100) : 0;
+      const w = maxKids ? (c.kids / maxKids * 100).toFixed(1) : 0;
+      return `<li>
+        <div class="bar-top">
+          <span class="name">${c.icon} ${esc(c.name)}</span>
+          <span class="val">${c.kids}<span class="pct">${pct}%</span></span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill alt" data-w="${w}"><span class="bar-fill-label">${pct}%</span></div>
+        </div>
+      </li>`;
+    }).join('');
 
     // ---- Tableau enfants (tri alphabétique) ----
     const kidsSorted = [...S.children].sort((a, b) =>
@@ -98,23 +275,36 @@
         ...ch.cats.map(c => `<span class="det-tag">${esc(c)}</span>`),
         ...(ch.school ? [`<span class="det-tag school">Projet d'école</span>`] : [])
       ].join('');
-      return `<tr class="${over?'over':''}">
+      return `<tr class="${over ? 'over' : ''}">
         <td>${esc(ch.display)}</td>
-        <td class="c"><strong>${ch.count}</strong></td>
-        <td class="c"><span class="pill ${over?'warn':'ok'}">${over?'Dépasse':'OK'}</span></td>
+        <td class="c"><span class="count-chip ${over ? 'warn' : 'ok'}">${ch.count}</span></td>
+        <td class="c"><span class="pill ${over ? 'warn' : 'ok'}">${over ? 'Dépasse' : 'OK'}</span></td>
         <td>${tags}</td>
       </tr>`;
     }).join('');
 
-    const note = document.getElementById('kidNote');
-    const overTxt = S.overLimit.length
-      ? `⚠️ ${S.overLimit.length} enfant(s) à vérifier (plus de 2 scènes libres) : ${S.overLimit.map(c=>esc(c.display)).join(', ')}.`
-      : `✅ Aucun enfant ne dépasse la limite de 2 scènes libres.`;
-    note.innerHTML = `${overTxt} Les projets d'école ne sont pas comptés. Note : certains prénoms ont des variantes d'orthographe (Maissae/Mayssae, Giulia/Guillia, Elena/Elenna, Shine/Shyne…) regroupées automatiquement — à confirmer manuellement.`;
+    // ---- Bannière résumé ----
+    const overBanner = document.getElementById('overBanner');
+    if (S.overLimit.length) {
+      overBanner.innerHTML = `<div class="over-banner">
+        <span class="ob-icon">⚠️</span>
+        <div>${S.overLimit.length} enfant(s) dépassent la limite de 2 scènes :
+          <span class="ob-list">${S.overLimit.map(c => esc(c.display)).join(', ')}</span>
+        </div>
+      </div>`;
+    } else {
+      overBanner.innerHTML = `<div class="ok-banner"><span class="ob-icon">✅</span> Aucun enfant ne dépasse la limite de 2 scènes.</div>`;
+    }
+
+    document.getElementById('kidNote').textContent =
+      'Les projets d'école ne sont pas comptés dans la limite. Note : certains prénoms ont des variantes (Maissae/Mayssae, Giulia/Guillia, Elena/Elenna, Shine/Shyne…) regroupées automatiquement — à confirmer manuellement.';
 
     // ---- Animation des barres ----
     requestAnimationFrame(() => {
-      document.querySelectorAll('.bar-fill').forEach(b => b.style.width = b.dataset.w + '%');
+      document.querySelectorAll('.bar-fill').forEach(b => {
+        b.style.width = b.dataset.w + '%';
+        b.classList.add('loaded');
+      });
     });
   </script>
 </body>
