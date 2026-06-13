@@ -84,6 +84,33 @@
       font-size: .9rem;
       font-weight: 650;
     }
+    .handoff-kids li.keep-close {
+      border-color: #d4a017;
+      background: #fff7db;
+      box-shadow: inset 4px 0 0 #d4a017;
+    }
+    .handoff-kids li.already-close {
+      border-color: #2f855a;
+      background: #edf7f0;
+      box-shadow: inset 4px 0 0 #2f855a;
+    }
+    .kid-tag {
+      margin-left: auto;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: .68rem;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .kid-tag.keep-close {
+      background: #d4a017;
+      color: #fff;
+    }
+    .kid-tag.already-close {
+      background: #2f855a;
+      color: #fff;
+    }
     .handoff-kids input {
       width: 17px;
       height: 17px;
@@ -180,7 +207,8 @@
 
     <div class="rule nico-note">
       <strong>Message pour Nico :</strong> amène les enfants par bloc, dans l'ordre ci-dessous.
-      Si tu ne trouves pas un enfant, passe au suivant : ce n'est pas grave. Les enfants doivent aussi se bouger et savoir quand ils doivent être présents.
+      Si tu ne trouves pas un enfant, passe au suivant : ce n'est pas grave. Les enfants doivent aussi se bouger et savoir quand ils doivent être présents.<br><br>
+      <strong>Important :</strong> Les enfants sont sous la surveillance de leurs parents et uniquement de leurs parents. Ils doivent être accompagnés quand ils se présentent sur scène.
     </div>
 
     <p class="cat-title">Planning fluide</p>
@@ -277,12 +305,39 @@
       }
     ];
 
-    const renderKids = kids => `<ul class="handoff-kids">${kids.map(k =>
-      `<li><input type="checkbox" aria-label="${esc(k)}"><span>${esc(k)}</span></li>`
+    const kidKey = kid => normKey(canonical(kid));
+    const kidKeySet = kids => new Set(kids.map(kidKey));
+
+    const markNext = (current, next) => {
+      if (!next) return new Set();
+      const nextKids = kidKeySet(blockKids(next));
+      return new Set(blockKids(current).filter(k => nextKids.has(kidKey(k))));
+    };
+
+    const markPrevious = (current, previous) => {
+      if (!previous) return new Set();
+      const previousKids = kidKeySet(blockKids(previous));
+      return new Set(blockKids(current).filter(k => previousKids.has(kidKey(k))));
+    };
+
+    const kidClass = (kid, marks = {}) => {
+      if (marks.keepClose?.has(kid)) return ' class="keep-close"';
+      if (marks.alreadyClose?.has(kid)) return ' class="already-close"';
+      return '';
+    };
+
+    const kidTag = (kid, marks = {}) => {
+      if (marks.keepClose?.has(kid)) return '<span class="kid-tag keep-close">à garder</span>';
+      if (marks.alreadyClose?.has(kid)) return '<span class="kid-tag already-close">déjà là</span>';
+      return '';
+    };
+
+    const renderKids = (kids, marks) => `<ul class="handoff-kids">${kids.map(k =>
+      `<li${kidClass(k, marks)}><input type="checkbox" aria-label="${esc(k)}"><span>${esc(k)}</span>${kidTag(k, marks)}</li>`
     ).join('')}</ul>`;
 
-    const renderPlainKids = kids => `<ul class="handoff-kids">${kids.map(k =>
-      `<li><span>${esc(k)}</span></li>`
+    const renderPlainKids = (kids, marks) => `<ul class="handoff-kids">${kids.map(k =>
+      `<li${kidClass(k, marks)}><span>${esc(k)}</span>${kidTag(k, marks)}</li>`
     ).join('')}</ul>`;
 
     const blockKids = block => unique(block.projects
@@ -291,8 +346,8 @@
 
     const renderStayNote = (current, next) => {
       if (!next) return '';
-      const nextKids = new Set(blockKids(next));
-      const staying = blockKids(current).filter(k => nextKids.has(k));
+      const nextKids = kidKeySet(blockKids(next));
+      const staying = blockKids(current).filter(k => nextKids.has(kidKey(k)));
       if (!staying.length) return '';
       return `<div class="stay-note">
         <strong>Ne les fais pas repartir : ils enchaînent avec le bloc suivant.</strong>
@@ -300,11 +355,11 @@
       </div>`;
     };
 
-    const renderProjects = block => `<div class="project-lines">${block.projects.map(p => `
+    const renderProjects = (block, marks) => `<div class="project-lines">${block.projects.map(p => `
       <div class="project-line">
         <strong>${esc(p.name)} · ${p.kids.length} enfant${p.kids.length > 1 ? 's' : ''}</strong>
         <div class="project-meta">${block.noChecklist ? 'Virginie se charge de venir les chercher.' : 'À cocher au fur et à mesure du ramassage.'}</div>
-        ${block.noChecklist ? renderPlainKids(p.kids) : renderKids(p.kids)}
+        ${block.noChecklist ? renderPlainKids(p.kids, marks) : renderKids(p.kids, marks)}
       </div>
     `).join('')}</div>`;
 
@@ -312,7 +367,12 @@
       const count = block.projects
         ? block.projects.reduce((sum, p) => sum + p.kids.length, 0)
         : block.kids.length;
+      const previousBlock = handoffBlocks[index - 1];
       const nextBlock = handoffBlocks[index + 1];
+      const marks = {
+        keepClose: markNext(block, nextBlock),
+        alreadyClose: markPrevious(block, previousBlock)
+      };
       return `<section class="handoff-card ${block.cls}">
         <div class="handoff-head">
           <div class="handoff-time">${esc(block.time)}</div>
@@ -320,7 +380,7 @@
           <div class="handoff-count">${count} enfant${count > 1 ? 's' : ''}</div>
         </div>
         <div class="handoff-body">
-          ${block.projects ? renderProjects(block) : renderKids(block.kids)}
+          ${block.projects ? renderProjects(block, marks) : renderKids(block.kids, marks)}
           ${renderStayNote(block, nextBlock)}
         </div>
       </section>`;

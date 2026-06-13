@@ -8,7 +8,7 @@ const SCHOOL_PROJECTS = [
   {
     name: "Maternelles de Virginie",
     note: "Les pouvoirs des fleurs — Les Kids United",
-    kids: ["Lina", "Tiamo", "Nael", "Ambre", "Eva", "Anaelle", "Charlotte", "Maylis", "Emmy", "Adrien", "Isaure", "Alma", "Raphaël", "Léa", "Charlie"]
+    kids: ["Lina", "Tiamo", "Nael", "Ambre", "Eva", "Anaelle", "Charlotte (maternelle)", "Maylis", "Emmy", "Adrien", "Isaure", "Alma", "Raphaël", "Léa", "Charlie"]
   },
   {
     name: "Capoeira",
@@ -48,7 +48,7 @@ const SCHOOL_PROJECTS = [
 ];
 
 /* Scènes libres — comptent dans la limite de 2 scènes max par enfant */
-/* Ordre de ramassage : Théâtre → Chant → Roller → Jonglage → Danse → Gym (en dernier) */
+/* Ordre de ramassage : Théâtre → Chant → Jonglage → Danse → Gym → Roller */
 const FREE_CATEGORIES = [
   {
     name: "Théâtre",

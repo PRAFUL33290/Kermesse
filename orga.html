@@ -283,6 +283,9 @@
       padding: 0;
     }
     .pickup-item {
+      --pickup-main: var(--accent);
+      --pickup-alt: var(--accent-2);
+      --pickup-soft: #fff;
       display: flex;
       align-items: flex-start;
       gap: 16px;
@@ -292,6 +295,40 @@
     .pickup-item:last-child { border-bottom: none; }
     .pickup-item.school-item {
       background: var(--gold-soft);
+    }
+    .pickup-item.pickup-free {
+      background: var(--pickup-soft);
+      border-left: 5px solid var(--pickup-main);
+    }
+    .pickup-item.pickup-theatre {
+      --pickup-main: #2b6cb0;
+      --pickup-alt: #4299e1;
+      --pickup-soft: #ebf4ff;
+    }
+    .pickup-item.pickup-chant {
+      --pickup-main: #b7791f;
+      --pickup-alt: #ecc94b;
+      --pickup-soft: #fff8db;
+    }
+    .pickup-item.pickup-jonglage {
+      --pickup-main: #2f855a;
+      --pickup-alt: #48bb78;
+      --pickup-soft: #edf7f0;
+    }
+    .pickup-item.pickup-danse {
+      --pickup-main: #c53030;
+      --pickup-alt: #fc8181;
+      --pickup-soft: #fff1f1;
+    }
+    .pickup-item.pickup-gym {
+      --pickup-main: #6b46c1;
+      --pickup-alt: #b794f4;
+      --pickup-soft: #f3efff;
+    }
+    .pickup-item.pickup-roller {
+      --pickup-main: #c05621;
+      --pickup-alt: #ed8936;
+      --pickup-soft: #fff3e8;
     }
     .pickup-num {
       min-width: 36px;
@@ -308,8 +345,8 @@
     .pickup-item.school-item .pickup-num {
       background: linear-gradient(135deg, var(--gold), #d4a017);
     }
-    .pickup-item.last-item .pickup-num {
-      background: linear-gradient(135deg, #6b7280, #9ca3af);
+    .pickup-item.pickup-free .pickup-num {
+      background: linear-gradient(135deg, var(--pickup-main), var(--pickup-alt));
     }
     .pickup-body { flex: 1; min-width: 0; }
     .pickup-name {
@@ -337,6 +374,11 @@
       color: var(--gold);
       border: 1px solid #e6c66a;
     }
+    .pickup-item.pickup-free .pickup-badge {
+      background: #fff;
+      color: var(--pickup-main);
+      border: 1px solid currentColor;
+    }
     .pickup-kids {
       color: var(--muted);
       font-size: .88rem;
@@ -350,7 +392,6 @@
       align-self: center;
       flex-shrink: 0;
     }
-    .pickup-item.last-item { opacity: .75; }
     .pickup-last-label {
       display: inline-block;
       font-size: .72rem;
@@ -561,21 +602,30 @@
         kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Théâtre").scenes.flatMap(s => s.who))] },
       { num: 7, label: "Chant", badge: "Scènes libres", school: false,
         kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Chant").scenes.flatMap(s => s.who))] },
-      { num: 8, label: "Roller", badge: "Scènes libres", school: false,
-        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Roller").scenes.flatMap(s => s.who))] },
-      { num: 9, label: "Jonglage ballon de foot", badge: "Scènes libres", school: false,
+      { num: 8, label: "Jonglage ballon de foot", badge: "Scènes libres", school: false,
         kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Jonglage ballon de foot").scenes.flatMap(s => s.who))] },
-      // En dernier
-      { num: 10, label: "Danse", badge: "En dernier", school: false, last: true,
+      { num: 9, label: "Danse", badge: "Scènes libres", school: false,
         kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Danse").scenes.flatMap(s => s.who))] },
-      { num: 11, label: "Gymnastique", badge: "En dernier", school: false, last: true,
+      // Derniers blocs
+      { num: 10, label: "Gymnastique", badge: "En dernier", school: false, last: true,
         kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Gymnastique").scenes.flatMap(s => s.who))] },
+      { num: 11, label: "Roller", badge: "En dernier", school: false, last: true,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Roller").scenes.flatMap(s => s.who))] },
     ];
+
+    const pickupColorClass = label => ({
+      "Théâtre": "pickup-theatre",
+      "Chant": "pickup-chant",
+      "Jonglage ballon de foot": "pickup-jonglage",
+      "Danse": "pickup-danse",
+      "Gymnastique": "pickup-gym",
+      "Roller": "pickup-roller"
+    }[label] || '');
 
     document.getElementById('pickupList').innerHTML = PICKUP_ORDER.map(g => {
       const icon = g.school ? "🏫" : (g.label==="Danse" ? "💃" : g.label==="Gymnastique" ? "🤸" : g.label==="Théâtre" ? "🎭" : g.label==="Chant" ? "🎤" : g.label==="Roller" ? "🛼" : "⚽");
       const kidsDisplay = g.kids.map(esc).join(' · ');
-      const cls = g.school ? 'school-item' : (g.last ? 'last-item' : '');
+      const cls = g.school ? 'school-item' : `pickup-free ${pickupColorClass(g.label)}${g.last ? ' last-item' : ''}`;
       const badgeHtml = g.last
         ? `<span class="pickup-badge" style="background:#f1f5f9;color:#6b7280;border:1px solid #e2e8f0">⏩ En dernier</span>`
         : `<span class="pickup-badge">${esc(g.badge)}</span>`;
