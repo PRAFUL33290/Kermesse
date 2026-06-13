@@ -53,7 +53,7 @@ Keren, Divine, Grace, Maimouna, Tania, Orianne
 |---|---|---|---|
 | 1 | Alya, Elena, Elaïa, Kelyana | Danse / gym — Lush Life | 4 |
 | 2 | Jasmine, Léa, Lina M. | Gozalo | 3 |
-| 3 | Clara, Lydia, Divine, Ryma | Danse | 4 |
+| 3 | Clara, Lydia, Divine, Ryma | Danse — Kakalika | 4 |
 | 4 | Lana | Séga | 1 |
 | 5 | Kaylan, Elvin, Arthur, Alioun | Danse / scène de groupe | 4 |
 | 6 | Maïssa, Lina M. | Afro / rondade / salto | 2 |
@@ -196,7 +196,7 @@ L'ordre est pensé pour :
 
 | N° | Scène | Participants | Catégorie | Durée est. |
 |---|---|---|---|---|
-| **26** | 💃 Danse | Clara, Lydia, Divine, Ryma | Danse | ~3 min |
+| **26** | 💃 Danse — Kakalika | Clara, Lydia, Divine, Ryma | Danse | ~3 min |
 | **27** | 🎭 Théâtre | Charlotte | Théâtre | ~4 min |
 | **28** | 💃 Danse — 21 Reasons | Stella, Giulia | Danse | ~3 min |
 | **29** | 💃 Afro / rondade / salto | Maïssa, Lina M. | Danse | ~3 min |
@@ -238,6 +238,7 @@ L'ordre est pensé pour :
 | Astronomia | Danse (Kaylan, Elvin, Arthur, Alioun) | ✅ Prête |
 | Gabriela | Danse (Giulia, Héloïse) | ✅ Prête |
 | 21 Reasons | Danse (Stella, Giulia) | ✅ Prête |
+| Kakalika | Danse (Clara, Lydia, Divine, Ryma) | ✅ Prête |
 | Spark Car | Danse (Kelyana, Elenna) — à confirmer | ⚠️ À confirmer |
 | Bruit de moteur | Théâtre (Les Martiens) | ⚠️ À préparer |
 | Musique théâtre Les Martiens | Théâtre (Lilly, Shine, Divine) | ⚠️ À définir |

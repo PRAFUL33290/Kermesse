@@ -100,7 +100,7 @@ const FREE_CATEGORIES = [
     scenes: [
       { who: ["Alya","Elena","Elaïa","Kelyana"], scene: "Danse / gym — Lush Life" },
       { who: ["Jasmine","Léa","Lina M."], scene: "Gozalo" },
-      { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" },
+      { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse — Kakalika" },
       { who: ["Lana"], scene: "Séga" },
       { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" },
       { who: ["Maïssa","Lina M."], scene: "Afro / rondade / salto" },

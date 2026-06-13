@@ -84,7 +84,7 @@
       "scenes": [
         { "participants": ["Alya", "Elena", "Elaïa", "Kelyana"], "prestation": "Danse / gym — Lush Life", "musique": "Lush Life" },
         { "participants": ["Jasmine", "Léa", "Lina M."], "prestation": "Gozalo", "musique": "Gozalo" },
-        { "participants": ["Clara", "Lydia", "Divine", "Ryma"], "prestation": "Danse", "musique": "À définir" },
+        { "participants": ["Clara", "Lydia", "Divine", "Ryma"], "prestation": "Danse — Kakalika", "musique": "Kakalika" },
         { "participants": ["Lana"], "prestation": "Séga", "musique": "À définir" },
         { "participants": ["Kaylan", "Elvin", "Arthur", "Alioun"], "prestation": "Danse / scène de groupe", "musique": "Astronomia" },
         { "participants": ["Maïssa", "Lina M."], "prestation": "Afro / rondade / salto", "musique": "À définir" },
@@ -222,7 +222,7 @@
         "bloc": "BLOC 5 — Dernières scènes libres",
         "couleur": "🟣",
         "passages": [
-          { "n": 26, "scene": "Danse", "participants": "Clara, Lydia, Divine, Ryma", "categorie": "Danse", "duree": "~3 min" },
+          { "n": 26, "scene": "Danse — Kakalika", "participants": "Clara, Lydia, Divine, Ryma", "categorie": "Danse", "duree": "~3 min" },
           { "n": 27, "scene": "Théâtre", "participants": "Charlotte", "categorie": "Théâtre", "duree": "~4 min" },
           { "n": 28, "scene": "Danse — 21 Reasons", "participants": "Stella, Giulia", "categorie": "Danse", "duree": "~3 min" },
           { "n": 29, "scene": "Afro / rondade / salto", "participants": "Maïssa, Lina M.", "categorie": "Danse", "duree": "~3 min" },
@@ -258,6 +258,7 @@
     { "titre": "Astronomia", "pour": "Danse (Kaylan, Elvin, Arthur, Alioun)", "statut": "Prête" },
     { "titre": "Gabriela", "pour": "Danse (Giulia, Héloïse)", "statut": "Prête" },
     { "titre": "21 Reasons", "pour": "Danse (Stella, Giulia)", "statut": "Prête" },
+    { "titre": "Kakalika", "pour": "Danse (Clara, Lydia, Divine, Ryma)", "statut": "Prête" },
     { "titre": "Taki Taki", "pour": "GRS (Alya, Elaïa)", "statut": "Prête" },
     { "titre": "Spark Car", "pour": "Danse (Kelyana, Elenna) — à confirmer", "statut": "À confirmer" },
     { "titre": "Bruit de moteur", "pour": "Théâtre (Les Martiens)", "statut": "À préparer" },

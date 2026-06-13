@@ -6,7 +6,7 @@ Voici **tous les groupes des scènes libres uniquement**, donc **sans Quinzaine 
 | ------------------------------------ | ----------------------- |
 | **Alya + Elena + Elaïa + Kelyana**   | Danse — **Lush Life**   |
 | **Jasmine + Léa + Lina M.**          | Danse — **Gozalo**      |
-| **Clara + Lydia + Divine + Ryma**    | Danse                   |
+| **Clara + Lydia + Divine + Ryma**    | Danse — **Kakalika**    |
 | **Lana**                             | Séga                    |
 | **Kaylan + Elvin + Arthur + Alioun** | Danse / scène de groupe |
 | **Maïssa + Lina**                    | Afro / rondade / salto  |

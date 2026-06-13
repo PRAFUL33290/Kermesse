@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À faire · Scène des Talents — École Arc en Ciel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .todo-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .summary-card strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .summary-card span {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .todo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .todo-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 0;
+    }
+    .todo-card.done {
+      border-color: #9cd6bb;
+      box-shadow: 0 0 0 1px #9cd6bb, var(--shadow);
+    }
+    .todo-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .todo-head h2 {
+      font-size: 1.05rem;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .todo-meta {
+      color: var(--muted);
+      font-size: .88rem;
+      margin: 5px 0 0;
+    }
+    .priority {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .priority.high { background: var(--accent-soft); color: var(--accent); }
+    .priority.medium { background: var(--gold-soft); color: var(--gold); }
+    .priority.low { background: #e6f4ec; color: var(--green); }
+    .todo-form {
+      display: grid;
+      gap: 11px;
+    }
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--ink);
+      font: inherit;
+      padding: 11px 12px;
+      outline: none;
+    }
+    .field textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--accent-2);
+    }
+    .todo-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .save-state {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .new-item {
+      margin-bottom: 26px;
+    }
+    .new-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .new-grid .wide {
+      grid-column: 1 / -1;
+    }
+    .empty-state {
+      display: none;
+      color: var(--muted);
+      text-align: center;
+      padding: 28px;
+    }
+    @media (max-width: 640px) {
+      .todo-grid,
+      .new-grid { grid-template-columns: 1fr; }
+      .field input,
+      .field select,
+      .field textarea { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">🏠 Accueil</a></li>
+        <li><a href="enfants.html">👧 Enfants</a></li>
+        <li><a href="orga.html">🗓️ Organisation</a></li>
+        <li><a href="repere-enfants.html">🧭 Repère</a></li>
+        <li><a href="repetition.html">🎬 Répétitions</a></li>
+        <li><a href="a-faire.html" class="active">📝 À faire</a></li>
+        <li><a href="nico.html">✅ Nico</a></li>
+        <li><a href="stats.html">📊 Statistiques</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Suivi des confirmations</p>
+      <h1>À faire</h1>
+      <p class="meta">Points à confirmer, musiques à récupérer et questions restantes</p>
+    </header>
+
+    <div class="rule">
+      <strong>Sauvegarde :</strong> les réponses sont enregistrées dans ce navigateur, directement sur cette page.
+      Pour les partager ou les garder ailleurs, utilise <strong>Exporter</strong>.
+    </div>
+
+    <div class="todo-summary" id="summary"></div>
+
+    <section class="section new-item">
+      <div class="section-head">
+        <h2>Ajouter un point</h2>
+        <span class="count">Formulaire</span>
+      </div>
+      <form id="newForm" class="todo-form">
+        <div class="new-grid">
+          <div class="field">
+            <label for="newTitle">Titre</label>
+            <input id="newTitle" required placeholder="Ex. confirmer une musique">
+          </div>
+          <div class="field">
+            <label for="newCategory">Catégorie</label>
+            <select id="newCategory">
+              <option>Musique</option>
+              <option>Scène</option>
+              <option>Enfant</option>
+              <option>Organisation</option>
+              <option>Question</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="newPriority">Priorité</label>
+            <select id="newPriority">
+              <option value="high">Haute</option>
+              <option value="medium" selected>Moyenne</option>
+              <option value="low">Basse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="newPeople">Personnes concernées</label>
+            <input id="newPeople" placeholder="Prénoms, groupe ou adulte référent">
+          </div>
+          <div class="field wide">
+            <label for="newQuestion">Question / point à régler</label>
+            <textarea id="newQuestion" required placeholder="Ce qu'il faut vérifier ou compléter"></textarea>
+          </div>
+        </div>
+        <div class="todo-actions">
+          <button type="submit" class="btn">+ Ajouter</button>
+          <button type="button" class="btn ghost" id="btnExport">💾 Exporter</button>
+          <label class="btn btn-import">📂 Importer<input type="file" id="fileImport" accept="application/json,.json" hidden></label>
+          <button type="button" class="btn ghost" id="btnReset">↺ Réinitialiser</button>
+          <span class="save-state" id="globalState"></span>
+        </div>
+      </form>
+    </section>
+
+    <div class="filters" id="filters"></div>
+    <div class="todo-grid" id="todoGrid"></div>
+    <section class="section empty-state" id="emptyState">Aucun point dans ce filtre.</section>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const STORAGE_KEY = 'scene-talents-a-faire-v1';
+    const DEFAULT_TODOS = [
+      { id: 'jumana-chant', category: 'Scène', priority: 'high', title: 'Confirmer la scène de Jumana', people: 'Jumana', question: 'Chant indiqué comme à confirmer. Valider si elle passe bien, le titre et la musique.' },
+      { id: 'spark-car', category: 'Musique', priority: 'medium', title: 'Confirmer Spark Car', people: 'Kelyana, Elenna', question: 'Danse duo indiquée à confirmer. Vérifier si la scène reste au programme et si Spark Car est le bon titre.' },
+      { id: 'lana-sega', category: 'Musique', priority: 'high', title: 'Musique du Séga', people: 'Lana', question: 'Musique encore à définir pour la danse Séga.' },
+      { id: 'duo-bresil', category: 'Musique', priority: 'medium', title: 'Musique du Duo Brésil', people: 'Lina S., Maïssa', question: 'Musique indiquée à confirmer pour le Duo Brésil.' },
+      { id: 'gym-rondades', category: 'Musique', priority: 'high', title: 'Musique gym / rondades', people: 'Groupe gymnastique', question: 'Musique encore à définir pour les rondades / flip / salto arrière.' },
+      { id: 'theatre-martiens-musique', category: 'Musique', priority: 'high', title: 'Musique théâtre Les Martiens', people: 'Lilly, Shyne, Divine', question: 'Musique à définir pour la scène théâtre Les Martiens.' },
+      { id: 'theatre-martiens-effet', category: 'Organisation', priority: 'medium', title: 'Bruit de moteur Les Martiens', people: 'Lilly, Shyne, Divine', question: 'Effet sonore à préparer pour Les Martiens.' },
+      { id: 'theatre-martiens-confirm', category: 'Scène', priority: 'medium', title: 'Confirmer Les Martiens', people: 'Lilly, Shyne, Divine', question: 'La note indique “Les Martiens (à confirmer)”. Valider la scène et les besoins son.' },
+      { id: 'chant-cheid', category: 'Musique', priority: 'high', title: 'Musique chant Cheid', people: 'Cheid', question: 'Musique à récupérer pour le chant de Cheid.' },
+      { id: 'jasmine-lea-chant', category: 'Musique', priority: 'medium', title: 'Confirmer le chant de Léa + Jasmine', people: 'Léa, Jasmine', question: 'Le chant est indiqué avec une musique à confirmer.' },
+      { id: 'maimouna-chant', category: 'Musique', priority: 'medium', title: 'Musique chant Maïmouna', people: 'Maïmouna', question: 'Musique encore à définir.' },
+      { id: 'celine-chant', category: 'Musique', priority: 'medium', title: 'Musique chant Céline', people: 'Céline', question: 'Musique encore à définir.' },
+      { id: 'lina-chant', category: 'Musique', priority: 'medium', title: 'Musique chant Lina M.', people: 'Lina M.', question: 'Musique encore à définir.' },
+      { id: 'keren-chant', category: 'Musique', priority: 'medium', title: 'Musique chant Keren', people: 'Keren', question: 'Musique encore à définir.' },
+      { id: 'jumana-musique', category: 'Musique', priority: 'high', title: 'Musique de Jumana', people: 'Jumana', question: 'Musique à définir si la scène est confirmée.' },
+      { id: 'maissa-lina-danse', category: 'Musique', priority: 'medium', title: 'Musique Afro / rondade / salto', people: 'Maïssa, Lina M.', question: 'Musique encore à définir.' },
+      { id: 'grace-danse', category: 'Musique', priority: 'medium', title: 'Musique danse Grace', people: 'Grace', question: 'Musique encore à définir.' },
+      { id: 'heloise-juliette-loicia', category: 'Musique', priority: 'medium', title: 'Musique danse Héloïse + Juliette + Loïcia', people: 'Héloïse, Juliette, Loïcia', question: 'Musique encore à définir.' },
+      { id: 'prenoms-variantes', category: 'Question', priority: 'low', title: 'Vérifier les variantes de prénoms', people: 'Liste complète', question: 'Certains prénoms ont des variantes d’orthographe regroupées automatiquement. Faire une vérification manuelle.' }
+    ];
+
+    const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const escAttr = s => esc(s).replace(/"/g, '&quot;');
+    const priorityLabel = p => ({ high: 'Haute', medium: 'Moyenne', low: 'Basse' }[p] || 'Moyenne');
+    const statusLabel = s => ({ todo: 'À faire', waiting: 'En attente', done: 'Réglé' }[s] || 'À faire');
+
+    let activeFilter = 'Tous';
+    let items = loadItems();
+
+    function loadItems() {
+      const base = DEFAULT_TODOS.map(item => ({ ...item, status: 'todo', answer: '', notes: '', updatedAt: '' }));
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        const savedItems = Array.isArray(saved.items) ? saved.items : [];
+        const byId = new Map(base.map(item => [item.id, item]));
+        savedItems.forEach(item => byId.set(item.id, { ...byId.get(item.id), ...item }));
+        return [...byId.values()];
+      } catch {
+        return base;
+      }
+    }
+
+    function persist(message = 'Enregistré') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, savedAt: new Date().toISOString(), items }));
+      const state = document.getElementById('globalState');
+      state.textContent = message;
+      window.clearTimeout(persist.timer);
+      persist.timer = window.setTimeout(() => state.textContent = '', 1800);
+    }
+
+    function renderSummary() {
+      const total = items.length;
+      const done = items.filter(item => item.status === 'done').length;
+      const waiting = items.filter(item => item.status === 'waiting').length;
+      const open = total - done;
+      document.getElementById('summary').innerHTML = [
+        ['Total', total],
+        ['Encore ouverts', open],
+        ['En attente', waiting],
+        ['Réglés', done]
+      ].map(([label, value]) => `<div class="summary-card"><strong>${value}</strong><span>${label}</span></div>`).join('');
+    }
+
+    function renderFilters() {
+      const cats = ['Tous', ...new Set(items.map(item => item.category))];
+      document.getElementById('filters').innerHTML = cats.map(cat =>
+        `<button type="button" class="filter-btn ${cat === activeFilter ? 'active' : ''}" data-filter="${escAttr(cat)}">${esc(cat)}</button>`
+      ).join('');
+    }
+
+    function renderItems() {
+      const filtered = activeFilter === 'Tous' ? items : items.filter(item => item.category === activeFilter);
+      document.getElementById('todoGrid').innerHTML = filtered.map(item => `
+        <section class="section todo-card ${item.status === 'done' ? 'done' : ''}" data-id="${escAttr(item.id)}">
+          <div class="todo-head">
+            <div>
+              <h2>${esc(item.title)}</h2>
+              <p class="todo-meta">${esc(item.category)}${item.people ? ` · ${esc(item.people)}` : ''}</p>
+            </div>
+            <span class="priority ${escAttr(item.priority)}">${priorityLabel(item.priority)}</span>
+          </div>
+          <p>${esc(item.question)}</p>
+          <form class="todo-form">
+            <div class="field">
+              <label>Statut</label>
+              <select name="status">
+                <option value="todo" ${item.status === 'todo' ? 'selected' : ''}>À faire</option>
+                <option value="waiting" ${item.status === 'waiting' ? 'selected' : ''}>En attente</option>
+                <option value="done" ${item.status === 'done' ? 'selected' : ''}>Réglé</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Réponse / info validée</label>
+              <input name="answer" value="${escAttr(item.answer)}" placeholder="Écrire l'information confirmée">
+            </div>
+            <div class="field">
+              <label>Notes</label>
+              <textarea name="notes" placeholder="Détails, personne à appeler, fichier à récupérer...">${esc(item.notes)}</textarea>
+            </div>
+            <div class="todo-actions">
+              <button type="submit" class="btn">Enregistrer</button>
+              <button type="button" class="btn ghost delete-item">Supprimer</button>
+              <span class="save-state">${item.updatedAt ? `Dernière sauvegarde : ${esc(item.updatedAt)}` : ''}</span>
+            </div>
+          </form>
+        </section>
+      `).join('');
+      document.getElementById('emptyState').style.display = filtered.length ? 'none' : 'block';
+    }
+
+    function render() {
+      renderSummary();
+      renderFilters();
+      renderItems();
+    }
+
+    document.getElementById('filters').addEventListener('click', event => {
+      const btn = event.target.closest('[data-filter]');
+      if (!btn) return;
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+
+    document.getElementById('todoGrid').addEventListener('submit', event => {
+      event.preventDefault();
+      const card = event.target.closest('[data-id]');
+      const item = items.find(entry => entry.id === card.dataset.id);
+      const data = new FormData(event.target);
+      item.status = data.get('status');
+      item.answer = data.get('answer').trim();
+      item.notes = data.get('notes').trim();
+      item.updatedAt = new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+      persist();
+      render();
+    });
+
+    document.getElementById('todoGrid').addEventListener('click', event => {
+      const del = event.target.closest('.delete-item');
+      if (!del) return;
+      const card = event.target.closest('[data-id]');
+      items = items.filter(item => item.id !== card.dataset.id);
+      persist('Point supprimé');
+      render();
+    });
+
+    document.getElementById('newForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const title = document.getElementById('newTitle').value.trim();
+      const question = document.getElementById('newQuestion').value.trim();
+      if (!title || !question) return;
+      items.unshift({
+        id: `custom-${Date.now()}`,
+        category: document.getElementById('newCategory').value,
+        priority: document.getElementById('newPriority').value,
+        title,
+        people: document.getElementById('newPeople').value.trim(),
+        question,
+        status: 'todo',
+        answer: '',
+        notes: '',
+        updatedAt: ''
+      });
+      event.target.reset();
+      document.getElementById('newPriority').value = 'medium';
+      persist('Point ajouté');
+      render();
+    });
+
+    document.getElementById('btnExport').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), items }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'a-faire-scene-talents.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    document.getElementById('fileImport').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const imported = JSON.parse(reader.result);
+          if (!Array.isArray(imported.items)) throw new Error('Format invalide');
+          items = imported.items;
+          persist('Import enregistré');
+          render();
+        } catch {
+          alert('Impossible d’importer ce fichier.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    });
+
+    document.getElementById('btnReset').addEventListener('click', () => {
+      if (!confirm('Réinitialiser toute la page À faire sur cet appareil ?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      items = loadItems();
+      persist('Réinitialisé');
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
