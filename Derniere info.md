@@ -10,7 +10,7 @@
 | Kelyana + Elenna                 | Danse duo (à confirmer) | **Spark Car**  |
 | Lana                             | Danse Séga              | À définir      |
 | Kaylan + Elvin + Arthur + Alioun | Danse / scène de groupe | **Astronomia** |
-| Clara + Lydia + Divine + Ryma    | Danse                   | **Kakalika**   |
+| Clara + Lydia + Divine + Ryma + Yara | Danse                | **Kakalika**   |
 | Maïssa + Lina M.                 | Danse                   | À définir      |
 | Grace                            | Danse                   | À définir      |
 | Giulia + Héloïse                 | Danse                   | **Gabriela**   |
