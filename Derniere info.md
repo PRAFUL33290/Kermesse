@@ -10,7 +10,7 @@
 | Kelyana + Elenna                 | Danse duo (à confirmer) | **Spark Car**  |
 | Lana                             | Danse Séga              | À définir      |
 | Kaylan + Elvin + Arthur + Alioun | Danse / scène de groupe | **Astronomia** |
-| Maïssae + Lina M.                | Danse                   | À définir      |
+| Maïssa + Lina M.                 | Danse                   | À définir      |
 | Grace                            | Danse                   | À définir      |
 | Giulia + Héloïse                 | Danse                   | **Gabriela**   |
 | Stella + Giulia                  | Danse                   | **21 Reasons**  |

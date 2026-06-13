@@ -36,7 +36,7 @@ Keren, Divine, Grace, Maimouna, Tania, Orianne
 | 🇮🇹 | Italie | Italien | Giulia, Divine, Camille |
 | 🇩🇪 | Allemagne | Allemand | Elenna, Mia |
 | 🇹🇳 | Tunisie | Darija tunisien | Lydia, Jasmine, Yara, Eileen |
-| 🇲🇦 | Maroc | Darija marocain | Yara, Mayssae, Lina M., Chahd |
+| 🇲🇦 | Maroc | Darija marocain | Yara, Maïssa, Lina M., Chahd |
 | 🇩🇿 | Algérie | Dziriya | Zia, Chahd |
 | 🇸🇳 | Sénégal | Wolof | Divine, Noémie |
 | 🇨🇲 | Cameroun | Douala | Nayana, Keren |
@@ -56,7 +56,7 @@ Keren, Divine, Grace, Maimouna, Tania, Orianne
 | 3 | Clara, Lydia, Divine, Ryma | Danse | 4 |
 | 4 | Lana | Séga | 1 |
 | 5 | Kaylan, Elvin, Arthur, Alioun | Danse / scène de groupe | 4 |
-| 6 | Maissae, Lina M. | Afro / rondade / salto | 2 |
+| 6 | Maïssa, Lina M. | Afro / rondade / salto | 2 |
 | 7 | Grace | Danse | 1 |
 | 8 | Lina S., Maïssa | Duo (Brésil) | 2 |
 | 9 | Giulia, Héloïse | Gabriela | 2 |
@@ -199,7 +199,7 @@ L'ordre est pensé pour :
 | **26** | 💃 Danse | Clara, Lydia, Divine, Ryma | Danse | ~3 min |
 | **27** | 🎭 Théâtre | Charlotte | Théâtre | ~4 min |
 | **28** | 💃 Danse — 21 Reasons | Stella, Giulia | Danse | ~3 min |
-| **29** | 💃 Afro / rondade / salto | Maissae, Lina M. | Danse | ~3 min |
+| **29** | 💃 Afro / rondade / salto | Maïssa, Lina M. | Danse | ~3 min |
 | **30** | 🎭 Théâtre | Eileen, Leana, Lina M. | Théâtre | ~5 min |
 | **31** | 🎤 Chant | Lina M. | Chant | ~3 min |
 | **32** | 💃 Duo (Brésil) | Lina S., Maïssa | Danse | ~3 min |

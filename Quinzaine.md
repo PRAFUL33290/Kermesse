@@ -15,7 +15,7 @@ Liste enfants participant à la quinzaine de l'égalité :
 
 7) 🇹🇳 Tunisie — Darija tunisien : Lydia • Jasmine • Yara • Eileen (4)
 
-8) 🇲🇦 Maroc — Darija marocain : Yara • Mayssae • Lina • Cheid (4)
+8) 🇲🇦 Maroc — Darija marocain : Yara • Maïssa • Lina • Cheid (4)
 
 9) 🇩🇿 Algérie — Dziriya (darija algérien) : Zia • Cheid (2)
 

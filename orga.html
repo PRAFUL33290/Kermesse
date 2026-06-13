@@ -217,9 +217,10 @@
       font-weight: 700;
       padding: 2px 10px;
       border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      white-space: nowrap;
     }
-    .child-count.ok { background: #e6f4ec; color: var(--green); }
-    .child-count.warn { background: var(--accent-soft); color: var(--accent); }
     .child-scenes {
       display: flex;
       flex-direction: column;
@@ -246,6 +247,18 @@
     }
     .child-scene-detail {
       color: var(--muted);
+    }
+    .child-scene-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+    .child-scene-friends {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.25;
     }
     .child-scene-passage {
       margin-left: auto;
@@ -375,6 +388,8 @@
         <li><a href="index.html">Accueil</a></li>
         <li><a href="enfants.html">Enfants</a></li>
         <li><a href="orga.html" class="active">Organisation</a></li>
+        <li><a href="repetition.html">Répétitions</a></li>
+        <li><a href="nico.html">Nico</a></li>
         <li><a href="stats.html">Statistiques</a></li>
       </ul>
     </div>
@@ -396,7 +411,7 @@
     <!-- Rule reminder -->
     <div class="rule">
       <strong>Rappel :</strong> chaque enfant peut faire <strong>2 scènes libres maximum</strong>.
-      Les projets d'école (<strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong>, <strong>Quinzaine de l'égalité</strong>)
+      Les projets d'école (<strong>Maternelles de Virginie</strong>, <strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong>, <strong>Carnaval de Deborah</strong>, <strong>Quinzaine de l'égalité</strong>)
       ne comptent pas dans cette limite.
     </div>
 
@@ -406,8 +421,8 @@
 
     <!-- Estimated duration -->
     <div class="rule" style="margin-top: 32px; border-left-color: var(--accent);">
-      <strong>⏱️ Durée totale estimée :</strong> environ <strong>2h10</strong>
-      (scènes ~95 min + projets d'école ~18 min + transitions ~15 min)
+      <strong>⏱️ Durée totale estimée :</strong> environ <strong>2h45</strong>
+      (prestations ~148 min + transitions ~15 min)
     </div>
 
     <!-- Child lookup -->
@@ -436,94 +451,94 @@
 
     const RUNNING_ORDER = [
       {
-        bloc: "OUVERTURE",
+        bloc: "PROJETS D'ÉCOLE",
         color: "green",
         emoji: "🟢",
         scenes: [
-          { type: "school", num: 1, icon: "🏫", name: "Capoeira", cat: "Projet d'école", kids: SCHOOL_PROJECTS[1].kids, duration: "~5 min" },
-          { type: "school", num: 2, icon: "🏫", name: "Carnaval de Deborah", cat: "Projet d'école", kids: SCHOOL_PROJECTS[3].kids, duration: "~3 min" }
+          { type: "school", num: 1, icon: "🏫", name: "Maternelles de Virginie", cat: "Projet d'école", kids: SCHOOL_PROJECTS[0].kids, duration: "~4 min" },
+          { type: "school", num: 2, icon: "🏫", name: "Capoeira", cat: "Projet d'école", kids: SCHOOL_PROJECTS[1].kids, duration: "~5 min" },
+          { type: "school", num: 3, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~5 min" },
+          { type: "school", num: 4, icon: "🏫", name: "Carnaval de Deborah", cat: "Projet d'école", kids: SCHOOL_PROJECTS[3].kids, duration: "~3 min" },
+          { type: "school", num: 5, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
         ]
       },
       {
-        bloc: "BLOC 1",
-        sub: "Danse & Variété",
+        bloc: "THÉÂTRE",
         color: "blue",
         emoji: "🔵",
         scenes: [
-          { num: 3, icon: "💃", name: "Danse / gym — Lush Life", cat: "Danse", kids: ["Alya","Elena","Elaïa","Kelyana"], duration: "~3 min" },
-          { num: 4, icon: "💃", name: "Danse — Gabriela", cat: "Danse", kids: ["Giulia","Héloïse"], duration: "~3 min" },
-          { num: 5, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Cheid"], duration: "~3 min" },
-          { num: 6, icon: "💃", name: "Gozalo", cat: "Danse", kids: ["Jasmine","Léa","Lina M."], duration: "~3 min" },
-          { num: 7, icon: "💃", name: "Séga", cat: "Danse", kids: ["Lana"], duration: "~3 min" }
+          { num: 6, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shyne","Divine"], duration: "~5 min" },
+          { num: 7, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
+          { num: 8, icon: "🎭", name: "Mortelle Adèle", cat: "Théâtre", kids: ["Ryma","Divine","Clara"], duration: "~5 min" },
+          { num: 9, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
+          { num: 10, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
+          { num: 11, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
         ]
       },
       {
-        bloc: "BLOC 2",
-        sub: "Théâtre, Chant & Danse",
+        bloc: "CHANT",
         color: "yellow",
         emoji: "🟡",
         scenes: [
-          { num: 8, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shyne","Divine"], duration: "~5 min" },
-          { num: 9, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
-          { num: 10, icon: "💃", name: "Danse", cat: "Danse", kids: ["Héloïse","Juliette","Loïcia"], duration: "~3 min" },
-          { num: 11, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
-          { num: 12, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Maïmouna"], duration: "~3 min" },
-          { num: 13, icon: "🎭", name: "Mortelle Adèle", cat: "Théâtre", kids: ["Ryma","Divine","Clara"], duration: "~5 min" },
-          { num: 14, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Céline"], duration: "~3 min" }
+          { num: 12, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Cheid"], duration: "~3 min" },
+          { num: 13, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
+          { num: 14, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Maïmouna"], duration: "~3 min" },
+          { num: 15, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Céline"], duration: "~3 min" },
+          { num: 16, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
+          { num: 17, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Keren"], duration: "~3 min" },
+          { num: 18, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Charlotte"], duration: "~3 min" },
+          { num: 19, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" }
         ]
       },
       {
-        bloc: "BLOC 3",
-        sub: "Gymnastique",
+        bloc: "JONGLAGE",
         color: "orange",
         emoji: "🟠",
         scenes: [
-          { num: 15, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Giulia","Stella","Héloïse"], duration: "~3 min" },
-          { num: 16, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Inès","Eileen","Lya"], duration: "~3 min" },
-          { num: 17, icon: "🤸", name: "Gym duo", cat: "Gym (sous-groupe)", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
-          { num: 18, icon: "🤸", name: "Rondades / flip / salto", cat: "Gym (toutes)", kids: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], duration: "~5 min" }
+          { num: 20, icon: "⚽", name: "Jonglage", cat: "Jonglage", kids: ["Courage","Eliam"], duration: "~3 min" }
         ]
       },
       {
-        bloc: "BLOC 4",
-        sub: "Entracte dynamique",
+        bloc: "DANSE",
         color: "red",
         emoji: "🔴",
         scenes: [
-          { num: 19, icon: "⚽", name: "Jonglage", cat: "Jonglage", kids: ["Courage","Eliam"], duration: "~3 min" },
-          { num: 20, icon: "💃", name: "Danse / scène de groupe", cat: "Danse", kids: ["Kaylan","Elvin","Arthur","Alioun"], duration: "~3 min" },
-          { num: 21, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
-          { num: 22, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
-          { num: 23, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
-          { num: 24, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" },
-          { num: 25, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Naïma Nour"], duration: "~3 min" }
+          { num: 21, icon: "💃", name: "Danse / gym — Lush Life", cat: "Danse", kids: ["Alya","Elena","Elaïa","Kelyana"], duration: "~3 min" },
+          { num: 22, icon: "💃", name: "Danse — Gabriela", cat: "Danse", kids: ["Giulia","Héloïse"], duration: "~3 min" },
+          { num: 23, icon: "💃", name: "Gozalo", cat: "Danse", kids: ["Jasmine","Léa","Lina M."], duration: "~3 min" },
+          { num: 24, icon: "💃", name: "Séga", cat: "Danse", kids: ["Lana"], duration: "~3 min" },
+          { num: 25, icon: "💃", name: "Danse", cat: "Danse", kids: ["Héloïse","Juliette","Loïcia"], duration: "~3 min" },
+          { num: 26, icon: "💃", name: "Danse / scène de groupe", cat: "Danse", kids: ["Kaylan","Elvin","Arthur","Alioun"], duration: "~3 min" },
+          { num: 27, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
+          { num: 28, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
+          { num: 29, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maïssa","Lina M."], duration: "~3 min" },
+          { num: 30, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 31, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
+          { num: 32, icon: "💃", name: "Solo afro", cat: "Danse", kids: ["Mamy Kadiatou"], duration: "~3 min" }
         ]
       },
       {
-        bloc: "BLOC 5",
-        sub: "Dernières scènes libres",
+        bloc: "GYMNASTIQUE",
         color: "purple",
         emoji: "🟣",
         scenes: [
-          { num: 26, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
-          { num: 27, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
-          { num: 28, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
-          { num: 29, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
-          { num: 30, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
-          { num: 31, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
-          { num: 32, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
-          { num: 33, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
-          { num: 34, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
-          { num: 35, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
+          { num: 33, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Giulia","Stella","Héloïse"], duration: "~3 min" },
+          { num: 34, icon: "🤸", name: "Gym duo", cat: "Gym (sous-groupe)", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 35, icon: "🤸", name: "Rondades / flip / salto", cat: "Gym (toutes)", kids: ["Giulia","Stella","Héloïse","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], duration: "~5 min" },
+          { num: 36, icon: "🤸", name: "Solo gymnastique", cat: "Gym (solo)", kids: ["Mélina B."], duration: "~3 min" }
         ]
       },
       {
-        bloc: "CLÔTURE",
+        bloc: "ROLLERS",
         color: "green",
         emoji: "🟢",
         scenes: [
-          { type: "school", num: 36, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~5 min" },
-          { type: "school", num: 37, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
+          { num: 37, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
+          { num: 38, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
+          { num: 39, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
+          { num: 40, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" },
+          { num: 41, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Naïma Nour"], duration: "~3 min" },
+          { num: 42, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Dina"], duration: "~3 min" }
         ]
       }
     ];
@@ -610,7 +625,7 @@
 
     // ---- Child lookup: build data ----
     // Collect all scenes per child from running order
-    const childMap = new Map(); // normKey -> { display, scenes: [{ icon, cat, name, num }] }
+    const childMap = new Map(); // normKey -> { display, scenes: [{ icon, cat, name, num, kids }] }
 
     function normSearch(name) {
       return name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, "").trim();
@@ -628,6 +643,7 @@
             cat: s.cat,
             name: s.name,
             num: s.num,
+            kids: s.kids,
             isSchool: s.type === 'school'
           });
         });
@@ -649,7 +665,8 @@
             icon: "🏫",
             cat: "Projet d'école",
             name: "Quinzaine de l'égalité",
-            num: 33,
+            num: 5,
+            kids: [...quinzaineKidsSet],
             isSchool: true
           });
         }
@@ -674,25 +691,32 @@
         if (!match) return;
         shown++;
 
-        const freeCount = data.scenes.filter(s => !s.isSchool).length;
-        const over = freeCount > 2;
-        const pillClass = over ? 'warn' : 'ok';
-        const pillText = `${freeCount} scène${freeCount > 1 ? 's' : ''} libre${freeCount > 1 ? 's' : ''}`;
+        const interventionCount = data.scenes.length;
+        const countText = `${interventionCount} intervention${interventionCount > 1 ? 's' : ''}`;
 
         html += `<div class="child-card">
           <div class="child-name">
             ${esc(data.display)}
-            <span class="child-count ${pillClass}">${pillText}</span>
+            <span class="child-count">${countText}</span>
           </div>
           <div class="child-scenes">
-            ${data.scenes.map(s => `
-              <div class="child-scene-row">
-                <span class="child-scene-icon">${s.icon}</span>
-                <span class="child-scene-cat">${esc(s.cat)}</span>
-                <span class="child-scene-detail">${esc(s.name)}</span>
-                <span class="child-scene-passage">Passage n°${s.num}</span>
-              </div>
-            `).join('')}
+            ${data.scenes.map(s => {
+              const friends = (s.kids || [])
+                .filter(kid => normSearch(kid) !== key)
+                .map(esc);
+              const friendsText = friends.length ? `Avec ${friends.join(', ')}` : 'solo';
+              return `
+                <div class="child-scene-row">
+                  <span class="child-scene-icon">${s.icon}</span>
+                  <span class="child-scene-cat">${esc(s.cat)}</span>
+                  <span class="child-scene-main">
+                    <span class="child-scene-detail">${esc(s.name)}</span>
+                    <span class="child-scene-friends">${friendsText}</span>
+                  </span>
+                  <span class="child-scene-passage">Passage n°${s.num}</span>
+                </div>
+              `;
+            }).join('')}
           </div>
         </div>`;
       });

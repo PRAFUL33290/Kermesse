@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nico · Ramassage des enfants — Scène des Talents</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .nico-note {
+      border-left-color: var(--green);
+      font-size: 1rem;
+    }
+    .nico-note strong {
+      color: var(--green);
+    }
+    .handoff-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .handoff-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .handoff-head {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .handoff-time {
+      min-width: 64px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    .handoff-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .handoff-title small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 600;
+    }
+    .handoff-count {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .handoff-body {
+      padding: 16px 20px 18px;
+    }
+    .handoff-kids {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .handoff-kids li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      font-size: .9rem;
+      font-weight: 650;
+    }
+    .handoff-kids input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+    }
+    .project-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .project-line {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .project-line strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .project-line .project-meta {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+    .project-line .handoff-kids {
+      margin-top: 10px;
+    }
+    .handoff-card.school .handoff-time {
+      background: linear-gradient(135deg, var(--gold), #d4a017);
+    }
+    .handoff-card.theatre .handoff-time { background: linear-gradient(135deg, #2b6cb0, #4299e1); }
+    .handoff-card.chant .handoff-time { background: linear-gradient(135deg, #b7791f, #ecc94b); }
+    .handoff-card.jonglage .handoff-time { background: linear-gradient(135deg, #2f855a, #48bb78); }
+    .handoff-card.danse .handoff-time { background: linear-gradient(135deg, #c53030, #fc8181); }
+    .handoff-card.gym .handoff-time { background: linear-gradient(135deg, #6b46c1, #b794f4); }
+    .handoff-card.roller .handoff-time { background: linear-gradient(135deg, #c05621, #ed8936); }
+
+    @media (max-width: 620px) {
+      .handoff-head {
+        grid-template-columns: auto 1fr;
+      }
+      .handoff-count {
+        grid-column: 2;
+      }
+      .handoff-kids {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="enfants.html">Enfants</a></li>
+        <li><a href="orga.html">Organisation</a></li>
+        <li><a href="repetition.html">Répétitions</a></li>
+        <li><a href="nico.html" class="active">Nico</a></li>
+        <li><a href="stats.html">Statistiques</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Planning de ramassage</p>
+      <h1>Nico</h1>
+      <p class="meta">Animation à 17h45 · Les maternelles commencent</p>
+    </header>
+
+    <div class="rule nico-note">
+      <strong>Message pour Nico :</strong> amène les enfants par bloc, dans l'ordre ci-dessous.
+      Si tu ne trouves pas un enfant, passe au suivant : ce n'est pas grave. Les enfants doivent aussi se bouger et savoir quand ils doivent être présents.
+    </div>
+
+    <p class="cat-title">Planning fluide</p>
+    <div class="handoff-list" id="handoffList"></div>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const unique = list => [...new Set(list)];
+    const project = name => SCHOOL_PROJECTS.find(p => p.name === name);
+    const category = name => FREE_CATEGORIES.find(c => c.name === name);
+
+    const quinzaineKids = (() => {
+      const q = SCHOOL_PROJECTS.find(p => p.languages);
+      const kids = new Set();
+      q.languages.forEach(l => l.kids.forEach(k => kids.add(k)));
+      return [...kids];
+    })();
+
+    const handoffBlocks = [
+      {
+        cls: 'school',
+        time: '17h35',
+        title: 'Maternelles',
+        note: 'À préparer en premier : passage à 17h45.',
+        projects: [
+          { name: 'Maternelles de Virginie', kids: project('Maternelles de Virginie').kids }
+        ]
+      },
+      {
+        cls: 'school',
+        time: '17h45',
+        title: "Autres projets d'école",
+        note: 'À garder proche de la scène après les maternelles.',
+        projects: [
+          { name: 'Capoeira', kids: project('Capoeira').kids },
+          { name: 'Oh Mama Tetema + Freestyle', kids: project('Oh Mama Tetema + Freestyle').kids },
+          { name: 'Carnaval de Deborah', kids: project('Carnaval de Deborah').kids },
+          { name: "Quinzaine de l'égalité", kids: quinzaineKids }
+        ]
+      },
+      {
+        cls: 'theatre',
+        time: '18h10',
+        title: 'Théâtre',
+        note: 'Après les projets, rassembler tous les groupes théâtre.',
+        kids: unique(category('Théâtre').scenes.flatMap(s => s.who))
+      },
+      {
+        cls: 'chant',
+        time: '18h35',
+        title: 'Chant',
+        note: 'Les chanteurs passent après le théâtre.',
+        kids: unique(category('Chant').scenes.flatMap(s => s.who))
+      },
+      {
+        cls: 'jonglage',
+        time: '18h55',
+        title: 'Jonglage',
+        note: 'Petit bloc juste avant la danse.',
+        kids: unique(category('Jonglage ballon de foot').scenes.flatMap(s => s.who))
+      },
+      {
+        cls: 'danse',
+        time: '19h00',
+        title: 'Danse',
+        note: "Gros bloc : prévoir un peu d'avance.",
+        kids: unique(category('Danse').scenes.flatMap(s => s.who))
+      },
+      {
+        cls: 'gym',
+        time: '19h40',
+        title: 'Gymnastique',
+        note: 'À amener en bloc, avec Mélina B. pour son solo.',
+        kids: unique(category('Gymnastique').scenes.flatMap(s => s.who))
+      },
+      {
+        cls: 'roller',
+        time: '19h55',
+        title: 'Rollers',
+        note: 'Dernier bloc : les enfants doivent avoir leurs rollers prêts.',
+        kids: unique(category('Roller').scenes.flatMap(s => s.who))
+      }
+    ];
+
+    const renderKids = kids => `<ul class="handoff-kids">${kids.map(k =>
+      `<li><input type="checkbox" aria-label="${esc(k)}"><span>${esc(k)}</span></li>`
+    ).join('')}</ul>`;
+
+    const renderProjects = projects => `<div class="project-lines">${projects.map(p => `
+      <div class="project-line">
+        <strong>${esc(p.name)} · ${p.kids.length} enfant${p.kids.length > 1 ? 's' : ''}</strong>
+        <div class="project-meta">À cocher au fur et à mesure du ramassage.</div>
+        ${renderKids(p.kids)}
+      </div>
+    `).join('')}</div>`;
+
+    document.getElementById('handoffList').innerHTML = handoffBlocks.map(block => {
+      const count = block.projects
+        ? block.projects.reduce((sum, p) => sum + p.kids.length, 0)
+        : block.kids.length;
+      return `<section class="handoff-card ${block.cls}">
+        <div class="handoff-head">
+          <div class="handoff-time">${esc(block.time)}</div>
+          <div class="handoff-title">${esc(block.title)}<small>${esc(block.note)}</small></div>
+          <div class="handoff-count">${count} enfant${count > 1 ? 's' : ''}</div>
+        </div>
+        <div class="handoff-body">
+          ${block.projects ? renderProjects(block.projects) : renderKids(block.kids)}
+        </div>
+      </section>`;
+    }).join('');
+  </script>
+</body>
+</html>

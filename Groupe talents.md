@@ -9,7 +9,7 @@ Voici **tous les groupes des scènes libres uniquement**, donc **sans Quinzaine 
 | **Clara + Lydia + Divine + Ryma**    | Danse                   |
 | **Lana**                             | Séga                    |
 | **Kaylan + Elvin + Arthur + Alioun** | Danse / scène de groupe |
-| **Maissae + Lina**                   | Afro / rondade / salto  |
+| **Maïssa + Lina**                    | Afro / rondade / salto  |
 | **Grace**                            | Danse                   |
 
 ## Gymnastique

@@ -37,7 +37,7 @@ const SCHOOL_PROJECTS = [
       { flag: "🇮🇹", country: "Italie", lang: "Italien", kids: ["Guillia","Divine","Camille"] },
       { flag: "🇩🇪", country: "Allemagne", lang: "Allemand", kids: ["Elenna","Mia"] },
       { flag: "🇹🇳", country: "Tunisie", lang: "Darija tunisien", kids: ["Lydia","Jasmine","Yara","Eileen"] },
-      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Mayssae","Lina M.","Cheid"] },
+      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Maïssa","Lina M.","Cheid"] },
       { flag: "🇩🇿", country: "Algérie", lang: "Dziriya", kids: ["Zia","Cheid"] },
       { flag: "🇸🇳", country: "Sénégal", lang: "Wolof", kids: ["Divine","Noémie"] },
       { flag: "🇨🇲", country: "Cameroun", lang: "Douala", kids: ["Nayana","Keren"] },
@@ -71,6 +71,7 @@ const FREE_CATEGORIES = [
       { who: ["Céline"], scene: "Chant" },
       { who: ["Lina M."], scene: "Chant" },
       { who: ["Keren"], scene: "Chant" },
+      { who: ["Charlotte"], scene: "Chant" },
       { who: ["Jumana"], scene: "À confirmer" }
     ]
   },
@@ -102,7 +103,7 @@ const FREE_CATEGORIES = [
       { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" },
       { who: ["Lana"], scene: "Séga" },
       { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" },
-      { who: ["Maissae","Lina M."], scene: "Afro / rondade / salto" },
+      { who: ["Maïssa","Lina M."], scene: "Afro / rondade / salto" },
       { who: ["Grace"], scene: "Danse" },
       { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" },
       { who: ["Giulia","Heloise"], scene: "Gabriela" },
@@ -117,15 +118,16 @@ const FREE_CATEGORIES = [
     scenes: [
       { who: ["Giulia","Stella","Héloïse","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" },
       { who: ["Giulia","Stella","Héloïse"], scene: "Gym groupe" },
-      { who: ["Eileen","Lya"], scene: "Gym groupe" },
-      { who: ["Lina S.","Maïssa"], scene: "Gym duo" }
+      { who: ["Lina S.","Maïssa"], scene: "Gym duo" },
+      { who: ["Mélina B."], scene: "Solo gymnastique" }
     ]
   }
 ];
 
 /* ---------- Normalisation des prénoms (variantes d'orthographe) ---------- */
 const NAME_ALIASES = {
-  "mayssae": "Maissae",
+  "mayssae": "Maïssa",
+  "maissae": "Maïssa",
   "guillia": "Giulia",
   "elenna": "Elena",
   "shine": "Shyne",

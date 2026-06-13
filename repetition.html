@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Répétitions enfants · Scène des Talents — École Arc en Ciel</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .rehearsal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .day-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .day-head {
+      padding: 18px 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+    }
+    .day-head h2 {
+      margin: 0 0 4px;
+      font-size: 1.35rem;
+      line-height: 1.1;
+    }
+    .day-head p {
+      margin: 0;
+      opacity: .9;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .day-body {
+      padding: 18px 20px 20px;
+    }
+    .program {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .program-row {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--bg);
+    }
+    .program-row strong {
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .program-row span {
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .kids-title {
+      margin: 18px 0 8px;
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 800;
+    }
+    .kids-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .kids-list li {
+      background: #eef0f5;
+      color: #374151;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: .86rem;
+      font-weight: 650;
+    }
+    .kids-list li.school {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .day-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .summary-strip .stat-card {
+      padding: 16px 18px;
+    }
+    .summary-strip .big {
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="dot">🎭</span>
+        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="enfants.html">Enfants</a></li>
+        <li><a href="orga.html">Organisation</a></li>
+        <li><a href="repetition.html" class="active">Répétitions</a></li>
+        <li><a href="nico.html">Nico</a></li>
+        <li><a href="stats.html">Statistiques</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="page-head">
+      <p class="kicker">Planning cantine & répétition</p>
+      <h1>Répétitions enfants</h1>
+      <p class="meta">Les enfants listés mangent en première heure, puis répètent en deuxième heure.</p>
+    </header>
+
+    <div class="rule">
+      <strong>Principe :</strong> 1 projet d'école par jour, sauf <strong>Maternelles de Virginie</strong> qui reste géré par Virginie.
+      La répétition démarre après le repas et garde environ <strong>1h30</strong> de marge.
+    </div>
+
+    <div class="summary-strip" id="summary"></div>
+
+    <p class="cat-title">Organisation proposée</p>
+    <div class="rehearsal-grid" id="rehearsalGrid"></div>
+
+    <p class="note">
+      Les enfants indiqués dans les deux listes du même jour ne mangent qu'une seule fois en première heure.
+      Les catégories non placées en journée complète peuvent être vues en filage court si besoin.
+    </p>
+
+    <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const norm = s => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\./g, "").trim();
+    const uniqueNames = names => {
+      const seen = new Map();
+      names.forEach(name => {
+        const display = canonical(name);
+        const key = norm(display);
+        if (!seen.has(key)) seen.set(key, display);
+      });
+      return [...seen.values()].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+    };
+    const categoryKids = name => uniqueNames(
+      FREE_CATEGORIES.find(c => c.name === name).scenes.flatMap(s => s.who)
+    );
+    const schoolKids = name => {
+      const project = SCHOOL_PROJECTS.find(p => p.name === name);
+      const names = [];
+      if (project.kids) names.push(...project.kids);
+      if (project.languages) project.languages.forEach(l => names.push(...l.kids));
+      return uniqueNames(names);
+    };
+
+    const schedule = [
+      {
+        day: "Lundi",
+        category: "Chant",
+        project: "Oh Mama Tetema + Freestyle",
+        note: "Voix et chorégraphie chantée : bon début de semaine, groupe facile à caler."
+      },
+      {
+        day: "Mardi",
+        category: "Danse",
+        project: "Carnaval de Deborah",
+        note: "Journée mouvement : idéal pour travailler placements, entrées et sorties."
+      },
+      {
+        day: "Jeudi",
+        category: "Théâtre",
+        project: "Quinzaine de l'égalité",
+        note: "Journée texte, langues et transitions au micro."
+      },
+      {
+        day: "Vendredi",
+        category: "Gymnastique",
+        project: "Capoeira",
+        note: "Journée physique : garder l'espace dégagé et faire un filage sécurité."
+      }
+    ].map(item => {
+      const category = categoryKids(item.category);
+      const project = schoolKids(item.project);
+      return {
+        ...item,
+        categoryKids: category,
+        projectKids: project,
+        canteenKids: uniqueNames([...category, ...project])
+      };
+    });
+
+    const totalCanteenSlots = schedule.reduce((n, d) => n + d.canteenKids.length, 0);
+    const maxDay = Math.max(...schedule.map(d => d.canteenKids.length));
+    document.getElementById('summary').innerHTML = [
+      { big: schedule.length, lab: "Jours" },
+      { big: "4", lab: "Projets d'école" },
+      { big: "4", lab: "Catégories répétées" },
+      { big: maxDay, lab: "Enfants max/jour" },
+      { big: totalCanteenSlots, lab: "Repas prévus cumulés" }
+    ].map(s => `<div class="stat-card"><div class="big">${s.big}</div><div class="lab">${esc(s.lab)}</div></div>`).join('');
+
+    document.getElementById('rehearsalGrid').innerHTML = schedule.map(day => `
+      <article class="day-card">
+        <div class="day-head">
+          <h2>${esc(day.day)}</h2>
+          <p>${day.canteenKids.length} enfant${day.canteenKids.length > 1 ? 's' : ''} à prévoir à la cantine</p>
+        </div>
+        <div class="day-body">
+          <div class="program">
+            <div class="program-row">
+              <strong>1re heure</strong>
+              <span>Cantine : ${day.canteenKids.length} enfant${day.canteenKids.length > 1 ? 's' : ''}</span>
+            </div>
+            <div class="program-row">
+              <strong>2e heure</strong>
+              <span>${esc(day.category)} + ${esc(day.project)}</span>
+            </div>
+          </div>
+
+          <p class="kids-title">Cantine - enfants à prévoir</p>
+          <ul class="kids-list">
+            ${day.canteenKids.map(k => `<li>${esc(k)}</li>`).join('')}
+          </ul>
+
+          <p class="kids-title">${esc(day.category)}</p>
+          <ul class="kids-list">
+            ${day.categoryKids.map(k => `<li>${esc(k)}</li>`).join('')}
+          </ul>
+
+          <p class="kids-title">${esc(day.project)}</p>
+          <ul class="kids-list">
+            ${day.projectKids.map(k => `<li class="school">${esc(k)}</li>`).join('')}
+          </ul>
+
+          <p class="day-note">${esc(day.note)}</p>
+        </div>
+      </article>
+    `).join('');
+  </script>
+</body>
+</html>
