@@ -218,17 +218,18 @@
     const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     const S = computeStats();
 
-    // Calcul du nombre de groupes (scènes avec 2+ participants dans les scènes libres)
-    const groupSceneCount = FREE_CATEGORIES.reduce((n, cat) =>
-      n + cat.scenes.filter(s => s.who.length >= 2).length, 0);
+    const totalPassages = 37;
+    const blockCount = 7;
+    const estimatedDuration = "~2h20";
 
     // ---- KPI cards ----
     const kpis = [
-      { num: S.schoolCount,    label: "Projets d'école",   icon: "🏫", color: "accent-blue"   },
-      { num: S.uniqueChildren, label: "Enfants au total",  icon: "🎉", color: "accent-green"  },
-      { num: S.categoryCount,  label: "Catégories",        icon: "🗂️", color: "accent-yellow" },
-      { num: S.childrenInFree, label: "Enfants — scènes",  icon: "👦", color: "accent-purple"  },
-      { num: groupSceneCount,  label: "Groupes",           icon: "🎬", color: "accent-red"    },
+      { num: totalPassages,     label: "Passages au total", icon: "🎬", color: "accent-red"    },
+      { num: S.freeSceneCount,  label: "Scènes libres",     icon: "🎭", color: "accent-blue"   },
+      { num: S.schoolCount,     label: "Projets d'école",   icon: "🏫", color: "accent-green"  },
+      { num: blockCount,        label: "Blocs",             icon: "🧩", color: "accent-yellow" },
+      { num: S.uniqueChildren,  label: "Enfants impliqués", icon: "🎉", color: "accent-purple" },
+      { num: estimatedDuration, label: "Durée estimée",     icon: "⏱️", color: "accent-blue"   },
     ];
 
     document.getElementById('kpis').innerHTML = kpis.map(k =>
@@ -239,7 +240,7 @@
     ).join('');
 
     // ---- Barres : scènes par catégorie ----
-    const totalFreeScenes = S.perCategory.reduce((n, c) => n + c.scenes, 0);
+    const totalFreeScenes = S.freeSceneCount;
     const maxScenes = Math.max(...S.perCategory.map(c => c.scenes));
     document.getElementById('totalScenesLabel').textContent =
       `Total : ${totalFreeScenes} scène${totalFreeScenes > 1 ? 's' : ''}`;

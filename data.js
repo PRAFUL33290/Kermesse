@@ -48,7 +48,7 @@ const SCHOOL_PROJECTS = [
 ];
 
 /* Scènes libres — comptent dans la limite de 2 scènes max par enfant */
-/* Ordre de ramassage : Théâtre → Chant → Roller → Jonglage → Magie → Danse → Gym (en dernier) */
+/* Ordre de ramassage : Théâtre → Chant → Roller → Jonglage → Danse → Gym (en dernier) */
 const FREE_CATEGORIES = [
   {
     name: "Théâtre",
@@ -82,7 +82,8 @@ const FREE_CATEGORIES = [
       { who: ["Mélina Adenet"], scene: "Roller" },
       { who: ["Haby"], scene: "Roller" },
       { who: ["Thalia F."], scene: "Roller" },
-      { who: ["Naïma Nour"], scene: "Roller" }
+      { who: ["Naïma Nour"], scene: "Roller" },
+      { who: ["Dina"], scene: "Roller" }
     ]
   },
   {
@@ -91,11 +92,6 @@ const FREE_CATEGORIES = [
     scenes: [
       { who: ["Courage","Eliam"], scene: "Jonglage" }
     ]
-  },
-  {
-    name: "Magie",
-    icon: "🪄",
-    scenes: []
   },
   {
     name: "Danse",
@@ -160,7 +156,7 @@ function computeStats() {
   const freeSceneCount = FREE_CATEGORIES.reduce((n, c) => n + c.scenes.length, 0);
   const schoolCount = SCHOOL_PROJECTS.length;
 
-  // Comptage des scènes libres par enfant (pour la règle des 2 max)
+  // Comptage des catégories libres par enfant (pour la règle des 2 max)
   const perChild = new Map();   // key -> { display, count, cats: Set, school: bool }
   FREE_CATEGORIES.forEach(cat => {
     cat.scenes.forEach(s => {
@@ -169,8 +165,8 @@ function computeStats() {
         const key = normKey(disp);
         if (!perChild.has(key)) perChild.set(key, { display: disp, count: 0, cats: new Set(), school: false });
         const e = perChild.get(key);
-        e.count++;
         e.cats.add(cat.name);
+        e.count = e.cats.size;
       });
     });
   });
@@ -207,7 +203,7 @@ function computeStats() {
   return {
     freeSceneCount,
     schoolCount,
-    totalScenes: freeSceneCount + schoolCount,
+    totalScenes: freeSceneCount,
     categoryCount: FREE_CATEGORIES.length,
     uniqueChildren: allKids.size,
     childrenInFree: perChild.size,

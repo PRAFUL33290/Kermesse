@@ -8,17 +8,6 @@
   <style>
     /* ---------- Organisation-specific styles ---------- */
 
-    /* Summary cards row */
-    .orga-summary {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-    .orga-summary .stat-card {
-      text-align: center;
-    }
-
     /* ---------- Timeline ---------- */
     .timeline {
       position: relative;
@@ -404,9 +393,6 @@
       <ol class="pickup-list" id="pickupList"></ol>
     </section>
 
-    <!-- Summary -->
-    <div class="orga-summary" id="orgaKpis"></div>
-
     <!-- Rule reminder -->
     <div class="rule">
       <strong>Rappel :</strong> chaque enfant peut faire <strong>2 scènes libres maximum</strong>.
@@ -468,8 +454,7 @@
           { num: 4, icon: "💃", name: "Danse — Gabriela", cat: "Danse", kids: ["Giulia","Héloïse"], duration: "~3 min" },
           { num: 5, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Cheid"], duration: "~3 min" },
           { num: 6, icon: "💃", name: "Gozalo", cat: "Danse", kids: ["Jasmine","Léa","Lina M."], duration: "~3 min" },
-          { num: 7, icon: "🪄", name: "Holla Up", cat: "Magie", kids: ["Charlotte"], duration: "~3 min" },
-          { num: 8, icon: "💃", name: "Séga", cat: "Danse", kids: ["Lana"], duration: "~3 min" }
+          { num: 7, icon: "💃", name: "Séga", cat: "Danse", kids: ["Lana"], duration: "~3 min" }
         ]
       },
       {
@@ -478,13 +463,13 @@
         color: "yellow",
         emoji: "🟡",
         scenes: [
-          { num: 9, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shyne","Divine"], duration: "~5 min" },
-          { num: 10, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
-          { num: 11, icon: "💃", name: "Danse", cat: "Danse", kids: ["Héloïse","Juliette","Loïcia"], duration: "~3 min" },
-          { num: 12, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
-          { num: 13, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Maïmouna"], duration: "~3 min" },
-          { num: 14, icon: "🎭", name: "Mortelle Adèle", cat: "Théâtre", kids: ["Ryma","Divine","Clara"], duration: "~5 min" },
-          { num: 15, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Céline"], duration: "~3 min" }
+          { num: 8, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shyne","Divine"], duration: "~5 min" },
+          { num: 9, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
+          { num: 10, icon: "💃", name: "Danse", cat: "Danse", kids: ["Héloïse","Juliette","Loïcia"], duration: "~3 min" },
+          { num: 11, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
+          { num: 12, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Maïmouna"], duration: "~3 min" },
+          { num: 13, icon: "🎭", name: "Mortelle Adèle", cat: "Théâtre", kids: ["Ryma","Divine","Clara"], duration: "~5 min" },
+          { num: 14, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Céline"], duration: "~3 min" }
         ]
       },
       {
@@ -493,10 +478,10 @@
         color: "orange",
         emoji: "🟠",
         scenes: [
-          { num: 16, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Giulia","Stella","Héloïse"], duration: "~3 min" },
-          { num: 17, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Inès","Eileen","Lya"], duration: "~3 min" },
-          { num: 18, icon: "🤸", name: "Gym duo", cat: "Gym (sous-groupe)", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
-          { num: 19, icon: "🤸", name: "Rondades / flip / salto", cat: "Gym (toutes)", kids: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], duration: "~5 min" }
+          { num: 15, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Giulia","Stella","Héloïse"], duration: "~3 min" },
+          { num: 16, icon: "🤸", name: "Gym groupe", cat: "Gym (sous-groupe)", kids: ["Inès","Eileen","Lya"], duration: "~3 min" },
+          { num: 17, icon: "🤸", name: "Gym duo", cat: "Gym (sous-groupe)", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 18, icon: "🤸", name: "Rondades / flip / salto", cat: "Gym (toutes)", kids: ["Giulia","Stella","Héloïse","Inès","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], duration: "~5 min" }
         ]
       },
       {
@@ -505,13 +490,13 @@
         color: "red",
         emoji: "🔴",
         scenes: [
-          { num: 20, icon: "⚽", name: "Jonglage", cat: "Jonglage", kids: ["Courage","Eliam"], duration: "~3 min" },
-          { num: 21, icon: "💃", name: "Danse / scène de groupe", cat: "Danse", kids: ["Kaylan","Elvin","Arthur","Alioun"], duration: "~3 min" },
-          { num: 22, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
-          { num: 23, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
-          { num: 24, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
-          { num: 25, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" },
-          { num: 26, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Naïma Nour"], duration: "~3 min" }
+          { num: 19, icon: "⚽", name: "Jonglage", cat: "Jonglage", kids: ["Courage","Eliam"], duration: "~3 min" },
+          { num: 20, icon: "💃", name: "Danse / scène de groupe", cat: "Danse", kids: ["Kaylan","Elvin","Arthur","Alioun"], duration: "~3 min" },
+          { num: 21, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
+          { num: 22, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
+          { num: 23, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
+          { num: 24, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" },
+          { num: 25, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Naïma Nour"], duration: "~3 min" }
         ]
       },
       {
@@ -520,16 +505,16 @@
         color: "purple",
         emoji: "🟣",
         scenes: [
-          { num: 27, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
-          { num: 28, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
-          { num: 29, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
-          { num: 30, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
-          { num: 31, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
-          { num: 32, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
-          { num: 33, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
-          { num: 34, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
-          { num: 35, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
-          { num: 36, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
+          { num: 26, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
+          { num: 27, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
+          { num: 28, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
+          { num: 29, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
+          { num: 30, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
+          { num: 31, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
+          { num: 32, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 33, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
+          { num: 34, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
+          { num: 35, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
         ]
       },
       {
@@ -537,8 +522,8 @@
         color: "green",
         emoji: "🟢",
         scenes: [
-          { type: "school", num: 37, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~5 min" },
-          { type: "school", num: 38, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
+          { type: "school", num: 36, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~5 min" },
+          { type: "school", num: 37, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
         ]
       }
     ];
@@ -588,20 +573,6 @@
         <div class="pickup-count">${g.kids.length} enfant${g.kids.length > 1 ? 's' : ''}</div>
       </li>`;
     }).join('');
-
-    // ---- KPIs ----
-    const S = computeStats();
-    const totalPassages = RUNNING_ORDER.reduce((n, b) => n + b.scenes.length, 0);
-    const kpis = [
-      { big: totalPassages, lab: "Passages au total" },
-      { big: S.freeSceneCount, lab: "Scènes libres" },
-      { big: S.schoolCount, lab: "Projets d'école" },
-      { big: RUNNING_ORDER.length, lab: "Blocs" },
-      { big: S.uniqueChildren, lab: "Enfants impliqués" },
-      { big: "~2h20", lab: "Durée estimée" }
-    ];
-    document.getElementById('orgaKpis').innerHTML = kpis.map(k =>
-      `<div class="stat-card"><div class="big">${k.big}</div><div class="lab">${esc(String(k.lab))}</div></div>`).join('');
 
     // ---- Build timeline ----
     const timelineEl = document.getElementById('timeline');
