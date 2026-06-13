@@ -123,6 +123,8 @@ a { color: inherit; }
     left: 50%;
     right: auto;
     width: min(calc(100vw - 32px), 360px);
+    max-height: calc(100vh - 78px);
+    overflow-y: auto;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -136,6 +138,7 @@ a { color: inherit; }
     opacity: 0;
     pointer-events: none;
     transition: opacity .18s, transform .18s;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-links.open { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .nav-links li { width: 100%; }
