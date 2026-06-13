@@ -87,12 +87,16 @@ a { color: inherit; }
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   text-decoration: none;
   font-weight: 600;
   font-size: .95rem;
   color: var(--ink);
   padding: 8px 14px;
   border-radius: 999px;
+  white-space: nowrap;
   transition: background .15s, color .15s;
 }
 
@@ -136,7 +140,9 @@ a { color: inherit; }
   .nav-links.open { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .nav-links li { width: 100%; }
   .nav-links a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 100%;
     padding: 14px 16px;
     border-radius: 10px;
