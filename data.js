@@ -14,7 +14,7 @@ const SCHOOL_PROJECTS = [
     name: "Capoeira",
     note: "",
     kids: ["Clara", "Anna", "Lydia", "Ryma", "Calie", "Divine", "Keren",
-           "Charlotte", "Orianne", "Shine", "Maimouna", "Grace", "Tania"]
+           "Charlotte", "Orianne", "Shyne", "Maimouna", "Grace", "Tania"]
   },
   {
     name: "Oh Mama Tetema + Freestyle",
@@ -48,7 +48,55 @@ const SCHOOL_PROJECTS = [
 ];
 
 /* Scènes libres — comptent dans la limite de 2 scènes max par enfant */
+/* Ordre de ramassage : Théâtre → Chant → Roller → Jonglage → Magie → Danse → Gym (en dernier) */
 const FREE_CATEGORIES = [
+  {
+    name: "Théâtre",
+    icon: "🎭",
+    scenes: [
+      { who: ["Lilly","Shyne","Divine"], scene: "Théâtre" },
+      { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" },
+      { who: ["Charlotte"], scene: "Théâtre" },
+      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" },
+      { who: ["Souleyman","Juliette","Timéo","Loïcia"], scene: "Théâtre" }
+    ]
+  },
+  {
+    name: "Chant",
+    icon: "🎤",
+    scenes: [
+      { who: ["Jasmine","Léa"], scene: "Chant" },
+      { who: ["Cheid"], scene: "Chant" },
+      { who: ["Maïmouna"], scene: "Chant" },
+      { who: ["Céline"], scene: "Chant" },
+      { who: ["Lina M."], scene: "Chant" },
+      { who: ["Keren"], scene: "Chant" },
+      { who: ["Jumana"], scene: "À confirmer" }
+    ]
+  },
+  {
+    name: "Roller",
+    icon: "🛼",
+    scenes: [
+      { who: ["Giulia"], scene: "Roller" },
+      { who: ["Mélina Adenet"], scene: "Roller" },
+      { who: ["Haby"], scene: "Roller" },
+      { who: ["Thalia F."], scene: "Roller" },
+      { who: ["Naïma Nour"], scene: "Roller" }
+    ]
+  },
+  {
+    name: "Jonglage ballon de foot",
+    icon: "⚽",
+    scenes: [
+      { who: ["Courage","Eliam"], scene: "Jonglage" }
+    ]
+  },
+  {
+    name: "Magie",
+    icon: "🪄",
+    scenes: []
+  },
   {
     name: "Danse",
     icon: "💃",
@@ -76,52 +124,6 @@ const FREE_CATEGORIES = [
       { who: ["Eileen","Lya"], scene: "Gym groupe" },
       { who: ["Lina S.","Maïssa"], scene: "Gym duo" }
     ]
-  },
-  {
-    name: "Théâtre",
-    icon: "🎭",
-    scenes: [
-      { who: ["Lilly","Shine","Divine"], scene: "Théâtre" },
-      { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" },
-      { who: ["Charlotte"], scene: "Théâtre" },
-      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" },
-      { who: ["Souleyman","Juliette","Timéo","Loïcia"], scene: "Théâtre" }
-    ]
-  },
-  {
-    name: "Chant",
-    icon: "🎤",
-    scenes: [
-      { who: ["Jasmine","Léa"], scene: "Chant" },
-      { who: ["Cheid"], scene: "Chant" },
-      { who: ["Maïmouna"], scene: "Chant" },
-      { who: ["Céline"], scene: "Chant" },
-      { who: ["Lina M."], scene: "Chant" },
-      { who: ["Keren"], scene: "Chant" },
-      { who: ["Jumana"], scene: "À confirmer" }
-    ]
-  },
-  {
-    name: "Roller",
-    icon: "🛼",
-    scenes: [
-      { who: ["Giulia"], scene: "Roller" },
-      { who: ["Mélina Adenet"], scene: "Roller" },
-      { who: ["Haby"], scene: "Roller" },
-      { who: ["Thalia F."], scene: "Roller" }
-    ]
-  },
-  {
-    name: "Jonglage ballon de foot",
-    icon: "⚽",
-    scenes: [
-      { who: ["Courage","Eliam"], scene: "Jonglage" }
-    ]
-  },
-  {
-    name: "Magie",
-    icon: "🪄",
-    scenes: []
   }
 ];
 
@@ -130,13 +132,14 @@ const NAME_ALIASES = {
   "mayssae": "Maissae",
   "guillia": "Giulia",
   "elenna": "Elena",
-  "shyne": "Shine",
+  "shine": "Shyne",
   "lina m": "Lina M.",
   "maimouna": "Maimouna",
   "heloise": "Héloïse",
   "loicia": "Loïcia",
   "maissa": "Maïssa",
-  "chahd": "Cheid"
+  "chahd": "Cheid",
+  "naima nour": "Naïma Nour"
 };
 
 function normKey(name) {

@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enfants · Scène des Talents — École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .kid-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--line);
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -144,7 +160,7 @@
          <button type="button" class="note-del" data-index="${i}" aria-label="Supprimer cette note">×</button></li>`).join('');
 
     // ---- Rendu d'une fiche ----
-    const card = ch => {
+    const card = (ch, idx) => {
       const n = ch.free.length;
       const over = n > 2;
       const badgeClass = over ? 'count warn' : (n === 0 ? 'count zero' : 'count');
@@ -185,7 +201,7 @@
 
       return `<section class="section kid-card ${e.v ? 'is-validated' : ''}" data-key="${escAttr(ch.key)}" data-name="${escAttr(ch.display.toLowerCase())}">
         <div class="section-head">
-          <h2>${esc(ch.display)}</h2>
+          <h2><span class="kid-num">${idx + 1}</span>${esc(ch.display)}</h2>
           <span class="${badgeClass}">${label}</span>
         </div>
         ${companionsHtml}
@@ -208,7 +224,7 @@
     };
 
     const grid = document.getElementById('kidGrid');
-    grid.innerHTML = sorted.map(card).join('');
+    grid.innerHTML = sorted.map((ch, i) => card(ch, i)).join('');
 
     // ---- Progression ----
     const progCount = document.getElementById('progCount');

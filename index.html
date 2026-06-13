@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scène des Talents — 19 juin · École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 800;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    .school .section-num {
+      background: linear-gradient(135deg, var(--gold), #d4a017);
+    }
+    .layout-hero .section-num,
+    .layout-frame .section-num {
+      background: rgba(255,255,255,.25);
+      backdrop-filter: blur(4px);
+    }
+    .layout-frame .section-num {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+  </style>
 </head>
 <body>
   <nav class="nav">
@@ -59,8 +86,13 @@
 
     const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
+    // Compteur global de sections (partagé entre projets et scènes libres)
+    let sectionNum = 0;
+
     // ---- Projets d'école ----
     const schoolHtml = SCHOOL_PROJECTS.map(p => {
+      sectionNum++;
+      const num = sectionNum;
       let body, count;
       if (p.languages) {
         count = `${p.languages.length} langues`;
@@ -73,14 +105,14 @@
           `<li><span class="num">${i+1}</span> ${esc(k)}</li>`).join('')}</ol>`;
       }
       return `<section class="section school">
-        <div class="section-head"><h2>${esc(p.name)}</h2><span class="count">${count}</span></div>
+        <div class="section-head"><h2><span class="section-num">${num}</span>${esc(p.name)}</h2><span class="count">${count}</span></div>
         ${p.note ? `<p class="subtitle">${esc(p.note)}</p>` : ''}
         ${body}
       </section>`;
     }).join('');
     document.getElementById('school').innerHTML = schoolHtml;
 
-    // ---- Scènes libres (grandes catégories pleine largeur, petites en grille) ----
+    // ---- Scènes libres ----
     const catImages = {
       "Danse": "images/danse_hero_1781248760612.png",
       "Gymnastique": "images/gymnastique_frame_1781248770089.png",
@@ -91,15 +123,17 @@
       "Magie": "images/magie_hero_1781248839336.png"
     };
 
-    const sceneCard = (c, index) => {
-      const isHero = index % 2 === 0 || c.name === "Gymnastique" || c.name === "Chant" || c.name === "Jonglage ballon de foot";
+    const sceneCard = (c) => {
+      sectionNum++;
+      const num = sectionNum;
       const imageUrl = catImages[c.name] || '';
+      const isHero = true;
 
       if (isHero) {
         return `<section class="section layout-hero" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('${imageUrl}')">
           <div class="hero-content">
             <div class="section-head">
-              <h2>${c.icon} ${esc(c.name)}</h2>
+              <h2><span class="section-num">${num}</span>${c.icon} ${esc(c.name)}</h2>
               <span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span>
             </div>
             <ul class="groups">${c.scenes.map(s =>
@@ -113,7 +147,7 @@
           </div>
           <div class="frame-content">
             <div class="section-head">
-              <h2>${c.icon} ${esc(c.name)}</h2>
+              <h2><span class="section-num">${num}</span>${c.icon} ${esc(c.name)}</h2>
               <span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span>
             </div>
             <ul class="groups">${c.scenes.map(s =>

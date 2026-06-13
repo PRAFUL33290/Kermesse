@@ -274,6 +274,94 @@
       display: none;
     }
 
+    /* ---------- Pickup list ---------- */
+    .pickup-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .pickup-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .pickup-item:last-child { border-bottom: none; }
+    .pickup-item.school-item {
+      background: var(--gold-soft);
+    }
+    .pickup-num {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 800;
+      font-size: .95rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .pickup-item.school-item .pickup-num {
+      background: linear-gradient(135deg, var(--gold), #d4a017);
+    }
+    .pickup-item.last-item .pickup-num {
+      background: linear-gradient(135deg, #6b7280, #9ca3af);
+    }
+    .pickup-body { flex: 1; min-width: 0; }
+    .pickup-name {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .pickup-badge {
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .pickup-item.school-item .pickup-badge {
+      background: var(--gold-soft);
+      color: var(--gold);
+      border: 1px solid #e6c66a;
+    }
+    .pickup-kids {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+    .pickup-count {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--muted);
+      white-space: nowrap;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .pickup-item.last-item { opacity: .75; }
+    .pickup-last-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-left: 4px;
+    }
+
     @media (max-width: 560px) {
       .timeline { padding-left: 36px; }
       .timeline::before { left: 14px; }
@@ -309,6 +397,12 @@
       <h1>Organisation</h1>
       <p class="meta">Ordre de passage proposé · Vendredi 19 juin</p>
     </header>
+
+    <!-- Ordre de ramassage -->
+    <p class="cat-title">Ordre de ramassage des enfants</p>
+    <section class="section" style="padding: 0; overflow: hidden;">
+      <ol class="pickup-list" id="pickupList"></ol>
+    </section>
 
     <!-- Summary -->
     <div class="orga-summary" id="orgaKpis"></div>
@@ -360,8 +454,8 @@
         color: "green",
         emoji: "🟢",
         scenes: [
-          { type: "school", num: 1, icon: "🏫", name: "Capoeira", cat: "Projet d'école", kids: SCHOOL_PROJECTS[0].kids, duration: "~5 min" },
-          { type: "school", num: 2, icon: "🏫", name: "Carnaval de Deborah", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~3 min" }
+          { type: "school", num: 1, icon: "🏫", name: "Capoeira", cat: "Projet d'école", kids: SCHOOL_PROJECTS[1].kids, duration: "~5 min" },
+          { type: "school", num: 2, icon: "🏫", name: "Carnaval de Deborah", cat: "Projet d'école", kids: SCHOOL_PROJECTS[3].kids, duration: "~3 min" }
         ]
       },
       {
@@ -384,7 +478,7 @@
         color: "yellow",
         emoji: "🟡",
         scenes: [
-          { num: 9, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shine","Divine"], duration: "~5 min" },
+          { num: 9, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Lilly","Shyne","Divine"], duration: "~5 min" },
           { num: 10, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Jasmine","Léa"], duration: "~3 min" },
           { num: 11, icon: "💃", name: "Danse", cat: "Danse", kids: ["Héloïse","Juliette","Loïcia"], duration: "~3 min" },
           { num: 12, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Nayana"], duration: "~4 min" },
@@ -416,7 +510,8 @@
           { num: 22, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Giulia"], duration: "~3 min" },
           { num: 23, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Mélina Adenet"], duration: "~3 min" },
           { num: 24, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Haby"], duration: "~3 min" },
-          { num: 25, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" }
+          { num: 25, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Thalia F."], duration: "~3 min" },
+          { num: 26, icon: "🛼", name: "Roller", cat: "Roller", kids: ["Naïma Nour"], duration: "~3 min" }
         ]
       },
       {
@@ -425,16 +520,16 @@
         color: "purple",
         emoji: "🟣",
         scenes: [
-          { num: 26, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
-          { num: 27, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
-          { num: 28, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
-          { num: 29, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
-          { num: 30, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
-          { num: 31, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
-          { num: 32, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
-          { num: 33, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
-          { num: 34, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
-          { num: 35, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
+          { num: 27, icon: "💃", name: "Danse", cat: "Danse", kids: ["Clara","Lydia","Divine","Ryma"], duration: "~3 min" },
+          { num: 28, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Charlotte"], duration: "~4 min" },
+          { num: 29, icon: "💃", name: "Danse — 21 Reasons", cat: "Danse", kids: ["Stella","Giulia"], duration: "~3 min" },
+          { num: 30, icon: "💃", name: "Afro / rondade / salto", cat: "Danse", kids: ["Maissae","Lina M."], duration: "~3 min" },
+          { num: 31, icon: "🎭", name: "Théâtre", cat: "Théâtre", kids: ["Eileen","Leana","Lina M."], duration: "~5 min" },
+          { num: 32, icon: "🎤", name: "Chant", cat: "Chant", kids: ["Lina M."], duration: "~3 min" },
+          { num: 33, icon: "💃", name: "Duo (Brésil)", cat: "Danse", kids: ["Lina S.","Maïssa"], duration: "~3 min" },
+          { num: 34, icon: "🎤", name: "Chant (à confirmer)", cat: "Chant", kids: ["Jumana"], duration: "~3 min" },
+          { num: 35, icon: "💃", name: "Danse", cat: "Danse", kids: ["Grace"], duration: "~3 min" },
+          { num: 36, icon: "🎭", name: "Théâtre à 4", cat: "Théâtre", kids: ["Souleyman","Juliette","Timéo","Loïcia"], duration: "~5 min" }
         ]
       },
       {
@@ -442,11 +537,57 @@
         color: "green",
         emoji: "🟢",
         scenes: [
-          { type: "school", num: 36, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[1].kids, duration: "~5 min" },
-          { type: "school", num: 37, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
+          { type: "school", num: 37, icon: "🏫", name: "Oh Mama Tetema + Freestyle", cat: "Projet d'école", kids: SCHOOL_PROJECTS[2].kids, duration: "~5 min" },
+          { type: "school", num: 38, icon: "🏫", name: "Quinzaine de l'égalité", cat: "Projet d'école", kids: ["Ensemble — 19+ enfants, 13 langues"], duration: "~8 min" }
         ]
       }
     ];
+
+    // ---- Ordre de ramassage ----
+    const PICKUP_ORDER = [
+      // Projets d'école (dans l'ordre demandé)
+      { num: 1, label: "Maternelles de Virginie", badge: "Projet d'école", school: true,
+        kids: SCHOOL_PROJECTS.find(p => p.name === "Maternelles de Virginie").kids },
+      { num: 2, label: "Capoeira", badge: "Projet d'école", school: true,
+        kids: SCHOOL_PROJECTS.find(p => p.name === "Capoeira").kids },
+      { num: 3, label: "Oh Mama Tetema + Freestyle", badge: "Projet d'école", school: true,
+        kids: SCHOOL_PROJECTS.find(p => p.name === "Oh Mama Tetema + Freestyle").kids },
+      { num: 4, label: "Carnaval de Deborah", badge: "Projet d'école", school: true,
+        kids: SCHOOL_PROJECTS.find(p => p.name === "Carnaval de Deborah").kids },
+      { num: 5, label: "Quinzaine de l'égalité", badge: "Projet d'école", school: true,
+        kids: (() => { const q = SCHOOL_PROJECTS.find(p => p.languages); const s = new Set(); q.languages.forEach(l => l.kids.forEach(k => s.add(k))); return [...s]; })() },
+      // Scènes libres
+      { num: 6, label: "Théâtre", badge: "Scènes libres", school: false,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Théâtre").scenes.flatMap(s => s.who))] },
+      { num: 7, label: "Chant", badge: "Scènes libres", school: false,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Chant").scenes.flatMap(s => s.who))] },
+      { num: 8, label: "Roller", badge: "Scènes libres", school: false,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Roller").scenes.flatMap(s => s.who))] },
+      { num: 9, label: "Jonglage ballon de foot", badge: "Scènes libres", school: false,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Jonglage ballon de foot").scenes.flatMap(s => s.who))] },
+      // En dernier
+      { num: 10, label: "Danse", badge: "En dernier", school: false, last: true,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Danse").scenes.flatMap(s => s.who))] },
+      { num: 11, label: "Gymnastique", badge: "En dernier", school: false, last: true,
+        kids: [...new Set(FREE_CATEGORIES.find(c => c.name==="Gymnastique").scenes.flatMap(s => s.who))] },
+    ];
+
+    document.getElementById('pickupList').innerHTML = PICKUP_ORDER.map(g => {
+      const icon = g.school ? "🏫" : (g.label==="Danse" ? "💃" : g.label==="Gymnastique" ? "🤸" : g.label==="Théâtre" ? "🎭" : g.label==="Chant" ? "🎤" : g.label==="Roller" ? "🛼" : "⚽");
+      const kidsDisplay = g.kids.map(esc).join(' · ');
+      const cls = g.school ? 'school-item' : (g.last ? 'last-item' : '');
+      const badgeHtml = g.last
+        ? `<span class="pickup-badge" style="background:#f1f5f9;color:#6b7280;border:1px solid #e2e8f0">⏩ En dernier</span>`
+        : `<span class="pickup-badge">${esc(g.badge)}</span>`;
+      return `<li class="pickup-item ${cls}">
+        <div class="pickup-num">${g.num}</div>
+        <div class="pickup-body">
+          <div class="pickup-name">${icon} ${esc(g.label)} ${badgeHtml}</div>
+          <div class="pickup-kids">${kidsDisplay}</div>
+        </div>
+        <div class="pickup-count">${g.kids.length} enfant${g.kids.length > 1 ? 's' : ''}</div>
+      </li>`;
+    }).join('');
 
     // ---- KPIs ----
     const S = computeStats();
