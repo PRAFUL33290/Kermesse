@@ -114,6 +114,19 @@
     .project-line .handoff-kids {
       margin-top: 10px;
     }
+    .stay-note {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+    .stay-note strong {
+      display: block;
+      margin-bottom: 2px;
+    }
     .handoff-card.school .handoff-time {
       background: linear-gradient(135deg, var(--gold), #d4a017);
     }
@@ -202,7 +215,8 @@
         cls: 'school',
         time: '17h35',
         title: 'Maternelles',
-        note: 'À préparer en premier : passage à 17h45.',
+        note: 'Virginie vient les chercher : pas de cases à cocher pour Nico.',
+        noChecklist: true,
         projects: [
           { name: 'Maternelles de Virginie', kids: project('Maternelles de Virginie').kids }
         ]
@@ -267,18 +281,38 @@
       `<li><input type="checkbox" aria-label="${esc(k)}"><span>${esc(k)}</span></li>`
     ).join('')}</ul>`;
 
-    const renderProjects = projects => `<div class="project-lines">${projects.map(p => `
+    const renderPlainKids = kids => `<ul class="handoff-kids">${kids.map(k =>
+      `<li><span>${esc(k)}</span></li>`
+    ).join('')}</ul>`;
+
+    const blockKids = block => unique(block.projects
+      ? block.projects.flatMap(p => p.kids)
+      : block.kids);
+
+    const renderStayNote = (current, next) => {
+      if (!next) return '';
+      const nextKids = new Set(blockKids(next));
+      const staying = blockKids(current).filter(k => nextKids.has(k));
+      if (!staying.length) return '';
+      return `<div class="stay-note">
+        <strong>Ne les fais pas repartir : ils enchaînent avec le bloc suivant.</strong>
+        ${staying.map(esc).join(' · ')}
+      </div>`;
+    };
+
+    const renderProjects = block => `<div class="project-lines">${block.projects.map(p => `
       <div class="project-line">
         <strong>${esc(p.name)} · ${p.kids.length} enfant${p.kids.length > 1 ? 's' : ''}</strong>
-        <div class="project-meta">À cocher au fur et à mesure du ramassage.</div>
-        ${renderKids(p.kids)}
+        <div class="project-meta">${block.noChecklist ? 'Virginie se charge de venir les chercher.' : 'À cocher au fur et à mesure du ramassage.'}</div>
+        ${block.noChecklist ? renderPlainKids(p.kids) : renderKids(p.kids)}
       </div>
     `).join('')}</div>`;
 
-    document.getElementById('handoffList').innerHTML = handoffBlocks.map(block => {
+    document.getElementById('handoffList').innerHTML = handoffBlocks.map((block, index) => {
       const count = block.projects
         ? block.projects.reduce((sum, p) => sum + p.kids.length, 0)
         : block.kids.length;
+      const nextBlock = handoffBlocks[index + 1];
       return `<section class="handoff-card ${block.cls}">
         <div class="handoff-head">
           <div class="handoff-time">${esc(block.time)}</div>
@@ -286,7 +320,8 @@
           <div class="handoff-count">${count} enfant${count > 1 ? 's' : ''}</div>
         </div>
         <div class="handoff-body">
-          ${block.projects ? renderProjects(block.projects) : renderKids(block.kids)}
+          ${block.projects ? renderProjects(block) : renderKids(block.kids)}
+          ${renderStayNote(block, nextBlock)}
         </div>
       </section>`;
     }).join('');
