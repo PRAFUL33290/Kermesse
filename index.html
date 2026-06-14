@@ -6,260 +6,50 @@
   <title>Scène des Talents — 19 juin · École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .section-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff;
-      font-size: .9rem;
-      font-weight: 800;
-      margin-right: 10px;
-      flex-shrink: 0;
-    }
-    .school .section-num {
-      background: linear-gradient(135deg, var(--gold), #d4a017);
-    }
-    .layout-hero .section-num,
-    .layout-frame .section-num {
-      background: rgba(255,255,255,.25);
-      backdrop-filter: blur(4px);
-    }
-    .layout-frame .section-num {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    }
-    .section.free-category {
-      --cat-main: var(--accent);
-      --cat-alt: var(--accent-2);
-      border: 1px solid color-mix(in srgb, var(--cat-main) 70%, #fff);
-      box-shadow: 0 1px 2px rgba(31,41,51,.04), 0 10px 28px color-mix(in srgb, var(--cat-main) 22%, transparent);
-    }
-    .section.free-category::before {
-      content: '';
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 8px;
-      background: linear-gradient(180deg, var(--cat-main), var(--cat-alt));
-      z-index: 1;
-    }
-    .section.free-category .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    .section.free-category .section-num,
-    .section.free-category .count {
-      background: linear-gradient(135deg, var(--cat-main), var(--cat-alt));
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.28);
-    }
-    .section.free-category.theatre {
-      --cat-main: #2b6cb0;
-      --cat-alt: #4299e1;
-    }
-    .section.free-category.chant {
-      --cat-main: #b7791f;
-      --cat-alt: #ecc94b;
-    }
-    .section.free-category.jonglage {
-      --cat-main: #2f855a;
-      --cat-alt: #48bb78;
-    }
-    .section.free-category.danse {
-      --cat-main: #c53030;
-      --cat-alt: #fc8181;
-    }
-    .section.free-category.gymnastique {
-      --cat-main: #6b46c1;
-      --cat-alt: #b794f4;
-    }
-    .section.free-category.roller {
-      --cat-main: #c05621;
-      --cat-alt: #ed8936;
-    }
-    .color-legend {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 18px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 10px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      font-size: .9rem;
-      font-weight: 700;
-    }
-    .legend-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--legend-main), var(--legend-alt));
-      flex-shrink: 0;
-    }
-    .site-credit {
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: .92rem;
-      text-align: center;
-    }
+    .section-num { display:inline-flex; align-items:center; justify-content:center; min-width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; font-size:.9rem; font-weight:800; margin-right:10px; flex-shrink:0; }
+    .school .section-num { background:linear-gradient(135deg,var(--gold),#d4a017); }
+    .layout-hero .section-num,.layout-frame .section-num { background:rgba(255,255,255,.25); backdrop-filter:blur(4px); }
+    .layout-frame .section-num { background:linear-gradient(135deg,var(--accent),var(--accent-2)); }
+    .home-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:0 0 18px; }
+    .home-stat { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow); }
+    .home-stat .num { font-size:2rem; line-height:1; font-weight:900; color:var(--accent); }
+    .home-stat .label { color:var(--muted); font-weight:700; font-size:.9rem; margin-top:7px; }
+    .time-box { background:#eef4ff; border:1px solid #bfd4ff; border-left:5px solid #2b6cb0; border-radius:14px; padding:16px 18px; margin:0 0 28px; }
+    .time-box strong { color:#2b6cb0; }
+    .time-box p { margin:6px 0 0; color:var(--muted); }
+    .section.free-category { --cat-main:var(--accent); --cat-alt:var(--accent-2); border:1px solid color-mix(in srgb,var(--cat-main) 70%,#fff); box-shadow:0 1px 2px rgba(31,41,51,.04),0 10px 28px color-mix(in srgb,var(--cat-main) 22%,transparent); }
+    .section.free-category::before { content:''; position:absolute; inset:0 auto 0 0; width:8px; background:linear-gradient(180deg,var(--cat-main),var(--cat-alt)); z-index:1; }
+    .section.free-category .hero-content { position:relative; z-index:2; }
+    .section.free-category .section-num,.section.free-category .count { background:linear-gradient(135deg,var(--cat-main),var(--cat-alt)); color:#fff; border:1px solid rgba(255,255,255,.28); }
+    .section.free-category.theatre{--cat-main:#2b6cb0;--cat-alt:#4299e1}.section.free-category.chant{--cat-main:#b7791f;--cat-alt:#ecc94b}.section.free-category.jonglage{--cat-main:#2f855a;--cat-alt:#48bb78}.section.free-category.danse{--cat-main:#c53030;--cat-alt:#fc8181}.section.free-category.gymnastique{--cat-main:#6b46c1;--cat-alt:#b794f4}.section.free-category.roller{--cat-main:#c05621;--cat-alt:#ed8936}
+    .color-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px}.legend-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:.9rem;font-weight:700}.legend-dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--legend-main),var(--legend-alt));flex-shrink:0}.site-credit{margin:18px 0 0;color:var(--muted);font-size:.92rem;text-align:center}
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="dot">🎭</span>
-        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">🏠 Accueil</a></li>
-        <li><a href="enfants.html">👧 Enfants</a></li>
-        <li><a href="orga.html">🗓️ Organisation</a></li>
-        <li><a href="repere-enfants.html">🧭 Repère</a></li>
-        <li><a href="repetition.html">🎬 Répétitions</a></li>
-        <li><a href="nico.html">✅ Nico</a></li>
-        <li><a href="stats.html">📊 Statistiques</a></li>
-      </ul>
-    </div>
-  </nav>
-
+  <nav class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="dot">🎭</span><span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span></a><button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><ul class="nav-links" id="navLinks"><li><a href="index.html" class="active">🏠 Accueil</a></li><li><a href="parents.html">👨‍👩‍👧 Parents</a></li><li><a href="enfants.html">👧 Enfants</a></li><li><a href="orga.html">🗓️ Organisation</a></li><li><a href="repere-enfants.html">🧭 Repère</a></li><li><a href="repetition.html">🎬 Répétitions</a></li><li><a href="nico.html">✅ Nico</a></li><li><a href="stats.html">📊 Statistiques</a></li></ul></div></nav>
   <div class="wrap">
-    <header class="page-head">
-      <p class="kicker">Listing des participants</p>
-      <h1>Scène des Talents</h1>
-      <p class="meta">Vendredi 19 juin · École Arc en Ciel</p>
-    </header>
-
-    <div class="rule">
-      <strong>Règle :</strong> chaque enfant peut faire <strong>2 scènes maximum</strong>.
-      Exception pour les projets d'école — <strong>Maternelles de Virginie</strong>, <strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong>
-      et <strong>Quinzaine de l'égalité</strong> — qui ne comptent pas dans cette limite.
-    </div>
-
-    <p class="cat-title">Projets d'école</p>
-    <div id="school"></div>
-
-    <p class="cat-title">Scènes libres</p>
-    <div id="free"></div>
-
-    <p class="cat-title">Légende des couleurs</p>
-    <section class="section">
-      <div class="color-legend">
-        <div class="legend-item" style="--legend-main:#2b6cb0;--legend-alt:#4299e1"><span class="legend-dot"></span>Théâtre</div>
-        <div class="legend-item" style="--legend-main:#b7791f;--legend-alt:#ecc94b"><span class="legend-dot"></span>Chant</div>
-        <div class="legend-item" style="--legend-main:#2f855a;--legend-alt:#48bb78"><span class="legend-dot"></span>Jonglage</div>
-        <div class="legend-item" style="--legend-main:#c53030;--legend-alt:#fc8181"><span class="legend-dot"></span>Danse</div>
-        <div class="legend-item" style="--legend-main:#6b46c1;--legend-alt:#b794f4"><span class="legend-dot"></span>Gymnastique</div>
-        <div class="legend-item" style="--legend-main:#c05621;--legend-alt:#ed8936"><span class="legend-dot"></span>Roller</div>
-      </div>
-      <p class="site-credit">Site web créé par Julien</p>
-    </section>
-
+    <header class="page-head"><p class="kicker">Listing des participants</p><h1>Scène des Talents</h1><p class="meta">Vendredi 19 juin · École Arc en Ciel</p></header>
+    <div class="home-stats" id="homeStats"></div>
+    <div class="time-box"><strong>Horaires approximatifs :</strong><p>Projets d’école à partir de 18h00 · Scène des Talents à partir de 18h35 · Fin estimée selon le déroulement et le passage des enfants.</p></div>
+    <div class="rule"><strong>Règle :</strong> chaque enfant peut faire <strong>2 scènes maximum</strong>. Exception pour les projets d'école — <strong>Maternelles de Virginie</strong>, <strong>Capoeira</strong>, <strong>Oh Mama Tetema</strong> et <strong>Quinzaine de l'égalité</strong> — qui ne comptent pas dans cette limite.</div>
+    <p class="cat-title">Projets d'école</p><div id="school"></div>
+    <p class="cat-title">Scènes libres</p><div id="free"></div>
+    <p class="cat-title">Légende des couleurs</p><section class="section"><div class="color-legend"><div class="legend-item" style="--legend-main:#2b6cb0;--legend-alt:#4299e1"><span class="legend-dot"></span>Théâtre</div><div class="legend-item" style="--legend-main:#b7791f;--legend-alt:#ecc94b"><span class="legend-dot"></span>Chant</div><div class="legend-item" style="--legend-main:#2f855a;--legend-alt:#48bb78"><span class="legend-dot"></span>Jonglage</div><div class="legend-item" style="--legend-main:#c53030;--legend-alt:#fc8181"><span class="legend-dot"></span>Danse</div><div class="legend-item" style="--legend-main:#6b46c1;--legend-alt:#b794f4"><span class="legend-dot"></span>Gymnastique</div><div class="legend-item" style="--legend-main:#c05621;--legend-alt:#ed8936"><span class="legend-dot"></span>Roller</div></div><p class="site-credit">Site web créé par Julien</p></section>
     <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
   </div>
-
   <script src="data.js"></script>
   <script>
-    // ---- Menu responsive ----
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-
-    const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-
-    // Compteur global de sections (partagé entre projets et scènes libres)
-    let sectionNum = 0;
-
-    // ---- Projets d'école ----
-    const schoolHtml = SCHOOL_PROJECTS.map(p => {
-      sectionNum++;
-      const num = sectionNum;
-      let body, count;
-      if (p.languages) {
-        count = `${p.languages.length} langues`;
-        body = `<ul class="lang-list">${p.languages.map(l =>
-          `<li><div class="lang-head">${l.flag} ${esc(l.country)} — ${esc(l.lang)} <span class="badge">(${l.kids.length})</span></div>
-           <div class="lang-kids">${l.kids.map(esc).join(' · ')}</div></li>`).join('')}</ul>`;
-      } else {
-        count = `${p.kids.length} enfants`;
-        body = `<ol class="names">${p.kids.map((k,i) =>
-          `<li><span class="num">${i+1}</span> ${esc(k)}</li>`).join('')}</ol>`;
-      }
-      return `<section class="section school">
-        <div class="section-head"><h2><span class="section-num">${num}</span>${esc(p.name)}</h2><span class="count">${count}</span></div>
-        ${p.note ? `<p class="subtitle">${esc(p.note)}</p>` : ''}
-        ${body}
-      </section>`;
-    }).join('');
-    document.getElementById('school').innerHTML = schoolHtml;
-
-    // ---- Scènes libres ----
-    const catImages = {
-      "Danse": "images/danse_hero_1781248760612.png",
-      "Gymnastique": "images/gymnastique_frame_1781248770089.png",
-      "Théâtre": "images/theatre_hero_1781248781959.png",
-      "Chant": "images/chant_frame_1781248799345.png",
-      "Roller": "images/roller_hero_1781248809907.png",
-      "Jonglage ballon de foot": "images/jonglage_frame_1781248819978.png"
-    };
-
-    const catClass = name => ({
-      "Théâtre": "theatre",
-      "Chant": "chant",
-      "Jonglage ballon de foot": "jonglage",
-      "Danse": "danse",
-      "Gymnastique": "gymnastique",
-      "Roller": "roller"
-    }[name] || '');
-
-    const sceneCard = (c) => {
-      sectionNum++;
-      const num = sectionNum;
-      const imageUrl = catImages[c.name] || '';
-      const isHero = true;
-
-      if (isHero) {
-        return `<section class="section layout-hero free-category ${catClass(c.name)}" style="background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('${imageUrl}')">
-          <div class="hero-content">
-            <div class="section-head">
-              <h2><span class="section-num">${num}</span>${c.icon} ${esc(c.name)}</h2>
-              <span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span>
-            </div>
-            <ul class="groups">${c.scenes.map(s =>
-              `<li><span class="who">${s.who.map(esc).join(' + ')}</span><span class="scene">${esc(s.scene)}</span></li>`).join('')}</ul>
-          </div>
-        </section>`;
-      } else {
-        return `<section class="section layout-frame free-category ${catClass(c.name)}">
-          <div class="frame-image-container">
-             <img src="${imageUrl}" alt="${esc(c.name)}" class="frame-image">
-          </div>
-          <div class="frame-content">
-            <div class="section-head">
-              <h2><span class="section-num">${num}</span>${c.icon} ${esc(c.name)}</h2>
-              <span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span>
-            </div>
-            <ul class="groups">${c.scenes.map(s =>
-              `<li><span class="who">${s.who.map(esc).join(' + ')}</span><span class="scene">${esc(s.scene)}</span></li>`).join('')}</ul>
-          </div>
-        </section>`;
-      }
-    };
-
-    document.getElementById('free').innerHTML = FREE_CATEGORIES.map(sceneCard).join('');
+    const toggle=document.getElementById('navToggle'); const links=document.getElementById('navLinks'); toggle.addEventListener('click',()=>{const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open);});
+    const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const stats=computeStats();
+    document.getElementById('homeStats').innerHTML=`<div class="home-stat"><div class="num">${stats.uniqueChildren}</div><div class="label">enfants au total</div></div><div class="home-stat"><div class="num">${stats.categoryCount}</div><div class="label">catégories de talents</div></div><div class="home-stat"><div class="num">${stats.freeSceneCount}</div><div class="label">scènes libres</div></div><div class="home-stat"><div class="num">${stats.schoolCount}</div><div class="label">projets d’école</div></div>`;
+    let sectionNum=0;
+    const schoolHtml=SCHOOL_PROJECTS.map(p=>{sectionNum++;const num=sectionNum;let body,count;if(p.languages){count=`${p.languages.length} langues`;body=`<ul class="lang-list">${p.languages.map(l=>`<li><div class="lang-head">${l.flag} ${esc(l.country)} — ${esc(l.lang)} <span class="badge">(${l.kids.length})</span></div><div class="lang-kids">${l.kids.map(esc).join(' · ')}</div></li>`).join('')}</ul>`;}else{count=`${p.kids.length} enfants`;body=`<ol class="names">${p.kids.map((k,i)=>`<li><span class="num">${i+1}</span> ${esc(k)}</li>`).join('')}</ol>`;}return `<section class="section school"><div class="section-head"><h2><span class="section-num">${num}</span>${esc(p.name)}</h2><span class="count">${count}</span></div>${p.note?`<p class="subtitle">${esc(p.note)}</p>`:''}${body}</section>`;}).join('');
+    document.getElementById('school').innerHTML=schoolHtml;
+    const catImages={"Danse":"images/danse_hero_1781248760612.png","Gymnastique":"images/gymnastique_frame_1781248770089.png","Théâtre":"images/theatre_hero_1781248781959.png","Chant":"images/chant_frame_1781248799345.png","Roller":"images/roller_hero_1781248809907.png","Jonglage ballon de foot":"images/jonglage_frame_1781248819978.png"};
+    const catClass=name=>({"Théâtre":"theatre","Chant":"chant","Jonglage ballon de foot":"jonglage","Danse":"danse","Gymnastique":"gymnastique","Roller":"roller"}[name]||'');
+    const sceneCard=c=>{sectionNum++;const num=sectionNum;const imageUrl=catImages[c.name]||'';return `<section class="section layout-hero free-category ${catClass(c.name)}" style="background-image:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),url('${imageUrl}')"><div class="hero-content"><div class="section-head"><h2><span class="section-num">${num}</span>${c.icon} ${esc(c.name)}</h2><span class="count">${c.scenes.length} scène${c.scenes.length>1?'s':''}</span></div><ul class="groups">${c.scenes.map(s=>`<li><span class="who">${s.who.map(esc).join(' + ')}</span><span class="scene">${esc(s.scene)}</span></li>`).join('')}</ul></div></section>`;};
+    document.getElementById('free').innerHTML=FREE_CATEGORIES.map(sceneCard).join('');
   </script>
 </body>
 </html>
