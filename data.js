@@ -30,19 +30,19 @@ const SCHOOL_PROJECTS = [
     name: "Quinzaine de l'égalité",
     note: "Nos artistes en herbe — par pays et langue",
     languages: [
-      { flag: "🇫🇷", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina M.","Alicia","Noémie","Eileen","Céline","Cheid"] },
-      { flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", country: "Angleterre", lang: "Anglais", kids: ["Juliette"] },
-      { flag: "🇪🇸", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina M.","Alicia","Mila","Zia","Cheid"] },
-      { flag: "🇵🇹", country: "Portugal", lang: "Portugais", kids: ["Kelyana","Ilona","Alya","Lina M."] },
-      { flag: "🇮🇹", country: "Italie", lang: "Italien", kids: ["Guillia","Divine","Camille"] },
-      { flag: "🇩🇪", country: "Allemagne", lang: "Allemand", kids: ["Elenna","Mia"] },
-      { flag: "🇹🇳", country: "Tunisie", lang: "Darija tunisien", kids: ["Lydia","Jasmine","Yara","Eileen"] },
-      { flag: "🇲🇦", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Maïssa","Lina M.","Cheid"] },
-      { flag: "🇩🇿", country: "Algérie", lang: "Dziriya", kids: ["Zia","Cheid"] },
-      { flag: "🇸🇳", country: "Sénégal", lang: "Wolof", kids: ["Divine","Noémie"] },
-      { flag: "🇨🇲", country: "Cameroun", lang: "Douala", kids: ["Nayana","Keren"] },
-      { flag: "🇰🇷", country: "Corée du Sud", lang: "Coréen", kids: ["Elenna","Mia","Lina M.","Mila","Zia","Céline"] },
-      { flag: "🇯🇵", country: "Japon", lang: "Japonais", kids: ["Kelyana","Juliette","Ilona","Jasmine","Mia","Alya","Lina M.","Mila","Zia","Céline"] }
+      { flag: "France", country: "France", lang: "Français", kids: ["Lilly","Lydia","Myla","Kelyana","Elaia","Juliette","Ilona","Jasmine","Guillia","Elenna","Mia","Alya","Divine","Lina M.","Alicia","Noémie","Eileen","Céline","Cheid"] },
+      { flag: "Angleterre", country: "Angleterre", lang: "Anglais", kids: ["Juliette"] },
+      { flag: "Espagne", country: "Espagne", lang: "Espagnol", kids: ["Myla","Kelyana","Elaia","Elenna","Mia","Shyne","Alya","Lina M.","Alicia","Mila","Zia","Cheid"] },
+      { flag: "Portugal", country: "Portugal", lang: "Portugais", kids: ["Kelyana","Ilona","Alya","Lina M."] },
+      { flag: "Italie", country: "Italie", lang: "Italien", kids: ["Guillia","Divine","Camille"] },
+      { flag: "Allemagne", country: "Allemagne", lang: "Allemand", kids: ["Elenna","Mia"] },
+      { flag: "Tunisie", country: "Tunisie", lang: "Darija tunisien", kids: ["Lydia","Jasmine","Yara","Eileen"] },
+      { flag: "Maroc", country: "Maroc", lang: "Darija marocain", kids: ["Yara","Maïssa","Lina M.","Cheid"] },
+      { flag: "Algérie", country: "Algérie", lang: "Dziriya", kids: ["Zia","Cheid"] },
+      { flag: "Sénégal", country: "Sénégal", lang: "Wolof", kids: ["Divine","Noémie"] },
+      { flag: "Cameroun", country: "Cameroun", lang: "Douala", kids: ["Nayana","Keren"] },
+      { flag: "Corée du Sud", country: "Corée du Sud", lang: "Coréen", kids: ["Elenna","Mia","Lina M.","Mila","Zia","Céline"] },
+      { flag: "Japon", country: "Japon", lang: "Japonais", kids: ["Kelyana","Juliette","Ilona","Jasmine","Mia","Alya","Lina M.","Mila","Zia","Céline"] }
     ]
   }
 ];
@@ -50,175 +50,30 @@ const SCHOOL_PROJECTS = [
 /* Scènes libres — comptent dans la limite de 2 scènes max par enfant */
 /* Ordre de ramassage : Théâtre → Chant → Jonglage → Danse → Gym → Roller */
 const FREE_CATEGORIES = [
-  {
-    name: "Théâtre",
-    icon: "🎭",
-    scenes: [
-      { who: ["Lilly","Shyne","Divine"], scene: "Théâtre" },
-      { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" },
-      { who: ["Charlotte"], scene: "Théâtre" },
-      { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" },
-      { who: ["Souleyman","Juliette","Timéo","Loïcia"], scene: "Théâtre" }
-    ]
-  },
-  {
-    name: "Chant",
-    icon: "🎤",
-    scenes: [
-      { who: ["Jasmine","Léa"], scene: "Chant" },
-      { who: ["Cheid"], scene: "Chant" },
-      { who: ["Maïmouna"], scene: "Chant" },
-      { who: ["Céline"], scene: "Chant" },
-      { who: ["Lina M."], scene: "Chant" },
-      { who: ["Keren"], scene: "Chant" },
-      { who: ["Charlotte"], scene: "Chant" },
-      { who: ["Jumana"], scene: "À confirmer" }
-    ]
-  },
-  {
-    name: "Roller",
-    icon: "🛼",
-    scenes: [
-      { who: ["Giulia"], scene: "Roller" },
-      { who: ["Mélina Adenet"], scene: "Roller" },
-      { who: ["Haby"], scene: "Roller" },
-      { who: ["Thalia F."], scene: "Roller" },
-      { who: ["Naïma Nour"], scene: "Roller" },
-      { who: ["Dina"], scene: "Roller" }
-    ]
-  },
-  {
-    name: "Jonglage ballon de foot",
-    icon: "⚽",
-    scenes: [
-      { who: ["Courage","Eliam"], scene: "Jonglage" }
-    ]
-  },
-  {
-    name: "Danse",
-    icon: "💃",
-    scenes: [
-      { who: ["Alya","Elena","Elaïa","Kelyana"], scene: "Danse / gym — Lush Life" },
-      { who: ["Jasmine","Léa","Lina M."], scene: "Gozalo" },
-      { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" },
-      { who: ["Lana"], scene: "Séga" },
-      { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" },
-      { who: ["Maïssa","Lina M."], scene: "Afro / rondade / salto" },
-      { who: ["Grace"], scene: "Danse" },
-      { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" },
-      { who: ["Giulia","Heloise"], scene: "Gabriela" },
-      { who: ["Stella","Giulia"], scene: "21 Reasons" },
-      { who: ["Heloise","Juliette","Loicia"], scene: "Danse" },
-      { who: ["Mamy Kadiatou"], scene: "Solo afro" }
-    ]
-  },
-  {
-    name: "Gymnastique",
-    icon: "🤸",
-    scenes: [
-      { who: ["Giulia","Stella","Héloïse","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" },
-      { who: ["Giulia","Stella","Héloïse"], scene: "Gym groupe" },
-      { who: ["Lina S.","Maïssa"], scene: "Gym duo" },
-      { who: ["Mélina B."], scene: "Solo gymnastique" }
-    ]
-  }
+  { name: "Théâtre", icon: "theatre", scenes: [ { who: ["Lilly","Shyne","Divine"], scene: "Théâtre" }, { who: ["Ryma","Divine","Clara"], scene: "Mortelle Adèle" }, { who: ["Charlotte"], scene: "Théâtre" }, { who: ["Eileen","Leana","Lina M."], scene: "Théâtre" }, { who: ["Souleyman","Juliette","Timéo","Loïcia"], scene: "Théâtre" } ] },
+  { name: "Chant", icon: "mic", scenes: [ { who: ["Jasmine","Léa"], scene: "Chant" }, { who: ["Cheid"], scene: "Chant" }, { who: ["Maïmouna"], scene: "Chant" }, { who: ["Céline"], scene: "Chant" }, { who: ["Lina M."], scene: "Chant" }, { who: ["Keren"], scene: "Chant" }, { who: ["Charlotte"], scene: "Chant" }, { who: ["Jumana"], scene: "À confirmer" } ] },
+  { name: "Roller", icon: "roller", scenes: [ { who: ["Giulia"], scene: "Roller" }, { who: ["Mélina Adenet"], scene: "Roller" }, { who: ["Haby"], scene: "Roller" }, { who: ["Thalia F."], scene: "Roller" }, { who: ["Naïma Nour"], scene: "Roller" }, { who: ["Dina"], scene: "Roller" } ] },
+  { name: "Jonglage ballon de foot", icon: "football", scenes: [ { who: ["Courage","Eliam"], scene: "Jonglage" } ] },
+  { name: "Danse", icon: "dance", scenes: [ { who: ["Alya","Elena","Elaïa","Kelyana"], scene: "Danse / gym — Lush Life" }, { who: ["Jasmine","Léa","Lina M."], scene: "Gozalo" }, { who: ["Clara","Lydia","Divine","Ryma"], scene: "Danse" }, { who: ["Lana"], scene: "Séga" }, { who: ["Kaylan","Elvin","Arthur","Alioun"], scene: "Danse / scène de groupe" }, { who: ["Maïssa","Lina M."], scene: "Afro / rondade / salto" }, { who: ["Grace"], scene: "Danse" }, { who: ["Lina S.","Maïssa"], scene: "Duo (Brésil) — musique à confirmer" }, { who: ["Giulia","Heloise"], scene: "Gabriela" }, { who: ["Stella","Giulia"], scene: "21 Reasons" }, { who: ["Heloise","Juliette","Loicia"], scene: "Danse" }, { who: ["Mamy Kadiatou"], scene: "Solo afro" } ] },
+  { name: "Gymnastique", icon: "gym", scenes: [ { who: ["Giulia","Stella","Héloïse","Eileen","Lya","Lina S.","Maïssa","Alya","Elena","Elaïa","Kelyana","Yara","Keren","Tania","Housna","Alicia","Lydia","Naima Nour","Mélina B.","Leana","Céline"], scene: "Rondades / flip / salto arrière (toutes ensemble)" }, { who: ["Giulia","Stella","Héloïse"], scene: "Gym groupe" }, { who: ["Lina S.","Maïssa"], scene: "Gym duo" }, { who: ["Mélina B."], scene: "Solo gymnastique" } ] }
 ];
 
-/* ---------- Normalisation des prénoms (variantes d'orthographe) ---------- */
-const NAME_ALIASES = {
-  "mayssae": "Maïssa",
-  "maissae": "Maïssa",
-  "guillia": "Giulia",
-  "elenna": "Elena",
-  "elaia": "Elaïa",
-  "shine": "Shyne",
-  "lina m": "Lina M.",
-  "maimouna": "Maimouna",
-  "heloise": "Héloïse",
-  "loicia": "Loïcia",
-  "maissa": "Maïssa",
-  "chahd": "Cheid",
-  "naima nour": "Naïma Nour"
-};
-
-function normKey(name) {
-  return name.toLowerCase()
-    .normalize("NFD").replace(/[̀-ͯ]/g, "")
-    .replace(/\./g, "").trim();
-}
-
-function canonical(name) {
-  const k = normKey(name);
-  if (NAME_ALIASES[k]) return NAME_ALIASES[k];
-  // Titre propre par défaut (garde l'original tel quel)
-  return name.trim();
-}
-
-/* ---------- Calculs statistiques ---------- */
+const NAME_ALIASES = { "mayssae": "Maïssa", "maissae": "Maïssa", "guillia": "Giulia", "elenna": "Elena", "elaia": "Elaïa", "shine": "Shyne", "lina m": "Lina M.", "maimouna": "Maimouna", "heloise": "Héloïse", "loicia": "Loïcia", "maissa": "Maïssa", "chahd": "Cheid", "naima nour": "Naïma Nour" };
+function normKey(name) { return name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\./g, "").trim(); }
+function canonical(name) { const k = normKey(name); if (NAME_ALIASES[k]) return NAME_ALIASES[k]; return name.trim(); }
 function computeStats() {
   const freeSceneCount = FREE_CATEGORIES.reduce((n, c) => n + c.scenes.length, 0);
   const schoolCount = SCHOOL_PROJECTS.length;
-
-  // Comptage des catégories libres par enfant (pour la règle des 2 max)
-  const perChild = new Map();   // key -> { display, count, cats: Set, school: bool }
-  FREE_CATEGORIES.forEach(cat => {
-    cat.scenes.forEach(s => {
-      s.who.forEach(raw => {
-        const disp = canonical(raw);
-        const key = normKey(disp);
-        if (!perChild.has(key)) perChild.set(key, { display: disp, count: 0, cats: new Set(), school: false });
-        const e = perChild.get(key);
-        e.cats.add(cat.name);
-        e.count = e.cats.size;
-      });
-    });
-  });
-
-  // Marquer les enfants qui participent à un projet d'école
-  SCHOOL_PROJECTS.forEach(p => {
-    const projectKids = [];
-    if (p.kids) projectKids.push(...p.kids);
-    if (p.languages) p.languages.forEach(l => projectKids.push(...l.kids));
-    projectKids.forEach(k => {
-      const key = normKey(canonical(k));
-      if (perChild.has(key)) perChild.get(key).school = true;
-    });
-  });
-
-  // Participants uniques (toutes scènes confondues, y compris projets d'école)
+  const perChild = new Map();
+  FREE_CATEGORIES.forEach(cat => { cat.scenes.forEach(s => { s.who.forEach(raw => { const disp = canonical(raw); const key = normKey(disp); if (!perChild.has(key)) perChild.set(key, { display: disp, count: 0, cats: new Set(), school: false }); const e = perChild.get(key); e.cats.add(cat.name); e.count = e.cats.size; }); }); });
+  SCHOOL_PROJECTS.forEach(p => { const projectKids = []; if (p.kids) projectKids.push(...p.kids); if (p.languages) p.languages.forEach(l => projectKids.push(...l.kids)); projectKids.forEach(k => { const key = normKey(canonical(k)); if (perChild.has(key)) perChild.get(key).school = true; }); });
   const allKids = new Set();
   FREE_CATEGORIES.forEach(c => c.scenes.forEach(s => s.who.forEach(w => allKids.add(normKey(canonical(w))))));
-  SCHOOL_PROJECTS.forEach(p => {
-    if (p.kids) p.kids.forEach(k => allKids.add(normKey(canonical(k))));
-    if (p.languages) p.languages.forEach(l => l.kids.forEach(k => allKids.add(normKey(canonical(k)))));
-  });
-
-  // Quinzaine : enfants uniques
+  SCHOOL_PROJECTS.forEach(p => { if (p.kids) p.kids.forEach(k => allKids.add(normKey(canonical(k)))); if (p.languages) p.languages.forEach(l => l.kids.forEach(k => allKids.add(normKey(canonical(k))))); });
   const quinzaine = SCHOOL_PROJECTS.find(p => p.languages);
   const quinzaineKids = new Set();
   quinzaine.languages.forEach(l => l.kids.forEach(k => quinzaineKids.add(normKey(canonical(k)))));
-
-  const children = [...perChild.values()]
-    .map(e => ({ ...e, cats: [...e.cats] }))
-    .sort((a, b) => b.count - a.count || a.display.localeCompare(b.display));
+  const children = [...perChild.values()].map(e => ({ ...e, cats: [...e.cats] })).sort((a, b) => b.count - a.count || a.display.localeCompare(b.display));
   const overLimit = children.filter(c => c.count > 2);
-
-  return {
-    freeSceneCount,
-    schoolCount,
-    totalScenes: freeSceneCount,
-    categoryCount: FREE_CATEGORIES.length,
-    uniqueChildren: allKids.size,
-    childrenInFree: perChild.size,
-    quinzaineLangs: quinzaine.languages.length,
-    quinzaineKids: quinzaineKids.size,
-    children,
-    overLimit,
-    perCategory: FREE_CATEGORIES.map(c => ({
-      name: c.name,
-      icon: c.icon,
-      scenes: c.scenes.length,
-      kids: new Set(c.scenes.flatMap(s => s.who.map(w => normKey(canonical(w))))).size
-    }))
-  };
+  return { freeSceneCount, schoolCount, totalScenes: freeSceneCount, categoryCount: FREE_CATEGORIES.length, uniqueChildren: allKids.size, childrenInFree: perChild.size, quinzaineLangs: quinzaine.languages.length, quinzaineKids: quinzaineKids.size, children, overLimit, perCategory: FREE_CATEGORIES.map(c => ({ name: c.name, icon: c.icon, scenes: c.scenes.length, kids: new Set(c.scenes.flatMap(s => s.who.map(w => normKey(canonical(w))))).size })) };
 }
