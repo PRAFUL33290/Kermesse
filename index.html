@@ -10,10 +10,11 @@
     .school .section-num { background:linear-gradient(135deg,var(--gold),#d4a017); }
     .layout-hero .section-num,.layout-frame .section-num { background:rgba(255,255,255,.25); backdrop-filter:blur(4px); }
     .layout-frame .section-num { background:linear-gradient(135deg,var(--accent),var(--accent-2)); }
-    .home-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:0 0 18px; }
+    .home-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 18px; }
     .home-stat { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:var(--shadow); }
     .home-stat .num { font-size:2rem; line-height:1; font-weight:900; color:var(--accent); }
     .home-stat .label { color:var(--muted); font-weight:700; font-size:.9rem; margin-top:7px; }
+    @media (max-width:700px){ .home-stats{grid-template-columns:repeat(3,1fr); gap:8px;} .home-stat{padding:10px 8px; border-radius:12px; text-align:center;} .home-stat .num{font-size:1.25rem;} .home-stat .label{font-size:.68rem; line-height:1.15; margin-top:5px;} }
     .time-box { background:#eef4ff; border:1px solid #bfd4ff; border-left:5px solid #2b6cb0; border-radius:14px; padding:16px 18px; margin:0 0 28px; }
     .time-box strong { color:#2b6cb0; }
     .time-box p { margin:6px 0 0; color:var(--muted); }
@@ -42,7 +43,7 @@
     const toggle=document.getElementById('navToggle'); const links=document.getElementById('navLinks'); toggle.addEventListener('click',()=>{const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open);});
     const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     const stats=computeStats();
-    document.getElementById('homeStats').innerHTML=`<div class="home-stat"><div class="num">${stats.uniqueChildren}</div><div class="label">enfants au total</div></div><div class="home-stat"><div class="num">${stats.categoryCount}</div><div class="label">catégories de talents</div></div><div class="home-stat"><div class="num">${stats.freeSceneCount}</div><div class="label">scènes libres</div></div><div class="home-stat"><div class="num">${stats.schoolCount}</div><div class="label">projets d’école</div></div>`;
+    document.getElementById('homeStats').innerHTML=`<div class="home-stat"><div class="num">${stats.uniqueChildren}</div><div class="label">enfants</div></div><div class="home-stat"><div class="num">${stats.categoryCount}</div><div class="label">catégories</div></div><div class="home-stat"><div class="num">${stats.schoolCount}</div><div class="label">projets</div></div>`;
     let sectionNum=0;
     const schoolHtml=SCHOOL_PROJECTS.map(p=>{sectionNum++;const num=sectionNum;let body,count;if(p.languages){count=`${p.languages.length} langues`;body=`<ul class="lang-list">${p.languages.map(l=>`<li><div class="lang-head">${l.flag} ${esc(l.country)} — ${esc(l.lang)} <span class="badge">(${l.kids.length})</span></div><div class="lang-kids">${l.kids.map(esc).join(' · ')}</div></li>`).join('')}</ul>`;}else{count=`${p.kids.length} enfants`;body=`<ol class="names">${p.kids.map((k,i)=>`<li><span class="num">${i+1}</span> ${esc(k)}</li>`).join('')}</ol>`;}return `<section class="section school"><div class="section-head"><h2><span class="section-num">${num}</span>${esc(p.name)}</h2><span class="count">${count}</span></div>${p.note?`<p class="subtitle">${esc(p.note)}</p>`:''}${body}</section>`;}).join('');
     document.getElementById('school').innerHTML=schoolHtml;
