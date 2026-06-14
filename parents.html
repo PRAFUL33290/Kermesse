@@ -19,13 +19,17 @@
     .responsibility h2 { color:var(--gold); }
     .simple-list { margin:10px 0 0; padding-left:20px; }
     .simple-list li { margin:8px 0; }
-    .scene-table { width:100%; border-collapse:collapse; font-size:.95rem; }
-    .scene-table th, .scene-table td { text-align:left; padding:11px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
-    .scene-table th { color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
-    .scene-table .cat { font-weight:800; white-space:nowrap; }
-    .scene-table .kids { font-weight:600; }
-    .scene-table .scene-name { color:var(--muted); }
-    @media (max-width:700px){ .scene-table, .scene-table tbody, .scene-table tr, .scene-table td { display:block; width:100%; } .scene-table thead{display:none;} .scene-table tr{padding:12px 0;border-bottom:1px solid var(--line);} .scene-table td{border:0;padding:4px 0;} }
+    .scene-table { width:100%; border-collapse:separate; border-spacing:0 12px; font-size:.95rem; }
+    .scene-table th { text-align:left; color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; padding:0 10px 4px; }
+    .scene-table td { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 14px; vertical-align:top; }
+    .scene-table td:first-child { border-left:1px solid var(--line); border-radius:14px 0 0 14px; width:170px; }
+    .scene-table td:last-child { border-right:1px solid var(--line); border-radius:0 14px 14px 0; width:160px; }
+    .scene-table .cat { font-size:1.28rem; font-weight:900; color:var(--accent); line-height:1.2; }
+    .scene-table .kids { font-weight:700; font-size:1rem; line-height:1.55; }
+    .scene-table .scene-name { color:var(--muted); margin-top:6px; font-size:.9rem; }
+    .scene-table .time { font-weight:900; color:var(--gold); white-space:nowrap; }
+    .scene-table .small { display:block; color:var(--muted); font-size:.82rem; font-weight:600; margin-top:4px; }
+    @media (max-width:700px){ .scene-table, .scene-table tbody, .scene-table tr, .scene-table td { display:block; width:100%; } .scene-table thead{display:none;} .scene-table tr{margin-bottom:14px;} .scene-table td{border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:0!important;padding:10px 14px;} .scene-table td:first-child{border-radius:14px 14px 0 0!important;} .scene-table td:last-child{border-radius:0 0 14px 14px!important;} }
   </style>
 </head>
 <body>
@@ -33,63 +37,28 @@
     <div class="nav-inner">
       <a class="brand" href="index.html"><span class="dot">🎭</span><span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">🏠 Accueil</a></li><li><a href="parents.html" class="active">👨‍👩‍👧 Parents</a></li><li><a href="enfants.html">👧 Enfants</a></li><li><a href="orga.html">🗓️ Organisation</a></li><li><a href="repere-enfants.html">🧭 Repère</a></li><li><a href="repetition.html">🎬 Répétitions</a></li><li><a href="nico.html">✅ Nico</a></li><li><a href="stats.html">📊 Statistiques</a></li>
-      </ul>
+      <ul class="nav-links" id="navLinks"><li><a href="index.html">🏠 Accueil</a></li><li><a href="parents.html" class="active">👨‍👩‍👧 Parents</a></li><li><a href="enfants.html">👧 Enfants</a></li><li><a href="orga.html">🗓️ Organisation</a></li><li><a href="repere-enfants.html">🧭 Repère</a></li><li><a href="repetition.html">🎬 Répétitions</a></li><li><a href="nico.html">✅ Nico</a></li><li><a href="stats.html">📊 Statistiques</a></li></ul>
     </div>
   </nav>
-
   <div class="wrap">
-    <header class="page-head">
-      <p class="kicker">Informations familles</p>
-      <h1>Parents</h1>
-      <p class="meta">Scène des Talents · Vendredi 19 juin · École Arc en Ciel</p>
-    </header>
-
-    <section class="section parent-hero">
-      <h2>Je vous présente la Scène des Talents</h2>
-      <p>J’organise un moment convivial pour mettre en valeur les projets d’école travaillés pendant l’année, ainsi que les démonstrations préparées par les enfants : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot et autres talents.</p>
-    </section>
-
-    <div class="info-grid">
-      <article class="info-card"><h3>🎓 Les projets d’école</h3><p>Je présenterai les projets collectifs menés avec les enfants, comme les chorégraphies et les scènes préparées dans le cadre de l’année.</p></article>
-      <article class="info-card"><h3>🌟 La scène des talents</h3><p>Les enfants pourront montrer une prestation préparée seul ou en groupe : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot, etc.</p></article>
-      <article class="info-card"><h3>🤝 Un événement familial</h3><p>Mon objectif est de partager un beau moment avec les familles, d’encourager les enfants et de valoriser leurs efforts.</p></article>
-    </div>
-
-    <section class="section responsibility">
-      <div class="section-head"><h2>Responsabilité des parents</h2></div>
-      <p>Pendant toute la durée de l’événement, les parents restent responsables de leurs enfants.</p>
-      <ul class="simple-list">
-        <li>Cette responsabilité s’applique dès l’arrivée sur le lieu de l’événement et jusqu’au départ.</li>
-        <li>Elle concerne également les enfants qui participent à la Scène des Talents.</li>
-        <li>Les enfants doivent rester sous la surveillance de leurs parents en dehors de leur passage sur scène.</li>
-        <li>Merci d’accompagner les enfants avec bienveillance et de respecter l’organisation prévue pour les passages.</li>
-      </ul>
-    </section>
-
-    <p class="cat-title">Organisation des projets d’école</p>
-    <section class="section"><div id="schoolScenes"></div></section>
-
-    <p class="cat-title">Organisation de la scène des talents</p>
-    <section class="section"><div id="freeScenes"></div></section>
-
-    <section class="section">
-      <div class="section-head"><h2>À retenir</h2></div>
-      <p>J’appellerai les enfants selon l’organisation prévue. Merci de rester attentifs aux annonces, de laisser les espaces de passage dégagés et d’encourager tous les participants dans un esprit positif et respectueux.</p>
-    </section>
-
+    <header class="page-head"><p class="kicker">Informations familles</p><h1>Parents</h1><p class="meta">Scène des Talents · Vendredi 19 juin · École Arc en Ciel</p></header>
+    <section class="section parent-hero"><h2>Je vous présente la Scène des Talents</h2><p>J’organise un moment convivial pour mettre en valeur les projets d’école travaillés pendant l’année, ainsi que les démonstrations préparées par les enfants : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot et autres talents.</p></section>
+    <div class="info-grid"><article class="info-card"><h3>🎓 Les projets d’école</h3><p>Je présenterai les projets collectifs menés avec les enfants.</p></article><article class="info-card"><h3>🌟 La scène des talents</h3><p>Les enfants pourront montrer une prestation préparée seul ou en groupe.</p></article><article class="info-card"><h3>⏰ Horaires approximatifs</h3><p>Les horaires sont donnés à titre indicatif et peuvent légèrement changer selon le déroulement.</p></article></div>
+    <section class="section responsibility"><div class="section-head"><h2>Responsabilité des parents</h2></div><p>Pendant toute la durée de l’événement, les parents restent responsables de leurs enfants.</p><ul class="simple-list"><li>Cette responsabilité s’applique dès l’arrivée sur le lieu de l’événement et jusqu’au départ.</li><li>Elle concerne également les enfants qui participent à la Scène des Talents.</li><li>Les enfants doivent rester sous la surveillance de leurs parents en dehors de leur passage sur scène.</li><li>Merci d’accompagner les enfants avec bienveillance et de respecter l’organisation prévue pour les passages.</li></ul></section>
+    <p class="cat-title">Organisation des projets d’école</p><section class="section"><div id="schoolScenes"></div></section>
+    <p class="cat-title">Organisation de la scène des talents</p><section class="section"><div id="freeScenes"></div></section>
+    <section class="section"><div class="section-head"><h2>À retenir</h2></div><p>J’appellerai les enfants selon l’organisation prévue. Merci de rester attentifs aux annonces, de laisser les espaces de passage dégagés et d’encourager tous les participants dans un esprit positif et respectueux.</p></section>
     <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
   </div>
-
   <script src="data.js"></script>
   <script>
-    const toggle=document.getElementById('navToggle'); const links=document.getElementById('navLinks');
-    toggle.addEventListener('click',()=>{const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open);});
+    const toggle=document.getElementById('navToggle'); const links=document.getElementById('navLinks'); toggle.addEventListener('click',()=>{const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open);});
     const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const schoolTimes=['18h00','18h05','18h10','18h15','18h20'];
+    const freeTimes=['18h35','18h45','18h55','19h00','19h05','19h15'];
     const kidsOfProject=p=>p.languages?p.languages.map(l=>`${l.flag} ${esc(l.country)} — ${esc(l.lang)} : ${l.kids.map(esc).join(', ')}`).join('<br>'):p.kids.map(esc).join(', ');
-    document.getElementById('schoolScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Projet</th><th>Enfants</th><th>Précision</th></tr></thead><tbody>${SCHOOL_PROJECTS.map(p=>`<tr><td class="cat">${esc(p.name)}</td><td class="kids">${kidsOfProject(p)}</td><td class="scene-name">${esc(p.note||'Projet d’école')}</td></tr>`).join('')}</tbody></table>`;
-    document.getElementById('freeScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants</th><th>Scène</th></tr></thead><tbody>${FREE_CATEGORIES.flatMap(c=>c.scenes.map(s=>`<tr><td class="cat">${c.icon} ${esc(c.name)}</td><td class="kids">${s.who.map(esc).join(' + ')}</td><td class="scene-name">${esc(s.scene)}</td></tr>`)).join('')}</tbody></table>`;
+    document.getElementById('schoolScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / groupes</th><th>Horaire</th></tr></thead><tbody>${SCHOOL_PROJECTS.map((p,i)=>`<tr><td class="cat">${esc(p.name)}</td><td><div class="kids">${kidsOfProject(p)}</div><div class="scene-name">${esc(p.note||'Projet d’école')}</div></td><td><span class="time">vers ${schoolTimes[i]||'18h25'}</span><span class="small">approx.</span></td></tr>`).join('')}</tbody></table>`;
+    document.getElementById('freeScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / scènes</th><th>Horaire</th></tr></thead><tbody>${FREE_CATEGORIES.map((c,i)=>`<tr><td class="cat">${c.icon}<br>${esc(c.name)}</td><td>${c.scenes.map(s=>`<div class="kids">${s.who.map(esc).join(' + ')}</div><div class="scene-name">${esc(s.scene)}</div>`).join('<hr style="border:0;border-top:1px solid var(--line);margin:10px 0">')}</td><td><span class="time">vers ${freeTimes[i]||'19h20'}</span><span class="small">approx.</span></td></tr>`).join('')}</tbody></table>`;
   </script>
 </body>
 </html>
