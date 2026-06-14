@@ -6,84 +6,35 @@
   <title>Parents — Scène des Talents · École Arc en Ciel</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .parent-hero {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff;
-      border: none;
-      overflow: hidden;
-      position: relative;
-    }
-    .parent-hero::after {
-      content: '';
-      position: absolute;
-      inset: auto -80px -120px auto;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.16);
-    }
-    .parent-hero h2,
-    .parent-hero p { position: relative; z-index: 1; }
-    .parent-hero h2 {
-      margin: 0 0 10px;
-      font-size: 1.65rem;
-      line-height: 1.15;
-    }
-    .parent-hero p {
-      margin: 0;
-      font-size: 1.02rem;
-      max-width: 760px;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin: 22px 0;
-    }
-    .info-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px 22px;
-    }
-    .info-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-    }
-    .info-card p { margin: 0; color: var(--muted); }
-    .responsibility {
-      background: var(--gold-soft);
-      border: 1px solid #ecd9a6;
-      border-left: 5px solid var(--gold);
-    }
-    .responsibility h2 { color: var(--gold); }
-    .simple-list {
-      margin: 10px 0 0;
-      padding-left: 20px;
-    }
-    .simple-list li { margin: 8px 0; }
+    .parent-hero { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none; overflow:hidden; position:relative; }
+    .parent-hero::after { content:''; position:absolute; inset:auto -80px -120px auto; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.16); }
+    .parent-hero h2, .parent-hero p { position:relative; z-index:1; }
+    .parent-hero h2 { margin:0 0 10px; font-size:1.65rem; line-height:1.15; }
+    .parent-hero p { margin:0; font-size:1.02rem; max-width:760px; }
+    .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin:22px 0; }
+    .info-card { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px 22px; }
+    .info-card h3 { margin:0 0 8px; font-size:1.08rem; }
+    .info-card p { margin:0; color:var(--muted); }
+    .responsibility { background:var(--gold-soft); border:1px solid #ecd9a6; border-left:5px solid var(--gold); }
+    .responsibility h2 { color:var(--gold); }
+    .simple-list { margin:10px 0 0; padding-left:20px; }
+    .simple-list li { margin:8px 0; }
+    .scene-table { width:100%; border-collapse:collapse; font-size:.95rem; }
+    .scene-table th, .scene-table td { text-align:left; padding:11px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+    .scene-table th { color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; }
+    .scene-table .cat { font-weight:800; white-space:nowrap; }
+    .scene-table .kids { font-weight:600; }
+    .scene-table .scene-name { color:var(--muted); }
+    @media (max-width:700px){ .scene-table, .scene-table tbody, .scene-table tr, .scene-table td { display:block; width:100%; } .scene-table thead{display:none;} .scene-table tr{padding:12px 0;border-bottom:1px solid var(--line);} .scene-table td{border:0;padding:4px 0;} }
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="dot">🎭</span>
-        <span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+      <a class="brand" href="index.html"><span class="dot">🎭</span><span>Scène des Talents<small>École Arc en Ciel · 19 juin</small></span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">🏠 Accueil</a></li>
-        <li><a href="parents.html" class="active">👨‍👩‍👧 Parents</a></li>
-        <li><a href="enfants.html">👧 Enfants</a></li>
-        <li><a href="orga.html">🗓️ Organisation</a></li>
-        <li><a href="repere-enfants.html">🧭 Repère</a></li>
-        <li><a href="repetition.html">🎬 Répétitions</a></li>
-        <li><a href="nico.html">✅ Nico</a></li>
-        <li><a href="stats.html">📊 Statistiques</a></li>
+        <li><a href="index.html">🏠 Accueil</a></li><li><a href="parents.html" class="active">👨‍👩‍👧 Parents</a></li><li><a href="enfants.html">👧 Enfants</a></li><li><a href="orga.html">🗓️ Organisation</a></li><li><a href="repere-enfants.html">🧭 Repère</a></li><li><a href="repetition.html">🎬 Répétitions</a></li><li><a href="nico.html">✅ Nico</a></li><li><a href="stats.html">📊 Statistiques</a></li>
       </ul>
     </div>
   </nav>
@@ -96,35 +47,19 @@
     </header>
 
     <section class="section parent-hero">
-      <h2>Un moment de partage autour des projets de l’année</h2>
-      <p>
-        La Scène des Talents est un temps convivial qui permet de présenter aux familles les projets d’école travaillés pendant l’année,
-        ainsi que des démonstrations préparées par les enfants : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot et autres talents.
-      </p>
+      <h2>Je vous présente la Scène des Talents</h2>
+      <p>J’organise un moment convivial pour mettre en valeur les projets d’école travaillés pendant l’année, ainsi que les démonstrations préparées par les enfants : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot et autres talents.</p>
     </section>
 
     <div class="info-grid">
-      <article class="info-card">
-        <h3>🎓 Les projets d’école</h3>
-        <p>Le spectacle mettra en valeur les projets collectifs menés avec les enfants, comme les scènes préparées dans le cadre de l’année scolaire.</p>
-      </article>
-      <article class="info-card">
-        <h3>🌟 La scène des talents</h3>
-        <p>Les enfants pourront montrer une prestation préparée : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot ou autre démonstration.</p>
-      </article>
-      <article class="info-card">
-        <h3>🤝 Un événement familial</h3>
-        <p>L’objectif est de partager un beau moment avec les familles, d’encourager les enfants et de valoriser leurs efforts.</p>
-      </article>
+      <article class="info-card"><h3>🎓 Les projets d’école</h3><p>Je présenterai les projets collectifs menés avec les enfants, comme les chorégraphies et les scènes préparées dans le cadre de l’année.</p></article>
+      <article class="info-card"><h3>🌟 La scène des talents</h3><p>Les enfants pourront montrer une prestation préparée seul ou en groupe : danse, chant, théâtre, gymnastique, roller, jonglage ballon de foot, etc.</p></article>
+      <article class="info-card"><h3>🤝 Un événement familial</h3><p>Mon objectif est de partager un beau moment avec les familles, d’encourager les enfants et de valoriser leurs efforts.</p></article>
     </div>
 
     <section class="section responsibility">
-      <div class="section-head">
-        <h2>Responsabilité des parents</h2>
-      </div>
-      <p>
-        Pendant toute la durée de l’événement, les parents restent responsables de leurs enfants.
-      </p>
+      <div class="section-head"><h2>Responsabilité des parents</h2></div>
+      <p>Pendant toute la durée de l’événement, les parents restent responsables de leurs enfants.</p>
       <ul class="simple-list">
         <li>Cette responsabilité s’applique dès l’arrivée sur le lieu de l’événement et jusqu’au départ.</li>
         <li>Elle concerne également les enfants qui participent à la Scène des Talents.</li>
@@ -133,26 +68,28 @@
       </ul>
     </section>
 
+    <p class="cat-title">Organisation des projets d’école</p>
+    <section class="section"><div id="schoolScenes"></div></section>
+
+    <p class="cat-title">Organisation de la scène des talents</p>
+    <section class="section"><div id="freeScenes"></div></section>
+
     <section class="section">
-      <div class="section-head">
-        <h2>À retenir</h2>
-      </div>
-      <p>
-        Les enfants seront appelés selon l’organisation prévue. Merci de rester attentifs aux annonces, de laisser les espaces de passage dégagés
-        et d’encourager tous les participants dans un esprit positif et respectueux.
-      </p>
+      <div class="section-head"><h2>À retenir</h2></div>
+      <p>J’appellerai les enfants selon l’organisation prévue. Merci de rester attentifs aux annonces, de laisser les espaces de passage dégagés et d’encourager tous les participants dans un esprit positif et respectueux.</p>
     </section>
 
     <footer>Scène des Talents · École Arc en Ciel · 19 juin</footer>
   </div>
 
+  <script src="data.js"></script>
   <script>
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
+    const toggle=document.getElementById('navToggle'); const links=document.getElementById('navLinks');
+    toggle.addEventListener('click',()=>{const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open);});
+    const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const kidsOfProject=p=>p.languages?p.languages.map(l=>`${l.flag} ${esc(l.country)} — ${esc(l.lang)} : ${l.kids.map(esc).join(', ')}`).join('<br>'):p.kids.map(esc).join(', ');
+    document.getElementById('schoolScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Projet</th><th>Enfants</th><th>Précision</th></tr></thead><tbody>${SCHOOL_PROJECTS.map(p=>`<tr><td class="cat">${esc(p.name)}</td><td class="kids">${kidsOfProject(p)}</td><td class="scene-name">${esc(p.note||'Projet d’école')}</td></tr>`).join('')}</tbody></table>`;
+    document.getElementById('freeScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants</th><th>Scène</th></tr></thead><tbody>${FREE_CATEGORIES.flatMap(c=>c.scenes.map(s=>`<tr><td class="cat">${c.icon} ${esc(c.name)}</td><td class="kids">${s.who.map(esc).join(' + ')}</td><td class="scene-name">${esc(s.scene)}</td></tr>`)).join('')}</tbody></table>`;
   </script>
 </body>
 </html>
