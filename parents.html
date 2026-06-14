@@ -21,17 +21,27 @@
     .freedom h2 { color:var(--green); }
     .simple-list { margin:10px 0 0; padding-left:20px; }
     .simple-list li { margin:8px 0; }
-    .scene-table { width:100%; border-collapse:separate; border-spacing:0 12px; font-size:.95rem; }
-    .scene-table th { text-align:left; color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; padding:0 10px 4px; }
-    .scene-table td { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 14px; vertical-align:top; }
-    .scene-table td:first-child { border-left:1px solid var(--line); border-radius:14px 0 0 14px; width:170px; }
-    .scene-table td:last-child { border-right:1px solid var(--line); border-radius:0 14px 14px 0; width:160px; }
-    .scene-table .cat { font-size:1.28rem; font-weight:900; color:var(--accent); line-height:1.2; }
-    .scene-table .kids { font-weight:700; font-size:1rem; line-height:1.55; }
-    .scene-table .scene-name { color:var(--muted); margin-top:6px; font-size:.9rem; }
-    .scene-table .time { font-weight:900; color:var(--gold); white-space:nowrap; }
-    .scene-table .small { display:block; color:var(--muted); font-size:.82rem; font-weight:600; margin-top:4px; }
-    @media (max-width:700px){ .scene-table, .scene-table tbody, .scene-table tr, .scene-table td { display:block; width:100%; } .scene-table thead{display:none;} .scene-table tr{margin-bottom:14px;} .scene-table td{border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:0!important;padding:10px 14px;} .scene-table td:first-child{border-radius:14px 14px 0 0!important;} .scene-table td:last-child{border-radius:0 0 14px 14px!important;} }
+    .table-wrap { overflow-x:auto; padding-bottom:4px; }
+    .scene-table { width:100%; min-width:720px; border-collapse:separate; border-spacing:0 14px; font-size:.95rem; }
+    .scene-table th { text-align:left; color:var(--muted); font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; padding:0 12px 2px; }
+    .scene-row { --row:#c0392b; --row-bg:rgba(192,57,43,.08); }
+    .scene-table td { background:var(--row-bg); border-top:1px solid color-mix(in srgb, var(--row) 22%, white); border-bottom:1px solid color-mix(in srgb, var(--row) 22%, white); padding:0; vertical-align:stretch; }
+    .scene-table td:first-child { border-left:1px solid color-mix(in srgb, var(--row) 22%, white); border-radius:16px 0 0 16px; width:190px; }
+    .scene-table td:last-child { border-right:1px solid color-mix(in srgb, var(--row) 22%, white); border-radius:0 16px 16px 0; width:150px; }
+    .cat-block { height:100%; padding:18px 16px; background:color-mix(in srgb, var(--row) 16%, white); border-radius:15px 0 0 15px; border-left:6px solid var(--row); display:flex; flex-direction:column; justify-content:center; gap:5px; }
+    .cat-icon { font-size:1.55rem; line-height:1; }
+    .cat-name { font-size:1.25rem; font-weight:950; color:var(--row); line-height:1.1; }
+    .scene-content { padding:16px 18px; }
+    .scene-item { padding:10px 0; }
+    .scene-item:first-child { padding-top:0; }
+    .scene-item:last-child { padding-bottom:0; }
+    .scene-item + .scene-item { border-top:1px solid rgba(31,41,51,.10); }
+    .kids { font-weight:800; font-size:1rem; line-height:1.5; color:var(--ink); }
+    .scene-name { color:var(--muted); margin-top:4px; font-size:.9rem; }
+    .time-cell { height:100%; padding:18px 14px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+    .time { font-weight:950; color:var(--row); white-space:nowrap; font-size:1rem; }
+    .small { display:block; color:var(--muted); font-size:.82rem; font-weight:700; margin-top:4px; }
+    @media (max-width:700px){ .table-wrap{overflow:visible;} .scene-table{min-width:0;border-spacing:0 16px;} .scene-table thead{display:none;} .scene-table, .scene-table tbody, .scene-table tr, .scene-table td{display:block;width:100%;} .scene-table td{border-left:1px solid color-mix(in srgb, var(--row) 22%, white);border-right:1px solid color-mix(in srgb, var(--row) 22%, white);border-radius:0!important;} .scene-table td:first-child{border-radius:18px 18px 0 0!important;} .scene-table td:last-child{border-radius:0 0 18px 18px!important;} .cat-block{border-radius:17px 17px 0 0;min-height:92px;} .cat-name{font-size:1.4rem;} .time-cell{padding:12px 16px;background:rgba(255,255,255,.42);} }
   </style>
 </head>
 <body>
@@ -59,9 +69,12 @@
     const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     const schoolTimes=['18h00','18h05','18h10','18h15','18h20'];
     const freeTimes=['18h35','18h45','18h55','19h00','19h05','19h15'];
+    const palette=['#b8860b','#2b6cb0','#2f855a','#c05621','#805ad5','#c53030','#3182ce','#dd6b20'];
+    const colorFor=i=>palette[i%palette.length];
     const kidsOfProject=p=>p.languages?p.languages.map(l=>`${l.flag} ${esc(l.country)} — ${esc(l.lang)} : ${l.kids.map(esc).join(', ')}`).join('<br>'):p.kids.map(esc).join(', ');
-    document.getElementById('schoolScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / groupes</th><th>Horaire</th></tr></thead><tbody>${SCHOOL_PROJECTS.map((p,i)=>`<tr><td class="cat">${esc(p.name)}</td><td><div class="kids">${kidsOfProject(p)}</div><div class="scene-name">${esc(p.note||'Projet d’école')}</div></td><td><span class="time">vers ${schoolTimes[i]||'18h25'}</span><span class="small">approx.</span></td></tr>`).join('')}</tbody></table>`;
-    document.getElementById('freeScenes').innerHTML=`<table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / scènes</th><th>Horaire</th></tr></thead><tbody>${FREE_CATEGORIES.map((c,i)=>`<tr><td class="cat">${c.icon}<br>${esc(c.name)}</td><td>${c.scenes.map(s=>`<div class="kids">${s.who.map(esc).join(' + ')}</div><div class="scene-name">${esc(s.scene)}</div>`).join('<hr style="border:0;border-top:1px solid var(--line);margin:10px 0">')}</td><td><span class="time">vers ${freeTimes[i]||'19h20'}</span><span class="small">approx.</span></td></tr>`).join('')}</tbody></table>`;
+    const row=(color,icon,name,content,time)=>`<tr class="scene-row" style="--row:${color};--row-bg:${color}14"><td><div class="cat-block"><span class="cat-icon">${icon}</span><span class="cat-name">${name}</span></div></td><td><div class="scene-content">${content}</div></td><td><div class="time-cell"><span class="time">vers ${time}</span><span class="small">horaire approximatif</span></div></td></tr>`;
+    document.getElementById('schoolScenes').innerHTML=`<div class="table-wrap"><table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / groupes</th><th>Horaire</th></tr></thead><tbody>${SCHOOL_PROJECTS.map((p,i)=>row(colorFor(i),'🎓',esc(p.name),`<div class="kids">${kidsOfProject(p)}</div><div class="scene-name">${esc(p.note||'Projet d’école')}</div>`,schoolTimes[i]||'18h25')).join('')}</tbody></table></div>`;
+    document.getElementById('freeScenes').innerHTML=`<div class="table-wrap"><table class="scene-table"><thead><tr><th>Catégorie</th><th>Enfants / scènes</th><th>Horaire</th></tr></thead><tbody>${FREE_CATEGORIES.map((c,i)=>row(colorFor(i+2),c.icon,esc(c.name),c.scenes.map(s=>`<div class="scene-item"><div class="kids">${s.who.map(esc).join(' + ')}</div><div class="scene-name">${esc(s.scene)}</div></div>`).join(''),freeTimes[i]||'19h20')).join('')}</tbody></table></div>`;
   </script>
 </body>
 </html>
