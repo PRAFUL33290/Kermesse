@@ -19,6 +19,8 @@
     .responsibility h2 { color:var(--gold); }
     .freedom { background:#eef7f1; border:1px solid #b9dfc8; border-left:5px solid var(--green); }
     .freedom h2 { color:var(--green); }
+    .duration { background:#eef4ff; border:1px solid #bfd4ff; border-left:5px solid #2b6cb0; }
+    .duration h2 { color:#2b6cb0; }
     .simple-list { margin:10px 0 0; padding-left:20px; }
     .simple-list li { margin:8px 0; }
     .table-wrap { overflow-x:auto; padding-bottom:4px; }
@@ -41,24 +43,7 @@
     .time-cell { height:100%; padding:18px 14px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
     .time { font-weight:950; color:var(--row); white-space:nowrap; font-size:1rem; }
     .small { display:block; color:var(--muted); font-size:.82rem; font-weight:700; margin-top:4px; }
-    @media (max-width:700px){
-      .wrap { padding-left:16px; padding-right:16px; }
-      .section { padding:18px 16px; }
-      .table-wrap{overflow:visible;}
-      .scene-table{min-width:0; border-collapse:collapse; border-spacing:0; display:block; width:100%;}
-      .scene-table thead{display:none;}
-      .scene-table tbody{display:block; width:100%;}
-      .scene-table tr.scene-row{display:grid; grid-template-columns:1fr; width:100%; margin:0 0 18px; border-radius:18px; overflow:hidden; background:var(--row-bg); border:1px solid color-mix(in srgb, var(--row) 24%, white); box-shadow:0 8px 20px rgba(31,41,51,.06);}
-      .scene-table td{display:block; width:100%!important; border:0!important; border-radius:0!important; background:transparent;}
-      .cat-block{min-height:auto; padding:18px 18px 16px; border-left:0; border-top:7px solid var(--row); border-radius:0; background:color-mix(in srgb, var(--row) 13%, white);}
-      .cat-icon{font-size:1.35rem;}
-      .cat-name{font-size:1.55rem; line-height:1.08;}
-      .scene-content{padding:18px; background:rgba(255,255,255,.56);}
-      .kids{font-size:1.02rem; line-height:1.55;}
-      .scene-name{font-size:.92rem;}
-      .time-cell{padding:14px 18px 18px; background:rgba(255,255,255,.38); border-top:1px solid rgba(31,41,51,.08);}
-      .time{font-size:1.1rem;}
-    }
+    @media (max-width:700px){ .wrap { padding-left:16px; padding-right:16px; } .section { padding:18px 16px; } .table-wrap{overflow:visible;} .scene-table{min-width:0; border-collapse:collapse; border-spacing:0; display:block; width:100%;} .scene-table thead{display:none;} .scene-table tbody{display:block; width:100%;} .scene-table tr.scene-row{display:grid; grid-template-columns:1fr; width:100%; margin:0 0 18px; border-radius:18px; overflow:hidden; background:var(--row-bg); border:1px solid color-mix(in srgb, var(--row) 24%, white); box-shadow:0 8px 20px rgba(31,41,51,.06);} .scene-table td{display:block; width:100%!important; border:0!important; border-radius:0!important; background:transparent;} .cat-block{min-height:auto; padding:18px 18px 16px; border-left:0; border-top:7px solid var(--row); border-radius:0; background:color-mix(in srgb, var(--row) 13%, white);} .cat-icon{font-size:1.35rem;} .cat-name{font-size:1.55rem; line-height:1.08;} .scene-content{padding:18px; background:rgba(255,255,255,.56);} .kids{font-size:1.02rem; line-height:1.55;} .scene-name{font-size:.92rem;} .time-cell{padding:14px 18px 18px; background:rgba(255,255,255,.38); border-top:1px solid rgba(31,41,51,.08);} .time{font-size:1.1rem;} }
   </style>
 </head>
 <body>
@@ -75,6 +60,7 @@
     <div class="info-grid"><article class="info-card"><h3>🎓 Les projets d’école</h3><p>Je présenterai les projets collectifs menés avec les enfants.</p></article><article class="info-card"><h3>🌟 La scène des talents</h3><p>Les enfants pourront montrer une prestation préparée seul ou en groupe.</p></article><article class="info-card"><h3>⏰ Horaires approximatifs</h3><p>Les horaires sont donnés à titre indicatif et peuvent légèrement changer selon le déroulement.</p></article></div>
     <section class="section responsibility"><div class="section-head"><h2>Responsabilité des parents</h2></div><p>Pendant toute la durée de l’événement, les parents restent responsables de leurs enfants.</p><ul class="simple-list"><li>Cette responsabilité s’applique dès l’arrivée sur le lieu de l’événement et jusqu’au départ.</li><li>Elle concerne également les enfants qui participent à la Scène des Talents.</li><li>Les enfants doivent rester sous la surveillance de leurs parents en dehors de leur passage sur scène.</li><li>Merci d’accompagner les enfants avec bienveillance et de respecter l’organisation prévue pour les passages.</li></ul></section>
     <section class="section freedom"><div class="section-head"><h2>Participation des enfants</h2></div><p>Je souhaite que ce moment reste positif pour les enfants. Si un enfant a peur, ne se sent pas prêt ou n’a plus envie de passer sur scène, il en a le droit.</p><ul class="simple-list"><li>Aucune obligation n’est souhaitée.</li><li>Dans ce cas, la scène concernée ne se produira pas.</li><li>Nous continuerons simplement le déroulement du spectacle, car il y a beaucoup d’enfants à faire passer.</li><li>L’important est que chaque enfant se sente respecté et encouragé.</li></ul></section>
+    <section class="section duration"><div class="section-head"><h2>Durée des numéros</h2></div><p>Pour que tous les enfants puissent passer dans de bonnes conditions, les numéros de chant, danse, théâtre, gymnastique, roller, jonglage et autres démonstrations durent au maximum 3 minutes.</p></section>
     <p class="cat-title">Organisation des projets d’école</p><section class="section"><div id="schoolScenes"></div></section>
     <p class="cat-title">Organisation de la scène des talents</p><section class="section"><div id="freeScenes"></div></section>
     <section class="section"><div class="section-head"><h2>À retenir</h2></div><p>J’appellerai les enfants selon l’organisation prévue. Merci de rester attentifs aux annonces, de laisser les espaces de passage dégagés et d’encourager tous les participants dans un esprit positif et respectueux.</p></section>
